@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{H1}} - Masajes a Domicilio Premium | Blog de Bienestar</title>
+    <meta name="description" content="Lee todo sobre {{H1}} en nuestro blog experto sobre terapias físicas, masajes relajantes, descontracturantes y bienestar general directo en tu hogar.">
+    
+    <!-- Google Fonts: Outfit & Playfair Display for Premium Look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                            300: '#d6d3d1',
+                            400: '#a8a29e',
+                            500: '#78716c',
+                        },
+                        teal: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                            950: '#042f2e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-stone-50 text-teal-950 font-sans antialiased selection:bg-teal-800 selection:text-white relative overflow-x-hidden">
+
+    <header class="border-b border-stone-200/50 bg-white/80 backdrop-blur-md sticky top-0 z-50 transition-all shadow-[0_4px_30px_rgb(0,0,0,0.03)] selection:bg-teal-900 selection:text-white">
+        <div class="max-w-7xl mx-auto px-6 py-[2px] md:py-[4px] flex justify-between items-center">
+            <!-- Logo -->
+            <a href="/" class="flex-shrink-0 flex items-center gap-3 group -my-4 lg:-my-8">
+                <img src="/assets/logo.png" alt="Manos Curativas" class="h-24 md:h-32 lg:h-40 w-auto max-w-none group-hover:scale-105 transition-transform duration-500 ease-out origin-left object-cover">
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex gap-10 items-center text-[14px] lg:text-[15px] tracking-[0.1em] uppercase font-bold text-teal-950/80">
+                <a href="/" class="hover:text-teal-700 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:bg-teal-700 after:transition-transform after:duration-300">Inicio</a>
+                <a href="/#servicios" class="hover:text-teal-700 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:bg-teal-700 after:transition-transform after:duration-300">Servicios</a>
+                <a href="/#cobertura" class="hover:text-teal-700 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:bg-teal-700 after:transition-transform after:duration-300">Cobertura</a>
+                <a href="/blog/" class="hover:text-teal-700 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:bg-teal-700 after:transition-transform after:duration-300">Blog</a>
+            </nav>
+
+            <!-- CTA Desktop -->
+            <div class="hidden md:block">
+                <button onclick="openQuizModal()" class="bg-teal-800 text-white px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-teal-700 transition-all shadow-[0_8px_20px_rgb(17,94,89,0.2)] hover:shadow-[0_8px_25px_rgb(17,94,89,0.3)] hover:-translate-y-0.5">
+                    Agendar Cita
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" class="md:hidden text-teal-950 p-2 focus:outline-none">
+                <iconify-icon icon="solar:hamburger-menu-linear" class="text-3xl"></iconify-icon>
+            </button>
+        </div>
+
+        <!-- Mobile Nav (Hidden by default) -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-stone-100 shadow-2xl absolute w-full left-0 origin-top animate-[fadeIn_0.3s_ease-out]">
+            <nav class="flex flex-col text-[14px] tracking-[0.1em] uppercase font-bold text-teal-950">
+                <a href="/" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Inicio</a>
+                <a href="/#servicios" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Servicios</a>
+                <a href="/#cobertura" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Cobertura</a>
+                <a href="/blog/" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Blog</a>
+                <div class="p-8 bg-stone-50/50">
+                    <button onclick="openQuizModal(); document.getElementById('mobileMenu').classList.add('hidden');" class="w-full bg-teal-800 text-white px-6 py-5 text-[14px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-teal-700 transition-all shadow-lg active:scale-95">
+                        Agendar Cita
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <div class="max-w-4xl mx-auto px-6 pt-10 pb-0 text-[11px] tracking-[0.15em] uppercase font-semibold text-stone-400 font-sans">
+        {{BREADCRUMB_HTML}}
+    </div>
+
+    <!-- Contenido Principal: Artículo -->
+    <main class="max-w-4xl mx-auto px-6 py-12 md:py-20">
+        <article class="bg-white rounded-3xl p-8 md:p-14 shadow-[0_10px_40px_rgb(0,0,0,0.03)] border border-stone-100">
+            
+            <header class="mb-14 text-center">
+                <span class="text-[13px] tracking-[0.3em] font-bold mb-6 text-teal-600 uppercase block">Conocimiento Wellness</span>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-[1.1] mb-8 text-teal-950">
+                    {{H1}}
+                </h1>
+                <div class="flex items-center justify-center gap-6 mt-8">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-stone-200 overflow-hidden">
+                            <!-- Author Avatar -->
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-left">
+                            <p class="text-[13px] font-bold text-teal-950">Equipo Clínico</p>
+                            <p class="text-[11px] text-stone-400 font-semibold tracking-wider uppercase">Manos Curativas</p>
+                        </div>
+                    </div>
+                    <div class="w-px h-8 bg-stone-200"></div>
+                    <div class="text-[13px] font-medium text-stone-500">
+                        Lectura de 4 min
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Imagen destacada genérica -->
+            <div class="w-full h-64 md:h-96 bg-stone-200 mb-14 rounded-2xl overflow-hidden relative isolate shadow-inner">
+                <img src="/assets/blog_massage.png" alt="{{H1}}" class="object-cover w-full h-full brightness-105 hover:scale-105 transition-transform duration-[2s]">
+                <div class="absolute inset-0 bg-teal-950/5 mix-blend-multiply pointer-events-none"></div>
+            </div>
+
+            <div class="prose prose-xl prose-stone max-w-none text-stone-600 font-light font-sans leading-relaxed
+                prose-headings:font-serif prose-headings:font-bold prose-headings:text-teal-950 
+                prose-h2:text-4xl prose-h2:mt-14 prose-h2:mb-8 
+                prose-h3:text-3xl prose-h3:mt-10 prose-h3:mb-6
+                prose-a:text-teal-600 prose-a:font-medium hover:prose-a:text-teal-800 prose-a:transition-colors
+                prose-p:mb-8 prose-li:my-3
+                prose-img:rounded-3xl prose-img:shadow-xl">
+                <!-- Contenido Dinámico del Artículo -->
+                {{ARTICLE_CONTENT}}
+            
+            <div class="mt-16 bg-stone-50 border border-stone-200 p-10 md:p-14 rounded-3xl">
+                <h3 class="text-2xl md:text-3xl font-serif font-bold text-teal-950 mb-4">¿Te interesa agendar?</h3>
+                <p class="text-lg md:text-xl font-light text-stone-600 mb-8 font-sans">Da el primer paso a un bienestar duradero agendando hoy. No tienes que desplazarte al spa, el spa llega directamente a ti adaptado exactamente a lo que exiges.</p>
+                <button onclick="openQuizModal()" class="inline-flex items-center gap-4 bg-teal-800 text-white px-10 mt-2 py-5 text-[14px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-teal-700 shadow-[0_10px_30px_rgb(17,94,89,0.3)] hover:shadow-lg transition-all hover:-translate-y-1">
+                    Cuestionario de Bienestar Rápido
+                    <iconify-icon icon="solar:arrow-right-line-duotone" class="text-2xl"></iconify-icon>
+                </button>
+            </div>
+            
+            <div class="mt-20 border-t border-stone-100 pt-16">
+                <div class="mb-10 text-center">
+                    <span class="text-[11px] tracking-[0.3em] uppercase font-bold text-teal-600 mb-4 block">Sigue leyendo</span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-teal-950">Artículos que te pueden interesar</h2>
+                </div>
+                <!-- Grilla de scrolling infinito -->
+                <div class="relative">
+                    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-full bg-gradient-to-l from-white to-transparent md:hidden pointer-events-none z-10"></div>
+                    <div class="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-2 lg:gap-8 gap-4 pb-8 snap-x snap-mandatory style-scroll pl-4 md:pl-0 pr-8 md:pr-0">
+                        {{BLOG_CARDS_HTML}}
+                    </div>
+                    <div class="text-center mt-2 md:hidden">
+                        <span class="text-[10px] tracking-[0.2em] font-bold text-teal-600/70 uppercase inline-flex items-center gap-2">
+                            <iconify-icon icon="solar:arrow-left-line-duotone"></iconify-icon> Desliza para ver más <iconify-icon icon="solar:arrow-right-line-duotone"></iconify-icon>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 mb-8 max-w-3xl mx-auto">
+                {{ENLACES_SEO}}
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer SEO Premium (Same as Master) -->
+    <footer class="bg-teal-950 text-stone-100 py-24 relative overflow-hidden mt-12">
+        <!-- Abstract Decoration Line -->
+        <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-teal-700/50 to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-10 mb-20">
+                <!-- Columna 1: Brand (Takes more space) -->
+                <div class="lg:col-span-4 space-y-6 lg:pr-12">
+                    <div class="text-3xl font-serif font-bold uppercase tracking-widest text-white">Manos Curativas</div>
+                    <p class="text-[16px] font-light text-teal-100/70 leading-relaxed font-sans">
+                        Elevamos los estándares del bienestar domiciliario. Terapias musculares avanzadas proporcionadas por expertos certificados, transformando cualquier espacio en tu propio spa personal.
+                    </p>
+                    <div class="flex gap-4 pt-6">
+                        <a href="#" class="w-12 h-12 rounded-full border border-teal-800/50 flex items-center justify-center text-teal-300/80 hover:text-white hover:bg-teal-800 transition-all"><iconify-icon icon="mdi:instagram" class="text-2xl"></iconify-icon></a>
+                        <a href="#" class="w-12 h-12 rounded-full border border-teal-800/50 flex items-center justify-center text-teal-300/80 hover:text-white hover:bg-teal-800 transition-all"><iconify-icon icon="mdi:facebook" class="text-2xl"></iconify-icon></a>
+                        <a href="#" class="w-12 h-12 rounded-full border border-teal-800/50 flex items-center justify-center text-teal-300/80 hover:text-white hover:bg-teal-800 transition-all"><iconify-icon icon="mdi:whatsapp" class="text-2xl"></iconify-icon></a>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Servicios -->
+                <div class="lg:col-span-3">
+                    <h4 class="text-[13px] font-bold uppercase tracking-[0.2em] text-teal-400 mb-8">Servicios Especializados</h4>
+                    <ul class="space-y-5 text-[16px] font-light text-teal-100/70">
+                        <li><a href="/masajes-relajantes-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Relajantes</a></li>
+                        <li><a href="/masajes-terapeuticos-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Terapéuticos</a></li>
+                        <li><a href="/masajes-deportivos-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Deportivos</a></li>
+                        <li><a href="/drenaje-linfatico-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Drenaje Linfático</a></li>
+                        <li><a href="/masaje-prenatal-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masaje Prenatal</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Cobertura -->
+                <div class="lg:col-span-3">
+                    <h4 class="text-[13px] font-bold uppercase tracking-[0.2em] text-teal-400 mb-8">Nuestras Zonas</h4>
+                    <ul class="space-y-5 text-[16px] font-light text-teal-100/70">
+                        <li><a href="/masajes-a-domicilio-en-medellin/" class="hover:text-white transition-colors">Medellín</a></li>
+                        <li><a href="/masajes-a-domicilio-en-el-poblado/" class="hover:text-white transition-colors">El Poblado</a></li>
+                        <li><a href="/masajes-a-domicilio-en-laureles/" class="hover:text-white transition-colors">Laureles</a></li>
+                        <li><a href="/masajes-a-domicilio-en-envigado/" class="hover:text-white transition-colors">Envigado</a></li>
+                        <li><a href="/masajes-a-domicilio-en-sabaneta/" class="hover:text-white transition-colors">Sabaneta</a></li>
+                        <li><a href="/masajes-a-domicilio-en-bello/" class="hover:text-white transition-colors">Bello</a></li>
+                        <li><a href="/masajes-a-domicilio-en-itagui/" class="hover:text-white transition-colors">Itagüí</a></li>
+                        <li><a href="/masajes-a-domicilio-en-rionegro/" class="hover:text-white transition-colors">Rionegro</a></li>
+                        <li><a href="/masajes-a-domicilio-en-llanogrande/" class="hover:text-white transition-colors">Llanogrande</a></li>
+                        <li><a href="/masajes-a-domicilio-en-la-estrella/" class="hover:text-white transition-colors">La Estrella</a></li>
+                        <li><a href="/masajes-a-domicilio-en-san-antonio-de-pereira/" class="hover:text-white transition-colors">San Antonio de Pereira</a></li>
+                        <li><a href="/masajes-a-domicilio-en-el-retiro/" class="hover:text-white transition-colors">El Retiro</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Legal / Ext -->
+                <div class="lg:col-span-2">
+                    <h4 class="text-[13px] font-bold uppercase tracking-[0.2em] text-teal-400 mb-8">Descubre</h4>
+                    <ul class="space-y-5 text-[16px] font-light text-teal-100/70">
+                        <li><a href="/blog/" class="hover:text-white transition-colors">Blog y Bienestar</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Políticas y Privacidad</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Normatividad</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Nosotros</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-teal-800/40 pt-10 mt-12 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-[15px] font-light text-teal-100/40 font-sans tracking-wide">
+                    &copy; <span id="year-footer"></span> Manos Curativas. Marca Registrada. 
+                </div>
+                <div class="text-[12px] uppercase tracking-[0.2em] font-medium text-teal-600">
+                    Masajes a Domicilio Premium
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Lead Generation Quiz Modal (Same as Master) -->
+    <div id="quizModal" class="fixed inset-0 bg-teal-950/40 backdrop-blur-md z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500 p-4">
+        <div class="bg-white w-full max-w-lg rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] overflow-hidden relative scale-95 transition-transform duration-500" id="quizModalBox">
+            
+            <!-- Modal Header -->
+            <div class="px-8 py-6 flex justify-between items-center border-b border-stone-100">
+                <div>
+                    <span class="text-[10px] tracking-[0.2em] text-teal-600 uppercase font-bold block mb-1">Cuestionario</span>
+                    <h3 class="text-xl font-serif font-bold text-teal-950">Tu Masaje Ideal</h3>
+                </div>
+                <button onclick="closeQuizModal()" class="w-10 h-10 rounded-full bg-stone-50 text-stone-400 hover:text-teal-800 hover:bg-teal-50 transition-all flex items-center justify-center">
+                    <iconify-icon icon="solar:close-circle-linear" class="text-2xl"></iconify-icon>
+                </button>
+            </div>
+
+            <!-- Quiz Container -->
+            <div class="p-8" id="quizContainer">
+                
+                <!-- Progress Line -->
+                <div class="w-full bg-stone-100 h-1.5 rounded-full mb-10 overflow-hidden">
+                    <div id="quizProgress" class="bg-teal-600 h-full transition-all duration-500 ease-out w-1/4 rounded-full"></div>
+                </div>
+
+                <!-- Questions Area -->
+                <div id="quizQuestions" class="min-h-[220px]">
+                    <!-- Q1 -->
+                    <div class="quiz-step animate-[fadeIn_0.4s_ease-out]" id="step1">
+                        <h4 class="text-2xl font-serif font-bold mb-6 text-teal-950">¿Cuál es tu cuerpo pidiendo a gritos hoy?</h4>
+                        <div class="space-y-3">
+                            <button onclick="answerQuestion(1, 'Relajación mental y muscular total')" class="w-full text-left p-4 rounded-xl border border-stone-200 hover:border-teal-600 hover:bg-teal-50 text-stone-600 hover:text-teal-950 transition-all font-medium text-[15px] shadow-sm hover:shadow-md">Relajación mental y muscular total</button>
+                            <button onclick="answerQuestion(1, 'Desbloquear nudos y dolor profundo')" class="w-full text-left p-4 rounded-xl border border-stone-200 hover:border-teal-600 hover:bg-teal-50 text-stone-600 hover:text-teal-950 transition-all font-medium text-[15px] shadow-sm hover:shadow-md">Desbloquear nudos y dolor profundo</button>
+                            <button onclick="answerQuestion(1, 'Reducir retención de líquidos / Drenaje')" class="w-full text-left p-4 rounded-xl border border-stone-200 hover:border-teal-600 hover:bg-teal-50 text-stone-600 hover:text-teal-950 transition-all font-medium text-[15px] shadow-sm hover:shadow-md">Reducir retención de líquidos / Drenaje</button>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-step hidden animate-[fadeIn_0.4s_ease-out]" id="step2">
+                        <h4 class="text-2xl font-serif font-bold mb-6 text-teal-950">¿Cuál es tu sensibilidad a la presión?</h4>
+                        <div class="space-y-3">
+                            <button onclick="answerQuestion(2, 'Busco algo suave y sedante')" class="w-full text-left p-4 rounded-xl border border-stone-200 hover:border-teal-600 hover:bg-teal-50 text-stone-600 hover:text-teal-950 transition-all font-medium text-[15px] shadow-sm hover:shadow-md">Busco algo suave y completamente sedante</button>
+                            <button onclick="answerQuestion(2, 'Presión firme pero muy tolerable')" class="w-full text-left p-4 rounded-xl border border-stone-200 hover:border-teal-600 hover:bg-teal-50 text-stone-600 hover:text-teal-950 transition-all font-medium text-[15px] shadow-sm hover:shadow-md">Presión firme pero muy tolerable</button>
+                            <button onclick="answerQuestion(2, 'Agresiva, quiero que disuelvan mis nudos')" class="w-full text-left p-4 rounded-xl border border-stone-200 hover:border-teal-600 hover:bg-teal-50 text-stone-600 hover:text-teal-950 transition-all font-medium text-[15px] shadow-sm hover:shadow-md">Robusta, quiero que disuelvan mis nudos</button>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-step hidden animate-[fadeIn_0.4s_ease-out]" id="step3">
+                        <h4 class="text-2xl font-serif font-bold mb-6 text-teal-950">¿Dónde concentramos la magia?</h4>
+                        <div class="space-y-3">
+                            <button onclick="answerQuestion(3, 'Principalmente la espalda y cuello')" class="w-full text-left p-4 rounded-xl border border-stone-200 hover:border-teal-600 hover:bg-teal-50 text-stone-600 hover:text-teal-950 transition-all font-medium text-[15px] shadow-sm hover:shadow-md">Principalmente la Espalda y Cuello</button>
+                            <button onclick="answerQuestion(3, 'Piernas y tren inferior')" class="w-full text-left p-4 rounded-xl border border-stone-200 hover:border-teal-600 hover:bg-teal-50 text-stone-600 hover:text-teal-950 transition-all font-medium text-[15px] shadow-sm hover:shadow-md">Piernas, Pies y Tren Inferior</button>
+                            <button onclick="answerQuestion(3, 'Experiencia inmersiva en cuerpo entero')" class="w-full text-left p-4 rounded-xl border border-stone-200 hover:border-teal-600 hover:bg-teal-50 text-stone-600 hover:text-teal-950 transition-all font-medium text-[15px] shadow-sm hover:shadow-md">Experiencia Inmersiva (Cuerpo Entero)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Area -->
+                <div id="quizResult" class="hidden text-center py-4 animate-[fadeIn_0.4s_ease-out]">
+                    <div class="w-20 h-20 bg-teal-50 rounded-full mx-auto flex items-center justify-center mb-6">
+                        <iconify-icon icon="solar:leaf-bold-duotone" class="text-4xl text-teal-600"></iconify-icon>
+                    </div>
+                    <h4 class="text-[11px] tracking-[0.2em] text-stone-400 uppercase font-bold mb-3">Terapia Perfecta Localizada:</h4>
+                    <div id="resultText" class="text-3xl font-serif font-bold mb-6 text-teal-950">Masaje Terapéutico</div>
+                    <p class="text-[15px] text-stone-500 mb-10 font-light leading-relaxed">Nuestros analistas recomiendan esta terapia premium, completamente adaptada a lo que hoy necesita tu fisiología.</p>
+                    
+                    <button onclick="sendToTherapist()" class="w-full flex justify-center items-center gap-3 bg-teal-800 text-white px-8 py-4 text-[13px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-teal-700 transition-all shadow-[0_10px_20px_rgb(17,94,89,0.2)] hover:-translate-y-1">
+                        Reservar Especialista
+                        <iconify-icon icon="solar:whatsapp-linear" class="text-xl"></iconify-icon>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('year-footer').textContent = new Date().getFullYear();
+
+        // Mobile Menu toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if(mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Quiz Logic
+        const modal = document.getElementById('quizModal');
+        const modalBox = document.getElementById('quizModalBox');
+        let currentStep = 1;
+        const totalSteps = 3;
+        const answers = {};
+        const urlActual = window.location.href;
+        const numeroWhatsApp = "573042182623";
+
+        function openQuizModal() {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                modalBox.classList.remove('scale-95');
+                modalBox.classList.add('scale-100');
+            }, 10);
+            resetQuiz();
+        }
+
+        function closeQuizModal() {
+            modalBox.classList.remove('scale-100');
+            modalBox.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+            }, 300);
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.quiz-step').forEach(el => el.classList.add('hidden'));
+            const elm = document.getElementById(`step${step}`);
+            if(elm) {
+                elm.classList.remove('hidden');
+            }
+            
+            const progress = (step / (totalSteps + 1)) * 100;
+            document.getElementById('quizProgress').style.width = `${progress}%`;
+        }
+
+        function answerQuestion(stepIndex, answer) {
+            answers[`q${stepIndex}`] = answer;
+            
+            if (stepIndex < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('quizQuestions').classList.add('hidden');
+            document.getElementById('quizResult').classList.remove('hidden');
+            document.getElementById('quizProgress').style.width = '100%';
+
+            let recommended = 'Masaje Relajante Supreme';
+            if (answers.q1.includes('dolor') || answers.q2.includes('nudos') || answers.q2.includes('Robusta')) {
+                recommended = 'Terapia de Tejido Profundo';
+            } else if (answers.q1.includes('Drenaje')) {
+                recommended = 'Drenaje Linfático Manual';
+            } else if (answers.q1.includes('mental')) {
+                recommended = 'Ritual de Relajación Holistic';
+            }
+
+            document.getElementById('resultText').textContent = recommended;
+            answers.finalRecommendation = recommended;
+        }
+
+        function sendToTherapist() {
+            const mensaje = `¡Hola! Vengo de la página del Blog: ${urlActual}%0A%0AHe completado la solicitud rápida:%0A• Objetivo: ${answers.q1}%0A• Presión: ${answers.q2}%0A• Foco: ${answers.q3}%0A%0A*Mi terapia asignada:* ${answers.finalRecommendation}%0A%0AQuisiera consultar disponibilidad a domicilio.`;
+            
+            const whatsappUrl = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+            window.open(whatsappUrl, '_blank');
+            closeQuizModal();
+        }
+
+        function resetQuiz() {
+            currentStep = 1;
+            document.getElementById('quizQuestions').classList.remove('hidden');
+            document.getElementById('quizResult').classList.add('hidden');
+            for(let key in answers) delete answers[key];
+            showStep(currentStep);
+        }
+
+        // Lógica de preservación de zona (Contexto Local del Usuario)
+        function slugifyZona(text) {
+            return text.toString().toLowerCase().trim()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                .replace(/\s+/g, '-')
+                .replace(/&/g, '-y-')
+                .replace(/[^\w\-]+/g, '')
+                .replace(/\-\-+/g, '-');
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            const zonaParam = params.get('z'); // Obtener parámetro de zona inyectado desde builder
+            
+            if (zonaParam && zonaParam.toLowerCase() !== 'medellín' && zonaParam.toLowerCase() !== 'todos') {
+                const zonaDisplay = zonaParam.replace(/\b\w/g, l => l.toUpperCase());
+                const zonaSlug = slugifyZona(zonaParam);
+
+                // 1. Actualizar enlace principal de "Regresar a la zona"
+                const btnSeo = document.getElementById('back-to-zona-btn');
+                if (btnSeo) {
+                    btnSeo.href = `/masajes-a-domicilio-en-${zonaSlug}/`;
+                }
+
+                // 2. Personalizar todos los enlaces de WhatsApp para referenciar la zona actual
+                const waLinks = document.querySelectorAll('a[href*="wa.me/"]');
+                waLinks.forEach(a => {
+                    try {
+                        const url = new URL(a.href);
+                        let text = url.searchParams.get("text");
+                        if (text && text.match(/medellín/i)) {
+                            // Reemplazamos Medellín por la ciudad que el usuario traía
+                            url.searchParams.set("text", text.replace(/medellín/ig, zonaDisplay));
+                            a.href = url.toString();
+                        }
+                    } catch(e) {
+                        // Ignorar urls mal formadas
+                    }
+                });
+            }
+        });
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
