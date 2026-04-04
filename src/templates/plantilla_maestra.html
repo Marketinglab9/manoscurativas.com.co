@@ -111,27 +111,27 @@
     </header>
 
     <!-- Breadcrumbs -->
-    <div class="max-w-7xl mx-auto px-6 pt-10 pb-0 text-[11px] tracking-[0.15em] uppercase font-semibold text-stone-400 font-sans">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 pb-0 text-[11px] tracking-[0.15em] uppercase font-semibold text-stone-400 font-sans">
         {{BREADCRUMB_HTML}}
     </div>
 
     <!-- Hero Section -->
-    <section class="max-w-7xl mx-auto px-6 py-16 md:py-24 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24 grid lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
         <div class="relative z-10 order-2 lg:order-1">
-            <span class="text-[14px] tracking-[0.3em] font-bold mb-6 flex items-center gap-4 text-teal-700 uppercase">
-                <span class="w-10 h-[1px] bg-teal-600 block"></span>
+            <span class="text-[12px] sm:text-[14px] tracking-[0.2em] sm:tracking-[0.3em] font-bold mb-4 sm:mb-6 flex items-center gap-3 sm:gap-4 text-teal-700 uppercase">
+                <span class="w-8 sm:w-10 h-[1px] bg-teal-600 block"></span>
                 {{HERO_SUB_TEXT}}
             </span>
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-[1.1] mb-10 text-teal-950">
+            <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-[1.1] mb-6 sm:mb-10 text-teal-950">
                 {{H1}}
             </h1>
-            <p class="text-xl md:text-2xl font-light mb-12 max-w-xl leading-relaxed text-stone-500">
+            <p class="text-lg sm:text-xl md:text-2xl font-light mb-8 sm:mb-12 max-w-xl leading-relaxed text-stone-500">
                 {{HERO_DESC}}
             </p>
-            <div class="flex flex-wrap items-center gap-8">
-                <button onclick="openQuizModal()" class="inline-flex items-center gap-4 bg-teal-800 text-white px-8 md:px-10 py-5 text-[14px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-teal-700 transition-all shadow-[0_10px_30px_rgb(17,94,89,0.3)] hover:shadow-[0_15px_35px_rgb(17,94,89,0.4)] hover:-translate-y-1">
+            <div class="flex flex-wrap items-center gap-6 sm:gap-8">
+                <button onclick="openQuizModal()" class="inline-flex items-center gap-3 sm:gap-4 bg-teal-800 text-white px-6 sm:px-8 md:px-10 py-4 sm:py-5 text-[12px] sm:text-[14px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-teal-700 transition-all shadow-[0_10px_30px_rgb(17,94,89,0.3)] hover:-translate-y-1">
                     Agendar Experiencia
-                    <iconify-icon icon="solar:arrow-right-line-duotone" class="text-2xl"></iconify-icon>
+                    <iconify-icon icon="solar:arrow-right-line-duotone" class="text-xl sm:text-2xl"></iconify-icon>
                 </button>
                 
                 <div class="flex items-center gap-3">
@@ -150,7 +150,7 @@
             <div class="absolute -top-12 -right-12 w-72 h-72 bg-stone-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
             <div class="absolute -bottom-12 -left-12 w-72 h-72 bg-teal-100/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
             
-            <div class="aspect-[4/5] md:aspect-square lg:aspect-[4/5] relative rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] z-10 isolate">
+            <div class="aspect-[5/6] sm:aspect-[4/5] md:aspect-square lg:aspect-[4/5] relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] z-10 isolate">
                 <img src="/assets/hero_massage.png" alt="{{H1}}" class="object-cover w-full h-full hover:scale-105 transition-transform duration-[1.5s] ease-out brightness-95">
                 <div class="absolute inset-0 bg-gradient-to-t from-teal-950/30 to-transparent mix-blend-multiply pointer-events-none"></div>
             </div>
@@ -161,10 +161,10 @@
     {{SERVICE_INFO}}
     <!-- SECCIÓN DE SERVICIOS -->
     <section id="servicios" class="pt-10 pb-16 bg-stone-50 {{ORDER_CLASS_SERVICIOS}}">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-12 flex flex-col items-start border-b border-stone-200 pb-4">
-                <h2 class="text-2xl md:text-3xl font-serif font-bold text-teal-950">También te puede interesar</h2>
-                <p class="text-stone-500 font-sans mt-2">Más servicios y guías de relajación cerca a ti</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="mb-8 sm:mb-12 flex flex-col items-start border-b border-stone-200 pb-4">
+                <h2 class="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-teal-950">También te puede interesar</h2>
+                <p class="text-[14px] sm:text-base text-stone-500 font-sans mt-2">Más servicios y guías de relajación cerca a ti</p>
             </div>
             
             <div class="relative">
@@ -187,7 +187,7 @@
         <div class="max-w-[1400px] mx-auto px-2 md:px-6">
             <div class="mb-12 flex flex-col items-center text-center px-4">
                 <span class="text-[11px] tracking-[0.3em] uppercase font-bold text-teal-600 mb-4">Nuestra Cobertura Local</span>
-                <h2 class="text-3xl md:text-5xl font-serif font-bold text-teal-950 max-w-2xl">Llegamos a donde tú necesitas descansar</h2>
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-teal-950 max-w-2xl">Llegamos a donde tú necesitas descansar</h2>
             </div>
             
             <!-- MARQUEE INFINITO Y MÁSCARA -->
@@ -480,16 +480,7 @@
             showStep(currentStep);
         }
 
-        // Mobile Menu Toggle
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (mobileMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-        });
+        // Lógica duplicada borrada
     </script>
 
     <style>

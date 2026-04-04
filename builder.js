@@ -407,15 +407,15 @@ async function build() {
                 }
 
                 serviceInfoHtml = `
-                <section class="max-w-7xl mx-auto px-6 py-16 lg:py-20 bg-white order-0 w-full mb-8 rounded-3xl border border-stone-100 shadow-sm mt-8">
-                    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 lg:py-20 bg-white order-0 w-full mb-8 rounded-3xl border border-stone-100 shadow-sm mt-8">
+                    <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
                         <div>
-                            <span class="text-[12px] tracking-[0.2em] font-bold mb-4 block text-teal-600 uppercase border-l-2 border-teal-500 pl-3">Metodología Especializada</span>
-                            <h2 class="text-3xl md:text-4xl font-serif font-bold text-teal-950 mb-6 leading-snug">¿Por qué nuestro <span class="text-teal-700">${row['Servicio']}</span> resalta sobre el resto?</h2>
-                            <p class="text-stone-500 font-light leading-relaxed mb-8 text-lg">
+                            <span class="text-[10px] sm:text-[12px] tracking-[0.2em] font-bold mb-4 block text-teal-600 uppercase border-l-2 border-teal-500 pl-3">Metodología Especializada</span>
+                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-teal-950 mb-6 leading-snug">¿Por qué nuestro <span class="text-teal-700">${row['Servicio']}</span> resalta sobre el resto?</h2>
+                            <p class="text-stone-500 font-light leading-relaxed mb-8 text-base sm:text-lg">
                                 En la industria existen demasiadas técnicas genéricas. En Manos Curativas, llevamos a tu domicilio un protocolo exclusivo fundamentado en anatomía, utilizando aceites base orgánicos libres de parabenos y combinando la tecnología manual con aromaterapia para un efecto holístico.
                             </p>
-                            <button onclick="openQuizModal()" class="uppercase tracking-[0.2em] text-[13px] font-bold text-white bg-teal-900 px-8 py-4 rounded-full hover:bg-teal-800 transition-colors inline-block mt-2">Agendar este Tratamiento</button>
+                            <button onclick="openQuizModal()" class="uppercase tracking-[0.2em] text-[12px] sm:text-[13px] font-bold text-white bg-teal-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-teal-800 transition-colors inline-block mt-2">Agendar este Tratamiento</button>
                         </div>
                         <div class="bg-stone-50 rounded-2xl p-6 md:p-8">
                             ${featuresHtml}
