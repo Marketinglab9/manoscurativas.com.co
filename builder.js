@@ -27,15 +27,35 @@ function ensureDir(dirPath) {
     }
 }
 
+function getThumbnailForService(nombre) {
+    const slug = nombre.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    if (slug.includes('relajante')) return '/assets/servicios/masaje_relajante_1775258118832.png';
+    if (slug.includes('deportivo')) return '/assets/servicios/masaje_deportivo_1775258135018.png';
+    if (slug.includes('terapeutico')) return '/assets/servicios/masaje_terapeutico_1775258148420.png';
+    if (slug.includes('drenaje') || slug.includes('linfatico')) return '/assets/servicios/drenaje_linfatico_1775258172320.png';
+    if (slug.includes('descontracturante')) return '/assets/servicios/masaje_descontracturante_1775258187420.png';
+    if (slug.includes('tejido profundo')) return '/assets/servicios/tejido_profundo_1775258200977.png';
+    if (slug.includes('prenatal')) return '/assets/servicios/masaje_prenatal_1775258232218.png';
+    if (slug.includes('ventosas')) return '/assets/servicios/masaje_ventosas_1775258244036.png';
+    if (slug.includes('piedras')) return '/assets/servicios/piedras_volcanicas_1775258259475.png';
+    return '/assets/hero_massage.png'; // Fallback
+}
+
 function generarCardBlogServicio(enlaceUrl, nombre, isBlog = false, blogDesc = "") {
     const badge = isBlog ? "GUÍA DE BIENESTAR" : "MASAJE A DOMICILIO";
     const descHtml = isBlog ? `<p class="text-sm text-stone-500 line-clamp-2 mt-2">${blogDesc}</p>` : '';
+    const imgUrl = isBlog ? '/assets/blog_massage.png' : getThumbnailForService(nombre);
     
     return `
-    <a href="${enlaceUrl}" class="group shrink-0 snap-start w-[75vw] max-w-[280px] md:w-auto block bg-white border border-stone-200 rounded-2xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 relative overflow-hidden">
-        <span class="text-[10px] font-bold text-teal-600 mb-2 block tracking-widest uppercase">${badge}</span>
-        <h3 class="font-bold text-teal-950 group-hover:text-teal-700 transition-colors text-lg font-serif leading-tight">${nombre}</h3>
-        ${descHtml}
+    <a href="${enlaceUrl}" class="flex flex-col group shrink-0 snap-start w-[75vw] max-w-[280px] md:w-auto md:min-w-[280px] bg-white border border-stone-200 rounded-2xl hover:shadow-lg transition-all hover:-translate-y-1 relative overflow-hidden">
+        <div class="h-40 w-full overflow-hidden bg-stone-100">
+            <img src="${imgUrl}" alt="${nombre}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        </div>
+        <div class="p-6 flex flex-col flex-grow">
+            <span class="text-[10px] font-bold text-teal-600 mb-2 block tracking-widest uppercase">${badge}</span>
+            <h3 class="font-bold text-teal-950 group-hover:text-teal-700 transition-colors text-lg font-serif leading-tight">${nombre}</h3>
+            ${descHtml}
+        </div>
         <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-teal-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
     </a>`;
 }
