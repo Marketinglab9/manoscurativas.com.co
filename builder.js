@@ -32,7 +32,7 @@ function generarCardBlogServicio(enlaceUrl, nombre, isBlog = false, blogDesc = "
     const descHtml = isBlog ? `<p class="text-sm text-stone-500 line-clamp-2 mt-2">${blogDesc}</p>` : '';
     
     return `
-    <a href="${enlaceUrl}" class="group shrink-0 snap-center w-[85vw] md:w-auto block bg-white border border-stone-200 rounded-2xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 relative overflow-hidden">
+    <a href="${enlaceUrl}" class="group shrink-0 snap-start w-[75vw] max-w-[280px] md:w-auto block bg-white border border-stone-200 rounded-2xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 relative overflow-hidden">
         <span class="text-[10px] font-bold text-teal-600 mb-2 block tracking-widest uppercase">${badge}</span>
         <h3 class="font-bold text-teal-950 group-hover:text-teal-700 transition-colors text-lg font-serif leading-tight">${nombre}</h3>
         ${descHtml}
