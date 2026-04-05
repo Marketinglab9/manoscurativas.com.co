@@ -116,7 +116,7 @@ async function build() {
                 }
             }
 
-            const selectedServices = availableServices.sort(() => 0.5 - Math.random()).slice(0, 2);
+            const selectedServices = availableServices.sort(() => 0.5 - Math.random()).slice(0, 4);
             
             selectedServices.forEach(srv => {
                 let targetUrl = srv.URL;
@@ -131,23 +131,6 @@ async function build() {
                 }
                 gridServiciosHtml += generarCardBlogServicio(targetUrl, targetTitle, false);
             });
-
-            // 2. Obtener 2 o 1 artículo de blog aleatorio y ANEXAR PARÁMETRO DE ZONA
-            if (rowsBlog && rowsBlog.length > 0) {
-                const blogMixCount = 4 - selectedServices.length; // Para completar 4 tarjetas
-                const validBlogs = rowsBlog.filter(b => b['Slug URL'] && b['Título']);
-                const selectedBlogs = validBlogs.sort(() => 0.5 - Math.random()).slice(0, blogMixCount);
-                
-                selectedBlogs.forEach(b => {
-                    let blogUrl = `/${b['Slug URL'].replace(/^\/|\/$/g, '')}/`;
-                    // Añadimos parámetro de zona para preservar navegación del usuario
-                    if (zona && zona !== 'Todos') {
-                        blogUrl += `?z=${encodeURIComponent(zona)}`;
-                    }
-
-                    gridServiciosHtml += generarCardBlogServicio(blogUrl, b['Título'], true, b['Topic principal'] || 'Bienestar');
-                });
-            }
 
             // Generar Grid de Zonas (Marquee horizontal con elementos duplicados)
             let singleLoopZonas = '';
