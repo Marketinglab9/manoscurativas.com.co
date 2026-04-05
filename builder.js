@@ -598,9 +598,14 @@ async function build() {
         fs.writeFileSync(path.join(blogHubDir, 'index.html'), blogHubHtml);
 
         // ========================================================
-        // 5. CONSTRUCCIÓN DE DIRECTORIOS GLOBALES (/servicios/ y /coberturas/)
+        // 5. CONSTRUCCIÓN DE DIRECTORIOS GLOBALES (/servicios/ y /cobertura/)
         // ========================================================
         
+        // Split template to get clean header and clean footer
+        const templateTop = plantillaMaestra.split('<!-- Hero Section -->')[0];
+        const templateBottomRaw = plantillaMaestra.split('<!-- Footer SEO Premium -->');
+        const templateBottom = templateBottomRaw.length > 1 ? '<!-- Footer SEO Premium -->' + templateBottomRaw[1] : '';
+
         // --- 5.1 HUB: /servicios/ ---
         const serviciosDir = path.join(DIST_DIR, 'servicios');
         ensureDir(serviciosDir);
@@ -608,31 +613,29 @@ async function build() {
         const allServicios = rows.filter(r => r.Nivel && r.Nivel.includes('Hub Svc'));
         allServicios.forEach(s => srvCards += generarCardBlogServicio(s.URL, s.Servicio, false));
 
-        let indexServiciosHtml = plantillaMaestra
-            .replace(/<title>.*<\/title>/g, `<title>Catálogo de Masajes a Domicilio - Manos Curativas</title>`)
-            .replace(/<meta name="description" content=".*">/g, `<meta name="description" content="Catálogo completo de masajes a domicilio. Descubre todas las terapias que llevamos hasta la puerta de tu hogar.">`)
-            .replace(/{{HERO_H1}}/g, 'Nuestros Masajes')
-            .replace(/{{HERO_DESC}}/g, 'Explora todas las terapias a domicilio que ofrecemos. Diferentes técnicas, intensidades y enfoques terapéuticos organizados para que encuentres el alivio exacto que tu cuerpo pide.')
-            .replace(/{{HERO_SUB_TEXT}}/g, 'Catálogo de Terapias')
-            .replace(/{{BREADCRUMB_HTML}}/g, '<a href="/" class="hover:text-teal-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <span class="text-teal-900/60">Servicios</span>')
-            .replace(/{{GRID_SERVICIOS}}/g, srvCards)
-            .replace(/También te puede interesar/g, 'Todas Nuestras Terapias')
-            .replace(/{{SERVICE_INFO}}/g, '')
-            .replace(/{{GRID_ZONAS}}/g, genericGridZonas)
-            .replace(/{{ORDER_CLASS_SERVICIOS}}/g, 'order-1 pb-32')
-            .replace(/{{ORDER_CLASS_ZONAS}}/g, 'order-2 hidden') // Hide marquee
-            .replace(/style="background-image: url\('\{\{HERO_IMAGE\}\}'\);"/g, 'style="background-image: url(\'/assets/hero_massage.png\');"')
-            .replace(/<!-- STICKY BOOKING BUTTON[\s\S]*?<\/script>/g, ''); 
+        let srvHead = templateTop
+            .replace(/<title>.*<\/title>/g, `<title>Listado de Servicios de Masoterapia a Domicilio - Manos Curativas</title>`)
+            .replace(/<meta name="description" content=".*">/g, `<meta name="description" content="Directorio completo de terapias manuales y masajes a domicilio. Relajantes, descontracturantes, ventosas y más.">`)
+            .replace(/{{BREADCRUMB_HTML}}/g, '<a href="/" class="hover:text-teal-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <span class="text-teal-900/60">Servicios</span>');
 
-        // Ocultar bloques innecesarios para hacerlo un directorio puro
-        indexServiciosHtml = indexServiciosHtml.replace(/<!-- WIDGETS_CONVERSION_START -->[\s\S]*?<!-- WIDGETS_CONVERSION_END -->/g, '');
-        indexServiciosHtml = indexServiciosHtml.replace(/<!-- PHILOSOPHY_START -->[\s\S]*?<!-- PHILOSOPHY_END -->/g, '');
+        let srvBody = `
+        <main class="bg-stone-50 min-h-screen pt-12 pb-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                <!-- Header del Directorio -->
+                <div class="text-center md:text-left mb-16 border-b border-stone-200 pb-12">
+                    <span class="text-[13px] tracking-[0.3em] font-bold text-teal-600 uppercase block mb-4">Catálogo de Terapias</span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-teal-950 mb-6">Nuestros Servicios a Domicilio</h1>
+                    <p class="text-lg md:text-xl text-stone-500 font-light max-w-2xl">Descubre todas las especialidades que nuestros terapeutas pueden llevar a la comodidad de tu hogar. Desde relajación absoluta hasta rehabilitación clínica profunda.</p>
+                </div>
+                
+                <!-- Grid del Directorio -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    ${srvCards}
+                </div>
+            </div>
+        </main>`;
 
-        // Cambiar slider a Grid para el indice
-        indexServiciosHtml = indexServiciosHtml.replace(/flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-8 snap-x snap-mandatory style-scroll pr-8 md:pr-0 pl-4 md:pl-0/g, 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 pb-8');
-
-        fs.writeFileSync(path.join(serviciosDir, 'index.html'), indexServiciosHtml);
-
+        fs.writeFileSync(path.join(serviciosDir, 'index.html'), srvHead + srvBody + templateBottom);
 
         // --- 5.2 HUB: /cobertura/ ---
         const coberturasDir = path.join(DIST_DIR, 'cobertura');
@@ -641,28 +644,29 @@ async function build() {
         const allZonas = rows.filter(r => r.Nivel && r.Nivel.includes('Hub Zona') && r.Zona !== 'Todos');
         allZonas.forEach(z => covCards += generarCardZona(z.URL, z.Zona));
 
-        let indexCoberturasHtml = plantillaMaestra
-            .replace(/<title>.*<\/title>/g, `<title>Zonas de Cobertura Masajes a Domicilio - Manos Curativas</title>`)
-            .replace(/<meta name="description" content=".*">/g, `<meta name="description" content="Revisa todas nuestras zonas de atención para masajes a domicilio. Cobertura completa y puntual.">`)
-            .replace(/{{HERO_H1}}/g, 'Zonas de Cobertura')
-            .replace(/{{HERO_DESC}}/g, 'Llevamos la relajación integral a la puerta de tu hogar. Revisa en qué sectores y barrios exactos operan nuestros terapeutas a domicilio con total disponibilidad.')
-            .replace(/{{HERO_SUB_TEXT}}/g, 'Dónde Operamos')
-            .replace(/{{BREADCRUMB_HTML}}/g, '<a href="/" class="hover:text-teal-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <span class="text-teal-900/60">Cobertura</span>')
-            .replace(/{{GRID_ZONAS}}/g, covCards) // Replace dummy marquee with actual full flex wrapper
-            .replace(/flex items-center gap-8 animate-marquee whitespace-nowrap/g, 'flex flex-wrap gap-4 md:gap-6 justify-center px-4') // Static nice UI
-            .replace(/<div class="flex items-center gap-8 animate-marquee whitespace-nowrap" aria-hidden="true">[\s\S]*?<\/div>/g, '') // delete duplicate
-            .replace(/{{SERVICE_INFO}}/g, '')
-            .replace(/{{GRID_SERVICIOS}}/g, genericGridServicios)
-            .replace(/También te puede interesar/g, 'Servicios Más Populares')
-            .replace(/{{ORDER_CLASS_ZONAS}}/g, 'order-1 pb-32 pt-16') // Subir prioridad visual
-            .replace(/{{ORDER_CLASS_SERVICIOS}}/g, 'order-2')
-            .replace(/style="background-image: url\('\{\{HERO_IMAGE\}\}'\);"/g, 'style="background-image: url(\'/assets/hero_massage.png\');"')
-            .replace(/<!-- STICKY BOOKING BUTTON[\s\S]*?<\/script>/g, ''); 
-            
-        indexCoberturasHtml = indexCoberturasHtml.replace(/<!-- WIDGETS_CONVERSION_START -->[\s\S]*?<!-- WIDGETS_CONVERSION_END -->/g, '');
-        indexCoberturasHtml = indexCoberturasHtml.replace(/<!-- PHILOSOPHY_START -->[\s\S]*?<!-- PHILOSOPHY_END -->/g, '');
+        let covHead = templateTop
+            .replace(/<title>.*<\/title>/g, `<title>Zonas de Cobertura para Masajes a Domicilio - Manos Curativas</title>`)
+            .replace(/<meta name="description" content=".*">/g, `<meta name="description" content="Revisa todas nuestras zonas y barrios de atención a domicilio. Profesionales que llegan hasta tu puerta.">`)
+            .replace(/{{BREADCRUMB_HTML}}/g, '<a href="/" class="hover:text-teal-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <span class="text-teal-900/60">Cobertura</span>');
 
-        fs.writeFileSync(path.join(coberturasDir, 'index.html'), indexCoberturasHtml);
+        let covBody = `
+        <main class="bg-stone-50 min-h-screen pt-12 pb-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                <!-- Header del Directorio -->
+                <div class="text-center mb-16 border-b border-stone-200 pb-12">
+                    <span class="text-[13px] tracking-[0.3em] font-bold text-teal-600 uppercase block mb-4">Mapa de Atención</span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-teal-950 mb-6">¿A dónde llegamos?</h1>
+                    <p class="text-lg md:text-xl text-stone-500 font-light max-w-2xl mx-auto">Revisa todas las zonas urbanas y los diferentes barrios en los que nuestros terapeutas tienen cobertura inmediata y segura.</p>
+                </div>
+                
+                <!-- Tag Collection (Zonas) -->
+                <div class="flex flex-wrap gap-4 md:gap-6 justify-center max-w-5xl mx-auto">
+                    ${covCards}
+                </div>
+            </div>
+        </main>`;
+
+        fs.writeFileSync(path.join(coberturasDir, 'index.html'), covHead + covBody + templateBottom);
 
 
         console.log("🎉 ¡Blog y su Index compilados con éxito!");
