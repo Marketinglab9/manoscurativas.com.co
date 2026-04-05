@@ -76,8 +76,8 @@
             <!-- Desktop Nav -->
             <nav class="hidden md:flex gap-10 items-center text-[14px] lg:text-[15px] tracking-[0.1em] uppercase font-bold text-teal-950/80">
                 <a href="/" class="hover:text-teal-700 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:bg-teal-700 after:transition-transform after:duration-300">Inicio</a>
-                <a href="#servicios" class="hover:text-teal-700 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:bg-teal-700 after:transition-transform after:duration-300">Servicios</a>
-                <a href="#cobertura" class="hover:text-teal-700 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:bg-teal-700 after:transition-transform after:duration-300">Cobertura</a>
+                <a href="/servicios/" class="hover:text-teal-700 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:bg-teal-700 after:transition-transform after:duration-300">Servicios</a>
+                <a href="/cobertura/" class="hover:text-teal-700 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:bg-teal-700 after:transition-transform after:duration-300">Cobertura</a>
                 <a href="/blog/" class="hover:text-teal-700 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:bg-teal-700 after:transition-transform after:duration-300">Blog</a>
             </nav>
 
@@ -98,8 +98,8 @@
         <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-stone-100 shadow-2xl absolute w-full left-0 origin-top animate-fade-in">
             <nav class="flex flex-col text-[14px] tracking-[0.1em] uppercase font-bold text-teal-950">
                 <a href="/" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Inicio</a>
-                <a href="/masajes-relajantes-a-domicilio/" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Servicios</a>
-                <a href="/masajes-a-domicilio-en-medellin/" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Cobertura</a>
+                <a href="/servicios/" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Servicios</a>
+                <a href="/cobertura/" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Cobertura</a>
                 <a href="/blog/" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Blog</a>
                 <div class="p-8 bg-stone-50/50">
                     <button onclick="openQuizModal(); document.getElementById('mobileMenu').classList.add('hidden');" class="w-full bg-teal-800 text-white px-6 py-5 text-[14px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-teal-700 transition-all shadow-lg active:scale-95">
@@ -160,6 +160,7 @@
     <div class="flex flex-col w-full">
     {{SERVICE_INFO}}
     
+    <!-- WIDGETS_CONVERSION_START -->
     <!-- WIDGETS DE CONVERSIÓN: CALCULADORA Y MATRIZ -->
     <section class="py-16 bg-white overflow-hidden relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
@@ -300,6 +301,7 @@
             res.classList.add('flex', 'opacity-100', 'translate-y-0');
         }
     </script>
+    <!-- WIDGETS_CONVERSION_END -->
 
     <!-- SECCIÓN DE SERVICIOS -->
     <section id="servicios" class="pt-10 pb-16 bg-stone-50 {{ORDER_CLASS_SERVICIOS}}">
@@ -365,6 +367,7 @@
         </div>
     </section>
 
+    <!-- PHILOSOPHY_START -->
     <!-- Wellness Editorial Section (MOVILIZADO ABAJO) -->
     <section class="bg-white py-32 relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
@@ -378,6 +381,7 @@
             </button>
         </div>
     </section>
+    <!-- PHILOSOPHY_END -->
 
     <!-- Footer SEO Premium -->
     <footer class="bg-teal-950 text-stone-100 py-24 relative overflow-hidden">

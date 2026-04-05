@@ -597,6 +597,74 @@ async function build() {
 
         fs.writeFileSync(path.join(blogHubDir, 'index.html'), blogHubHtml);
 
+        // ========================================================
+        // 5. CONSTRUCCIÓN DE DIRECTORIOS GLOBALES (/servicios/ y /coberturas/)
+        // ========================================================
+        
+        // --- 5.1 HUB: /servicios/ ---
+        const serviciosDir = path.join(DIST_DIR, 'servicios');
+        ensureDir(serviciosDir);
+        let srvCards = '';
+        const allServicios = rows.filter(r => r.Nivel && r.Nivel.includes('Hub Svc'));
+        allServicios.forEach(s => srvCards += generarCardBlogServicio(s.URL, s.Servicio, false));
+
+        let indexServiciosHtml = plantillaMaestra
+            .replace(/<title>.*<\/title>/g, `<title>Catálogo de Masajes a Domicilio - Manos Curativas</title>`)
+            .replace(/<meta name="description" content=".*">/g, `<meta name="description" content="Catálogo completo de masajes a domicilio. Descubre todas las terapias que llevamos hasta la puerta de tu hogar.">`)
+            .replace(/{{HERO_H1}}/g, 'Nuestros Masajes')
+            .replace(/{{HERO_DESC}}/g, 'Explora todas las terapias a domicilio que ofrecemos. Diferentes técnicas, intensidades y enfoques terapéuticos organizados para que encuentres el alivio exacto que tu cuerpo pide.')
+            .replace(/{{HERO_SUB_TEXT}}/g, 'Catálogo de Terapias')
+            .replace(/{{BREADCRUMB_HTML}}/g, '<a href="/" class="hover:text-teal-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <span class="text-teal-900/60">Servicios</span>')
+            .replace(/{{GRID_SERVICIOS}}/g, srvCards)
+            .replace(/También te puede interesar/g, 'Todas Nuestras Terapias')
+            .replace(/{{SERVICE_INFO}}/g, '')
+            .replace(/{{GRID_ZONAS}}/g, genericGridZonas)
+            .replace(/{{ORDER_CLASS_SERVICIOS}}/g, 'order-1 pb-32')
+            .replace(/{{ORDER_CLASS_ZONAS}}/g, 'order-2 hidden') // Hide marquee
+            .replace(/style="background-image: url\('\{\{HERO_IMAGE\}\}'\);"/g, 'style="background-image: url(\'/assets/hero_massage.png\');"')
+            .replace(/<!-- STICKY BOOKING BUTTON[\s\S]*?<\/script>/g, ''); 
+
+        // Ocultar bloques innecesarios para hacerlo un directorio puro
+        indexServiciosHtml = indexServiciosHtml.replace(/<!-- WIDGETS_CONVERSION_START -->[\s\S]*?<!-- WIDGETS_CONVERSION_END -->/g, '');
+        indexServiciosHtml = indexServiciosHtml.replace(/<!-- PHILOSOPHY_START -->[\s\S]*?<!-- PHILOSOPHY_END -->/g, '');
+
+        // Cambiar slider a Grid para el indice
+        indexServiciosHtml = indexServiciosHtml.replace(/flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-8 snap-x snap-mandatory style-scroll pr-8 md:pr-0 pl-4 md:pl-0/g, 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 pb-8');
+
+        fs.writeFileSync(path.join(serviciosDir, 'index.html'), indexServiciosHtml);
+
+
+        // --- 5.2 HUB: /cobertura/ ---
+        const coberturasDir = path.join(DIST_DIR, 'cobertura');
+        ensureDir(coberturasDir);
+        let covCards = '';
+        const allZonas = rows.filter(r => r.Nivel && r.Nivel.includes('Hub Zona') && r.Zona !== 'Todos');
+        allZonas.forEach(z => covCards += generarCardZona(z.URL, z.Zona));
+
+        let indexCoberturasHtml = plantillaMaestra
+            .replace(/<title>.*<\/title>/g, `<title>Zonas de Cobertura Masajes a Domicilio - Manos Curativas</title>`)
+            .replace(/<meta name="description" content=".*">/g, `<meta name="description" content="Revisa todas nuestras zonas de atención para masajes a domicilio. Cobertura completa y puntual.">`)
+            .replace(/{{HERO_H1}}/g, 'Zonas de Cobertura')
+            .replace(/{{HERO_DESC}}/g, 'Llevamos la relajación integral a la puerta de tu hogar. Revisa en qué sectores y barrios exactos operan nuestros terapeutas a domicilio con total disponibilidad.')
+            .replace(/{{HERO_SUB_TEXT}}/g, 'Dónde Operamos')
+            .replace(/{{BREADCRUMB_HTML}}/g, '<a href="/" class="hover:text-teal-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <span class="text-teal-900/60">Cobertura</span>')
+            .replace(/{{GRID_ZONAS}}/g, covCards) // Replace dummy marquee with actual full flex wrapper
+            .replace(/flex items-center gap-8 animate-marquee whitespace-nowrap/g, 'flex flex-wrap gap-4 md:gap-6 justify-center px-4') // Static nice UI
+            .replace(/<div class="flex items-center gap-8 animate-marquee whitespace-nowrap" aria-hidden="true">[\s\S]*?<\/div>/g, '') // delete duplicate
+            .replace(/{{SERVICE_INFO}}/g, '')
+            .replace(/{{GRID_SERVICIOS}}/g, genericGridServicios)
+            .replace(/También te puede interesar/g, 'Servicios Más Populares')
+            .replace(/{{ORDER_CLASS_ZONAS}}/g, 'order-1 pb-32 pt-16') // Subir prioridad visual
+            .replace(/{{ORDER_CLASS_SERVICIOS}}/g, 'order-2')
+            .replace(/style="background-image: url\('\{\{HERO_IMAGE\}\}'\);"/g, 'style="background-image: url(\'/assets/hero_massage.png\');"')
+            .replace(/<!-- STICKY BOOKING BUTTON[\s\S]*?<\/script>/g, ''); 
+            
+        indexCoberturasHtml = indexCoberturasHtml.replace(/<!-- WIDGETS_CONVERSION_START -->[\s\S]*?<!-- WIDGETS_CONVERSION_END -->/g, '');
+        indexCoberturasHtml = indexCoberturasHtml.replace(/<!-- PHILOSOPHY_START -->[\s\S]*?<!-- PHILOSOPHY_END -->/g, '');
+
+        fs.writeFileSync(path.join(coberturasDir, 'index.html'), indexCoberturasHtml);
+
+
         console.log("🎉 ¡Blog y su Index compilados con éxito!");
 
     } catch (err) {
