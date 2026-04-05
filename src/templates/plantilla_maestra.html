@@ -159,6 +159,148 @@
 
     <div class="flex flex-col w-full">
     {{SERVICE_INFO}}
+    
+    <!-- WIDGETS DE CONVERSIÓN: CALCULADORA Y MATRIZ -->
+    <section class="py-16 bg-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            
+            <!-- CALCULADORA INTERACTIVA -->
+            <div class="bg-gradient-to-br from-teal-50 to-stone-50 rounded-3xl p-6 sm:p-10 shadow-lg border border-teal-100/50 mb-16 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-teal-200/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+                <div class="relative z-10">
+                    <span class="text-[12px] tracking-[0.3em] font-bold text-teal-600 uppercase mb-3 block">Asistente de Bienestar</span>
+                    <h3 class="text-2xl md:text-3xl font-serif text-teal-950 font-bold mb-6">¿Qué molestia sientes hoy?</h3>
+                    <p class="text-stone-500 font-sans text-[15px] mb-8 max-w-2xl">Selecciona tu síntoma principal y nuestro sistema recomendará la terapia ideal para ti.</p>
+                    
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8" id="quiz-options">
+                        <button onclick="calculateMassage('Estrés Diario', 'Masaje Relajante', '60 mins', 'Movimientos suaves para calmar el sistema nervioso.', this)" class="quiz-btn bg-white border-2 border-transparent hover:border-teal-500 rounded-2xl p-4 text-left shadow-sm transition-all group flex flex-col gap-3 focus:outline-none">
+                            <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><iconify-icon icon="solar:bed-bold-duotone"></iconify-icon></div>
+                            <span class="font-bold text-teal-950 font-sans text-[13px] sm:text-sm">Estrés y Ansiedad</span>
+                        </button>
+                        <button onclick="calculateMassage('Dolor Muscular', 'Masaje Descontracturante', '90 mins', 'Presión firme enfocada en disolver nudos y tensión profunda.', this)" class="quiz-btn bg-white border-2 border-transparent hover:border-teal-500 rounded-2xl p-4 text-left shadow-sm transition-all group flex flex-col gap-3 focus:outline-none">
+                            <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><iconify-icon icon="solar:body-shape-bold-duotone"></iconify-icon></div>
+                            <span class="font-bold text-teal-950 font-sans text-[13px] sm:text-sm">Dolor y Nudos</span>
+                        </button>
+                        <button onclick="calculateMassage('Pesadez', 'Drenaje Linfático', '60 mins', 'Técnica especializada para reducir retención de líquidos.', this)" class="quiz-btn bg-white border-2 border-transparent hover:border-teal-500 rounded-2xl p-4 text-left shadow-sm transition-all group flex flex-col gap-3 focus:outline-none">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><iconify-icon icon="solar:waterdrops-bold-duotone"></iconify-icon></div>
+                            <span class="font-bold text-teal-950 font-sans text-[13px] sm:text-sm">Piernas Cansadas</span>
+                        </button>
+                        <button onclick="calculateMassage('Deporte', 'Masaje Deportivo', '90 mins', 'Recuperación muscular rápida para mejorar tu rendimiento.', this)" class="quiz-btn bg-white border-2 border-transparent hover:border-teal-500 rounded-2xl p-4 text-left shadow-sm transition-all group flex flex-col gap-3 focus:outline-none">
+                            <div class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><iconify-icon icon="solar:running-bold-duotone"></iconify-icon></div>
+                            <span class="font-bold text-teal-950 font-sans text-[13px] sm:text-sm">Recuperación Física</span>
+                        </button>
+                    </div>
+
+                    <!-- Resultado -->
+                    <div id="quiz-result" class="hidden opacity-0 bg-white/90 backdrop-blur border border-teal-100 rounded-2xl p-5 md:p-8 transform transition-all duration-500 ease-out translate-y-4">
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                            <div class="w-full text-center md:text-left">
+                                <span class="text-[11px] uppercase tracking-widest font-bold text-stone-400 mb-1 block">Tu terapia ideal:</span>
+                                <h4 id="res-title" class="text-2xl font-serif font-bold text-teal-950 mb-2">Masaje</h4>
+                                <p id="res-desc" class="text-stone-600 font-sans text-[14px] md:text-[15px] max-w-xl"></p>
+                                <div class="mt-4 flex items-center justify-center md:justify-start gap-2 text-sm font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full w-max mx-auto md:mx-0">
+                                    <iconify-icon icon="solar:clock-circle-bold-duotone"></iconify-icon>
+                                    <span id="res-time">60 mins</span>
+                                </div>
+                            </div>
+                            <a id="res-btn" href="#" target="_blank" class="w-full md:w-auto bg-teal-950 text-white font-bold tracking-widest text-[13px] uppercase px-8 py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-teal-800 transition-colors shadow-lg whitespace-nowrap">
+                                <iconify-icon icon="logos:whatsapp-icon" class="text-xl"></iconify-icon>
+                                Consultar Precio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATRIZ COMPARATIVA -->
+            <div class="mb-10 text-center max-w-2xl mx-auto mt-20">
+                <span class="text-[12px] tracking-[0.3em] font-bold text-teal-600 uppercase mb-3 block">Comparativa Rápida</span>
+                <h3 class="text-2xl md:text-3xl font-serif text-teal-950 font-bold">Encuentra el nivel de presión exacto</h3>
+            </div>
+            
+            <div class="overflow-x-auto pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
+                <div class="min-w-[700px] w-full grid grid-cols-4 gap-4 bg-white rounded-2xl border border-stone-100 shadow-sm p-4">
+                    <!-- Setup -->
+                    <div class="col-span-1 flex flex-col justify-end pb-4 font-bold text-stone-400 text-xs tracking-widest uppercase border-b border-stone-200">Enfoque Terápico</div>
+                    <div class="col-span-1 pb-4 border-b border-stone-200 pl-4">
+                        <div class="font-serif font-bold text-lg md:text-xl text-teal-950">Relajante</div>
+                        <div class="text-xs text-stone-500 mt-1 uppercase tracking-widest">Calma Mental</div>
+                    </div>
+                    <div class="col-span-1 pb-4 border-b border-stone-200 pl-4">
+                        <div class="font-serif font-bold text-lg md:text-xl text-teal-950">Descontracturante</div>
+                        <div class="text-xs text-stone-500 mt-1 uppercase tracking-widest">Nudos Localizados</div>
+                    </div>
+                    <div class="col-span-1 pb-4 border-b border-stone-200 pl-4">
+                        <div class="font-serif font-bold text-lg md:text-xl text-teal-950">Tejido Profundo</div>
+                        <div class="text-xs text-stone-500 mt-1 uppercase tracking-widest">Tensión Severa</div>
+                    </div>
+
+                    <!-- Fila 1 -->
+                    <div class="col-span-1 py-4 text-sm font-bold text-stone-500 flex items-center pr-4">Nivel de Presión</div>
+                    <div class="col-span-1 py-4 flex flex-col md:flex-row gap-2 items-start md:items-center pl-4 bg-teal-50/30 rounded-lg">
+                        <div class="flex gap-1">
+                            <div class="w-2 h-2 rounded-full bg-teal-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-stone-200"></div><div class="w-2 h-2 rounded-full bg-stone-200"></div>
+                        </div>
+                        <span class="text-[13px] text-stone-600 font-medium">Suave</span>
+                    </div>
+                    <div class="col-span-1 py-4 flex flex-col md:flex-row gap-2 items-start md:items-center pl-4 bg-orange-50/30 rounded-lg">
+                        <div class="flex gap-1">
+                            <div class="w-2 h-2 rounded-full bg-orange-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-orange-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-stone-200"></div>
+                        </div>
+                        <span class="text-[13px] text-stone-600 font-medium">Firme</span>
+                    </div>
+                    <div class="col-span-1 py-4 flex flex-col md:flex-row gap-2 items-start md:items-center pl-4 bg-red-50/30 rounded-lg">
+                        <div class="flex gap-1">
+                            <div class="w-2 h-2 rounded-full bg-red-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-red-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-red-500 shadow-sm"></div>
+                        </div>
+                        <span class="text-[13px] text-stone-600 font-medium">Fuerte</span>
+                    </div>
+
+                    <!-- Fila 2 -->
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-sm font-bold text-stone-500 flex items-center pr-4">Foco Principal</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-[14px] text-stone-600 pl-4">Ansiedad, estrés, insomnio y calma corporal general.</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-[14px] text-stone-600 pl-4">Espalda, cuello, hombros y nudos musculares.</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-[14px] text-stone-600 pl-4">Capas internas musculares y fascias adheridas.</div>
+
+                    <!-- Fila 3 -->
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-sm font-bold text-stone-500 flex items-center pr-4">Ideal para...</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-[14px] text-stone-600 pl-4">> Personas probando masajes por primera vez.<br>> Día de spa relajante.</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-[14px] text-stone-600 pl-4">> Oficinistas.<br>> Tensión por mala postura en el computador.</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-[14px] text-stone-600 pl-4">> Dolores crónicos.<br>> Deportistas (Post-esfuerzo intenso).</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Script UX / Conversion Widgets -->
+    <script>
+        function calculateMassage(symptom, therapy, time, desc, btnEl) {
+            // Animación de botones (Selección)
+            document.querySelectorAll('.quiz-btn').forEach(b => {
+                b.classList.remove('border-teal-500', 'bg-teal-50/50', 'ring-4', 'ring-teal-100');
+                b.classList.add('border-transparent');
+            });
+            btnEl.classList.remove('border-transparent');
+            btnEl.classList.add('border-teal-500', 'bg-teal-50/50', 'ring-4', 'ring-teal-100');
+
+            // Actualizar Widget
+            const res = document.getElementById('quiz-result');
+            document.getElementById('res-title').innerText = therapy;
+            document.getElementById('res-desc').innerText = desc;
+            document.getElementById('res-time').innerText = time;
+            
+            // Integrar WhatsApp UTM text
+            const btn = document.getElementById('res-btn');
+            const msg = `Hola, estaba probando el asesor interactivo de tu web, y como tengo *${symptom}*, me recomendó el *${therapy}*. ¿Me podrías dar información sobre agenda?`;
+            btn.href = `https://wa.me/573042182623?text=${encodeURIComponent(msg)}`;
+            
+            // Animaciones UI
+            res.classList.remove('hidden', 'opacity-0', 'translate-y-4');
+            res.classList.add('flex', 'opacity-100', 'translate-y-0');
+        }
+    </script>
+
     <!-- SECCIÓN DE SERVICIOS -->
     <section id="servicios" class="pt-10 pb-16 bg-stone-50 {{ORDER_CLASS_SERVICIOS}}">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
@@ -492,5 +634,29 @@
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
+    <!-- STICKY BOOKING BUTTON (MOBILE ONLY) -->
+    <div class="fixed bottom-0 left-0 w-full z-[100] md:hidden p-4 pb-6 transition-all transform duration-500 pointer-events-none" id="mobile-sticky-cta" style="opacity: 0; transform: translateY(20px);">
+        <div class="pointer-events-auto">
+            <a href="https://wa.me/573042182623?text=Hola,%20quisiera%20pedir%20más%20información%20y%20reservar." target="_blank" class="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold tracking-widest text-[14px] sm:text-[15px] uppercase py-4 rounded-full shadow-[0_10px_25px_rgba(5,150,105,0.4)] active:scale-95 transition-all outline outline-4 outline-white">
+                <iconify-icon icon="logos:whatsapp-icon" class="text-2xl"></iconify-icon>
+                Reserva Rápida
+            </a>
+        </div>
+    </div>
+
+    <!-- SCRIPT STICKY CTA -->
+    <script>
+        // Muestra el botón sticky solo después de que el usuario haga un scroll ligero (150px)
+        window.addEventListener('scroll', () => {
+            const stickyBtn = document.getElementById('mobile-sticky-cta');
+            if(window.scrollY > 150) {
+                stickyBtn.style.opacity = '1';
+                stickyBtn.style.transform = 'translateY(0)';
+            } else {
+                stickyBtn.style.opacity = '0';
+                stickyBtn.style.transform = 'translateY(20px)';
+            }
+        });
+    </script>
 </body>
 </html>
