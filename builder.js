@@ -595,11 +595,14 @@ async function build() {
                 blogCategories[cat] = [];
             }
             blogCategories[cat].push(`
-            <a href="${urlReal}" class="group block shrink-0 snap-center w-[85vw] md:w-auto border border-stone-100 bg-white rounded-3xl hover:border-teal-600 transition-all shadow-[0_4px_20px_rgb(0,0,0,0.02)] hover:shadow-[0_10px_30px_rgb(13,148,136,0.1)] hover:-translate-y-1 p-8 relative overflow-hidden">
-                <div class="text-[10px] tracking-[0.2em] uppercase font-bold text-teal-600 mb-4">${cat}</div>
-                <h3 class="text-xl font-serif font-bold leading-tight mb-4 group-hover:text-teal-700 text-teal-950 transition-colors">${row['Título']}</h3>
-                <p class="text-[14px] font-light text-stone-500 font-sans leading-relaxed line-clamp-3">${row['Meta Description']}</p>
-                <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-teal-400 to-teal-800 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+            <a href="${urlReal}" class="group block shrink-0 snap-center w-[85vw] md:w-auto bg-white rounded-[2rem] hover:-translate-y-1 transition-transform overflow-hidden flex flex-col h-full border border-stone-100 shadow-[0_4px_20px_rgb(0,0,0,0.02)] hover:shadow-lg">
+                <div class="h-48 w-full bg-stone-100 overflow-hidden relative">
+                    <img src="${heroImageBlog}" alt="${row['Título']}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-6 md:p-8 flex-1 flex flex-col bg-white">
+                    <h3 class="text-xl font-serif font-bold leading-tight mb-3 text-teal-950 group-hover:text-teal-700 transition-colors">${row['Título']}</h3>
+                    <p class="text-[14px] font-light text-stone-500 font-sans leading-relaxed line-clamp-3">${row['Meta Description']}</p>
+                </div>
             </a>`);
         }
 
@@ -615,19 +618,27 @@ async function build() {
         rows.filter(r => r.Nivel && r.Nivel.includes('Hub Zona')).forEach(z => singleLoopZonas += generarCardZona(z.URL, z.Zona));
         let genericGridZonas = singleLoopZonas + singleLoopZonas;
 
+        let navLinks = '';
+        const validCategories = Object.keys(blogCategories).filter(c => c !== 'Categoría');
+        
+        for(const catName of validCategories) {
+            const catId = catName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '-');
+            navLinks += `<a href="#${catId}" class="whitespace-nowrap px-4 py-3 text-sm font-medium text-white/80 hover:text-white hover:bg-teal-800/50 transition-colors rounded-lg">${catName}</a>`;
+        }
+
         let categorySectionsHtml = '';
         for (const [catName, cards] of Object.entries(blogCategories)) {
-            // Eliminar Categoría en blanco o título de la columna si se coló
             if (catName === 'Categoría') continue;
+            const catId = catName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '-');
             
             categorySectionsHtml += `
-            <div class="mb-16 last:mb-0">
-                <div class="flex items-center gap-4 mb-8 before:h-px before:flex-1 before:bg-stone-200 after:h-px after:flex-1 after:bg-stone-200">
-                    <h3 class="text-xl md:text-2xl font-serif font-bold text-teal-900 px-4 whitespace-nowrap">${catName}</h3>
+            <div id="${catId}" class="mb-20 last:mb-0 pt-28 -mt-28">
+                <div class="mb-10 text-left border-b border-stone-200 pb-4">
+                    <h3 class="text-2xl md:text-3xl font-serif font-bold text-teal-950">${catName}</h3>
                 </div>
                 <div class="relative">
                     <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-full bg-gradient-to-l from-white to-transparent md:hidden pointer-events-none z-10"></div>
-                    <div class="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 pb-8 snap-x snap-mandatory pt-2 style-scroll pl-4 md:pl-0 pr-8 md:pr-0">
+                    <div class="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 pb-8 snap-x snap-mandatory pt-2 style-scroll pl-4 md:pl-0 pr-8 md:pr-0">
                         ${cards.join('\n')}
                     </div>
                 </div>
@@ -635,14 +646,16 @@ async function build() {
         }
 
         const blogCustomSectionHtml = `
+    <!-- SUBNAV DE CATEGORÍAS -->
+    <div class="bg-[#1C4D43] sticky top-[64px] lg:top-[88px] z-40 overflow-x-auto style-scroll shadow-md">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-start md:justify-center gap-1 md:gap-4 py-2">
+            ${navLinks}
+        </div>
+    </div>
+
     <!-- SECCIÓN DE BLOG POSTS POR CATEGORÍAS -->
-    <section class="pt-10 pb-16 bg-white border-b border-stone-100">
+    <section class="py-16 md:py-24 bg-white border-b border-stone-100">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16 flex flex-col items-center text-center">
-                <span class="text-[11px] tracking-[0.3em] uppercase font-bold text-teal-600 mb-4">Explora Nuestros Artículos</span>
-                <h2 class="text-3xl md:text-5xl font-serif font-bold text-teal-950 max-w-2xl">Guías, Técnicas y Consejos de Expertos</h2>
-            </div>
-            
             ${categorySectionsHtml}
         </div>
     </section>
