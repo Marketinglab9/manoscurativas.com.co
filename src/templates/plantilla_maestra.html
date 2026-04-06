@@ -7,6 +7,45 @@
     <title>{{TITLE}} | Manos Curativas</title>
     <meta name="description" content="{{META_DESC}}">
     
+    <!-- Etiquetas Canónicas y Redes Sociales (Open Graph/Twitter) -->
+    <link rel="canonical" href="{{CANONICAL_URL}}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{CANONICAL_URL}}">
+    <meta property="og:title" content="{{TITLE}} | Manos Curativas">
+    <meta property="og:description" content="{{META_DESC}}">
+    <meta property="og:image" content="{{OG_IMAGE}}">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{CANONICAL_URL}}">
+    <meta name="twitter:title" content="{{TITLE}} | Manos Curativas">
+    <meta name="twitter:description" content="{{META_DESC}}">
+    <meta name="twitter:image" content="{{OG_IMAGE}}">
+
+    <!-- Schema.org estructurado JSON-LD con conexión al Verified Google Maps de Healing Hands -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HealthAndBeautyBusiness",
+      "name": "Masajes relajantes Manos curativas - Healing Hands",
+      "image": "https://manoscurativas.com.co/assets/logo.png",
+      "url": "https://manoscurativas.com.co",
+      "sameAs": ["https://share.google/dEyXwwhkeZT2DV0Js", "https://maps.app.goo.gl/dEyXwwhkeZT2DV0Js"],
+      "telephone": "+573003260786",
+      "priceRange": "$$",
+      "description": "{{META_DESC}}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "{{CIUDAD}}",
+        "addressRegion": "Antioquia",
+        "addressCountry": "CO"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "189"
+      }
+    }
+    </script>
     <!-- Google Fonts: Outfit & Playfair Display for Premium Look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

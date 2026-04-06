@@ -437,6 +437,11 @@ async function build() {
                 </section>`;
             }
 
+            // OG / Schema variables
+            const domain = 'https://manoscurativas.com.co';
+            const canonicalUrl = urlPath === '' ? `${domain}/` : `${domain}/${urlPath}/`;
+            const ogImage = `${domain}${heroImage}`;
+
             // Reemplazo en Plantilla Maestra
             let pageHtml = plantillaMaestra
                 .replace(/\/assets\/hero_massage\.png/g, heroImage)
@@ -453,7 +458,10 @@ async function build() {
                 .replace(/{{HERO_DESC}}/g, heroDesc)
                 .replace(/{{PHILOSOPHY_TITLE}}/g, philosophyTitle)
                 .replace(/{{PHILOSOPHY_DESC}}/g, philosophyDesc)
-                .replace(/{{PHILOSOPHY_CTA}}/g, philosophyCta);
+                .replace(/{{PHILOSOPHY_CTA}}/g, philosophyCta)
+                .replace(/{{CANONICAL_URL}}/g, canonicalUrl)
+                .replace(/{{OG_IMAGE}}/g, ogImage)
+                .replace(/{{CIUDAD}}/g, row['Zona'] || 'Antioquia');
 
             // Exportar archivo HTML (incluso el 'Homepage' que cuya url es '/')
             const fileName = urlPath === '' ? 'index.html' : 'index.html';
@@ -550,6 +558,11 @@ async function build() {
             const blogContentMap = JSON.parse(fs.readFileSync(path.join(__dirname, 'src/blog_content.json'), 'utf8'));
             let articleHtml = blogContentMap[urlReal] || blogContentMap['fallback'];
 
+            // OG / Schema variables Blog
+            const domainBlog = 'https://manoscurativas.com.co';
+            const canonicalUrlBlog = `${domainBlog}${urlReal}`;
+            const ogImageBlog = `${domainBlog}${heroImageBlog}`;
+
             let pageHtml = plantillaBlog
                 .replace(/\/assets\/blog_massage\.png/g, heroImageBlog)
                 .replace(/{{TITLE}}/g, row['Título'])
@@ -559,7 +572,9 @@ async function build() {
                 .replace(/{{ENLACES_SEO}}/g, enlacesSeoHtml)
                 .replace(/{{BREADCRUMB_HTML}}/g, breadcrumbHtml)
                 .replace(/{{BLOG_CARDS_HTML}}/g, relatedCardsHtml)
-                .replace(/{{ARTICLE_CONTENT}}/g, articleHtml.replace(/{{H1}}/g, row['Título']));
+                .replace(/{{ARTICLE_CONTENT}}/g, articleHtml.replace(/{{H1}}/g, row['Título']))
+                .replace(/{{CANONICAL_URL}}/g, canonicalUrlBlog)
+                .replace(/{{OG_IMAGE}}/g, ogImageBlog);
 
             fs.writeFileSync(path.join(fullDir, 'index.html'), pageHtml);
 
