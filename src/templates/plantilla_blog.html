@@ -91,7 +91,7 @@
         }
     </script>
 </head>
-<body class="bg-stone-50 text-teal-950 font-sans antialiased selection:bg-teal-800 selection:text-white relative overflow-x-hidden">
+<body class="bg-stone-50 text-teal-950 font-sans antialiased selection:bg-teal-800 selection:text-white relative overflow-x-hidden pb-24 md:pb-0">
 
     <header class="border-b border-stone-200/50 bg-white/80 backdrop-blur-md sticky top-0 z-50 transition-all shadow-[0_4px_30px_rgb(0,0,0,0.03)] selection:bg-teal-900 selection:text-white">
         <div class="max-w-7xl mx-auto px-6 py-[2px] md:py-[4px] flex justify-between items-center">
@@ -110,7 +110,7 @@
 
             <!-- CTA Desktop -->
             <div class="hidden md:block">
-                <button onclick="openQuizModal()" class="bg-teal-800 text-white px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-teal-700 transition-all shadow-[0_8px_20px_rgb(17,94,89,0.2)] hover:shadow-[0_8px_25px_rgb(17,94,89,0.3)] hover:-translate-y-0.5">
+                <button onclick="openQuizModal()" class="bg-teal-800 text-white px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:bg-teal-700 transition-all shadow-[0_8px_20px_rgb(17,94,89,0.2)] hover:shadow-[0_8px_25px_rgb(17,94,89,0.3)] hover:-translate-y-0.5">
                     Agendar Cita
                 </button>
             </div>
@@ -122,7 +122,7 @@
         </div>
 
         <!-- Mobile Nav (Hidden by default) -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-stone-100 shadow-2xl absolute w-full left-0 origin-top animate-[fadeIn_0.3s_ease-out]">
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-stone-100 shadow-2xl fixed top-[88px] w-full left-0 h-[calc(100vh-88px)] z-[200] origin-top animate-[fadeIn_0.3s_ease-out] overflow-y-auto">
             <nav class="flex flex-col text-[14px] tracking-[0.1em] uppercase font-bold text-teal-950">
                 <a href="/" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Inicio</a>
                 <a href="/#servicios" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Servicios</a>
@@ -138,7 +138,7 @@
     </header>
 
     <!-- Breadcrumbs -->
-    <div class="max-w-4xl mx-auto px-6 pt-10 pb-0 text-[11px] tracking-[0.15em] uppercase font-semibold text-stone-400 font-sans">
+    <div class="max-w-4xl mx-auto px-6 pt-10 pb-0 text-xs tracking-[0.15em] uppercase font-semibold text-stone-400 font-sans">
         {{BREADCRUMB_HTML}}
     </div>
 
@@ -147,7 +147,7 @@
         <article class="bg-white rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-8 md:p-14 shadow-[0_10px_40px_rgb(0,0,0,0.03)] border border-stone-100">
             
             <header class="mb-10 sm:mb-14 text-center">
-                <span class="text-[11px] sm:text-[13px] tracking-[0.2em] sm:tracking-[0.3em] font-bold mb-4 sm:mb-6 text-teal-600 uppercase block">Conocimiento Wellness</span>
+                <span class="text-xs sm:text-[13px] tracking-[0.2em] sm:tracking-[0.3em] font-bold mb-4 sm:mb-6 text-teal-600 uppercase block">Conocimiento Wellness</span>
                 <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-[1.1] mb-6 sm:mb-8 text-teal-950">
                     {{H1}}
                 </h1>
@@ -159,7 +159,7 @@
                         </div>
                         <div class="text-left">
                             <p class="text-[13px] font-bold text-teal-950">Equipo Clínico</p>
-                            <p class="text-[11px] text-stone-400 font-semibold tracking-wider uppercase">Manos Curativas</p>
+                            <p class="text-xs text-stone-400 font-semibold tracking-wider uppercase">Manos Curativas</p>
                         </div>
                     </div>
                     <div class="w-px h-8 bg-stone-200"></div>
@@ -242,42 +242,42 @@
                 <!-- Columna 2: Servicios -->
                 <div class="lg:col-span-3">
                     <h4 class="text-[13px] font-bold uppercase tracking-[0.2em] text-teal-400 mb-8">Servicios Especializados</h4>
-                    <ul class="space-y-5 text-[16px] font-light text-teal-100/70">
-                        <li><a href="/masajes-relajantes-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Relajantes</a></li>
-                        <li><a href="/masajes-terapeuticos-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Terapéuticos</a></li>
-                        <li><a href="/masajes-deportivos-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Deportivos</a></li>
-                        <li><a href="/drenaje-linfatico-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Drenaje Linfático</a></li>
-                        <li><a href="/masaje-prenatal-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masaje Prenatal</a></li>
+                    <ul class="space-y-2 text-[16px] font-light text-teal-100/70">
+                        <li><a href="/masajes-relajantes-a-domicilio/" class="hover:text-white transition-colors relative group inline-flex items-center min-h-[44px]"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Relajantes</a></li>
+                        <li><a href="/masajes-terapeuticos-a-domicilio/" class="hover:text-white transition-colors relative group inline-flex items-center min-h-[44px]"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Terapéuticos</a></li>
+                        <li><a href="/masajes-deportivos-a-domicilio/" class="hover:text-white transition-colors relative group inline-flex items-center min-h-[44px]"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Deportivos</a></li>
+                        <li><a href="/drenaje-linfatico-a-domicilio/" class="hover:text-white transition-colors relative group inline-flex items-center min-h-[44px]"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Drenaje Linfático</a></li>
+                        <li><a href="/masaje-prenatal-a-domicilio/" class="hover:text-white transition-colors relative group inline-flex items-center min-h-[44px]"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masaje Prenatal</a></li>
                     </ul>
                 </div>
 
                 <!-- Columna 3: Cobertura -->
                 <div class="lg:col-span-3">
                     <h4 class="text-[13px] font-bold uppercase tracking-[0.2em] text-teal-400 mb-8">Nuestras Zonas</h4>
-                    <ul class="space-y-5 text-[16px] font-light text-teal-100/70">
-                        <li><a href="/masajes-a-domicilio-en-medellin/" class="hover:text-white transition-colors">Medellín</a></li>
-                        <li><a href="/masajes-a-domicilio-en-el-poblado/" class="hover:text-white transition-colors">El Poblado</a></li>
-                        <li><a href="/masajes-a-domicilio-en-laureles/" class="hover:text-white transition-colors">Laureles</a></li>
-                        <li><a href="/masajes-a-domicilio-en-envigado/" class="hover:text-white transition-colors">Envigado</a></li>
-                        <li><a href="/masajes-a-domicilio-en-sabaneta/" class="hover:text-white transition-colors">Sabaneta</a></li>
-                        <li><a href="/masajes-a-domicilio-en-bello/" class="hover:text-white transition-colors">Bello</a></li>
-                        <li><a href="/masajes-a-domicilio-en-itagui/" class="hover:text-white transition-colors">Itagüí</a></li>
-                        <li><a href="/masajes-a-domicilio-en-rionegro/" class="hover:text-white transition-colors">Rionegro</a></li>
-                        <li><a href="/masajes-a-domicilio-en-llanogrande/" class="hover:text-white transition-colors">Llanogrande</a></li>
-                        <li><a href="/masajes-a-domicilio-en-la-estrella/" class="hover:text-white transition-colors">La Estrella</a></li>
-                        <li><a href="/masajes-a-domicilio-en-san-antonio-de-pereira/" class="hover:text-white transition-colors">San Antonio de Pereira</a></li>
-                        <li><a href="/masajes-a-domicilio-en-el-retiro/" class="hover:text-white transition-colors">El Retiro</a></li>
+                    <ul class="space-y-2 text-[16px] font-light text-teal-100/70">
+                        <li><a href="/masajes-a-domicilio-en-medellin/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Medellín</a></li>
+                        <li><a href="/masajes-a-domicilio-en-el-poblado/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">El Poblado</a></li>
+                        <li><a href="/masajes-a-domicilio-en-laureles/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Laureles</a></li>
+                        <li><a href="/masajes-a-domicilio-en-envigado/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Envigado</a></li>
+                        <li><a href="/masajes-a-domicilio-en-sabaneta/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Sabaneta</a></li>
+                        <li><a href="/masajes-a-domicilio-en-bello/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Bello</a></li>
+                        <li><a href="/masajes-a-domicilio-en-itagui/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Itagüí</a></li>
+                        <li><a href="/masajes-a-domicilio-en-rionegro/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Rionegro</a></li>
+                        <li><a href="/masajes-a-domicilio-en-llanogrande/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Llanogrande</a></li>
+                        <li><a href="/masajes-a-domicilio-en-la-estrella/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">La Estrella</a></li>
+                        <li><a href="/masajes-a-domicilio-en-san-antonio-de-pereira/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">San Antonio de Pereira</a></li>
+                        <li><a href="/masajes-a-domicilio-en-el-retiro/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">El Retiro</a></li>
                     </ul>
                 </div>
 
                 <!-- Columna 4: Legal / Ext -->
                 <div class="lg:col-span-2">
                     <h4 class="text-[13px] font-bold uppercase tracking-[0.2em] text-teal-400 mb-8">Descubre</h4>
-                    <ul class="space-y-5 text-[16px] font-light text-teal-100/70">
-                        <li><a href="/blog/" class="hover:text-white transition-colors">Blog y Bienestar</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Políticas y Privacidad</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Normatividad</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Nosotros</a></li>
+                    <ul class="space-y-2 text-[16px] font-light text-teal-100/70">
+                        <li><a href="/blog/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Blog y Bienestar</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Políticas y Privacidad</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Normatividad</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Nosotros</a></li>
                     </ul>
                 </div>
             </div>
@@ -301,7 +301,7 @@
             <!-- Modal Header -->
             <div class="px-8 py-6 flex justify-between items-center border-b border-stone-100">
                 <div>
-                    <span class="text-[10px] tracking-[0.2em] text-teal-600 uppercase font-bold block mb-1">Cuestionario</span>
+                    <span class="text-xs tracking-[0.2em] text-teal-600 uppercase font-bold block mb-1">Cuestionario</span>
                     <h3 class="text-xl font-serif font-bold text-teal-950">Tu Masaje Ideal</h3>
                 </div>
                 <button onclick="closeQuizModal()" class="w-10 h-10 rounded-full bg-stone-50 text-stone-400 hover:text-teal-800 hover:bg-teal-50 transition-all flex items-center justify-center">
@@ -355,7 +355,7 @@
                     <div class="w-20 h-20 bg-teal-50 rounded-full mx-auto flex items-center justify-center mb-6">
                         <iconify-icon icon="solar:leaf-bold-duotone" class="text-4xl text-teal-600"></iconify-icon>
                     </div>
-                    <h4 class="text-[11px] tracking-[0.2em] text-stone-400 uppercase font-bold mb-3">Terapia Perfecta Localizada:</h4>
+                    <h4 class="text-xs tracking-[0.2em] text-stone-400 uppercase font-bold mb-3">Terapia Perfecta Localizada:</h4>
                     <div id="resultText" class="text-3xl font-serif font-bold mb-6 text-teal-950">Masaje Terapéutico</div>
                     <p class="text-[15px] text-stone-500 mb-10 font-light leading-relaxed">Nuestros analistas recomiendan esta terapia premium, completamente adaptada a lo que hoy necesita tu fisiología.</p>
                     

@@ -128,7 +128,7 @@
         .animation-delay-4000 { animation-delay: 4s; }
     </style>
 </head>
-<body class="bg-stone-50 text-teal-950 font-sans antialiased selection:bg-teal-800 selection:text-white relative overflow-x-hidden">
+<body class="bg-stone-50 text-teal-950 font-sans antialiased selection:bg-teal-800 selection:text-white relative overflow-x-hidden pb-24 md:pb-0">
 
     <header class="border-b border-stone-200/50 bg-white/80 backdrop-blur-md sticky top-0 z-50 transition-all shadow-[0_4px_30px_rgb(0,0,0,0.03)] selection:bg-teal-900 selection:text-white">
         <div class="max-w-7xl mx-auto px-6 py-[2px] md:py-[4px] flex justify-between items-center">
@@ -147,7 +147,7 @@
 
             <!-- CTA Desktop -->
             <div class="hidden md:block">
-                <button onclick="openQuizModal()" class="bg-teal-800 text-white px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-teal-700 transition-all shadow-[0_8px_20px_rgb(17,94,89,0.2)] hover:shadow-[0_8px_25px_rgb(17,94,89,0.3)] hover:-translate-y-0.5">
+                <button onclick="openQuizModal()" class="bg-teal-800 text-white px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:bg-teal-700 transition-all shadow-[0_8px_20px_rgb(17,94,89,0.2)] hover:shadow-[0_8px_25px_rgb(17,94,89,0.3)] hover:-translate-y-0.5">
                     Agendar Cita
                 </button>
             </div>
@@ -159,7 +159,7 @@
         </div>
 
         <!-- Mobile Nav (Hidden by default) -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-stone-100 shadow-2xl absolute w-full left-0 origin-top animate-fade-in">
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-stone-100 shadow-2xl fixed top-[88px] w-full left-0 h-[calc(100vh-88px)] z-[200] origin-top animate-fade-in overflow-y-auto">
             <nav class="flex flex-col text-[14px] tracking-[0.1em] uppercase font-bold text-teal-950">
                 <a href="/" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Inicio</a>
                 <a href="/servicios/" class="px-6 py-6 border-b border-stone-50 hover:bg-stone-50 hover:text-teal-700 transition-colors">Servicios</a>
@@ -175,13 +175,13 @@
     </header>
 
     <!-- Breadcrumbs -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 pb-0 text-[11px] tracking-[0.15em] uppercase font-semibold text-stone-400 font-sans">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 pb-0 text-xs tracking-[0.15em] uppercase font-semibold text-stone-400 font-sans">
         {{BREADCRUMB_HTML}}
     </div>
 
     <!-- Hero Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24 grid lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
-        <div class="relative z-10 order-2 lg:order-1">
+        <div class="relative z-10">
             <span class="text-[12px] sm:text-[14px] tracking-[0.2em] sm:tracking-[0.3em] font-bold mb-4 sm:mb-6 flex items-center gap-3 sm:gap-4 text-teal-700 uppercase">
                 <span class="w-8 sm:w-10 h-[1px] bg-teal-600 block"></span>
                 {{HERO_SUB_TEXT}}
@@ -209,7 +209,7 @@
             </div>
         </div>
         
-        <div class="relative order-1 lg:order-2">
+        <div class="relative">
             <!-- Decorative organic blobs -->
             <div class="absolute -top-12 -right-12 w-72 h-72 bg-stone-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
             <div class="absolute -bottom-12 -left-12 w-72 h-72 bg-teal-100/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
@@ -260,7 +260,7 @@
                     <div id="quiz-result" class="hidden opacity-0 bg-white/90 backdrop-blur border border-teal-100 rounded-2xl p-5 md:p-8 transform transition-all duration-500 ease-out translate-y-4">
                         <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                             <div class="w-full text-center md:text-left">
-                                <span class="text-[11px] uppercase tracking-widest font-bold text-stone-400 mb-1 block">Tu terapia ideal:</span>
+                                <span class="text-xs uppercase tracking-widest font-bold text-stone-400 mb-1 block">Tu terapia ideal:</span>
                                 <h4 id="res-title" class="text-2xl font-serif font-bold text-teal-950 mb-2">Masaje</h4>
                                 <p id="res-desc" class="text-stone-600 font-sans text-[14px] md:text-[15px] max-w-xl"></p>
                                 <div class="mt-4 flex items-center justify-center md:justify-start gap-2 text-sm font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full w-max mx-auto md:mx-0">
@@ -279,12 +279,13 @@
 
             <!-- MATRIZ COMPARATIVA -->
             <div class="mb-10 text-center max-w-2xl mx-auto mt-20">
-                <span class="text-[12px] tracking-[0.3em] font-bold text-teal-600 uppercase mb-3 block">Comparativa Rápida</span>
+                <span class="text-xs tracking-[0.3em] font-bold text-teal-600 uppercase mb-3 block">Comparativa Rápida</span>
                 <h3 class="text-2xl md:text-3xl font-serif text-teal-950 font-bold">Encuentra el nivel de presión exacto</h3>
             </div>
             
-            <div class="overflow-x-auto pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
-                <div class="min-w-[700px] w-full grid grid-cols-4 gap-4 bg-white rounded-2xl border border-stone-100 shadow-sm p-4">
+            <!-- Versión Desktop (Tabla) -->
+            <div class="hidden md:block overflow-x-auto pb-6 scrollbar-hide">
+                <div class="w-full grid grid-cols-4 gap-4 bg-white rounded-2xl border border-stone-100 shadow-sm p-4">
                     <!-- Setup -->
                     <div class="col-span-1 flex flex-col justify-end pb-4 font-bold text-stone-400 text-xs tracking-widest uppercase border-b border-stone-200">Enfoque Terápico</div>
                     <div class="col-span-1 pb-4 border-b border-stone-200 pl-4">
@@ -301,37 +302,121 @@
                     </div>
 
                     <!-- Fila 1 -->
-                    <div class="col-span-1 py-4 text-sm font-bold text-stone-500 flex items-center pr-4">Nivel de Presión</div>
+                    <div class="col-span-1 py-4 text-xs font-bold text-stone-500 flex items-center pr-4">Nivel de Presión</div>
                     <div class="col-span-1 py-4 flex flex-col md:flex-row gap-2 items-start md:items-center pl-4 bg-teal-50/30 rounded-lg">
                         <div class="flex gap-1">
                             <div class="w-2 h-2 rounded-full bg-teal-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-stone-200"></div><div class="w-2 h-2 rounded-full bg-stone-200"></div>
                         </div>
-                        <span class="text-[13px] text-stone-600 font-medium">Suave</span>
+                        <span class="text-xs text-stone-600 font-medium">Suave</span>
                     </div>
                     <div class="col-span-1 py-4 flex flex-col md:flex-row gap-2 items-start md:items-center pl-4 bg-orange-50/30 rounded-lg">
                         <div class="flex gap-1">
                             <div class="w-2 h-2 rounded-full bg-orange-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-orange-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-stone-200"></div>
                         </div>
-                        <span class="text-[13px] text-stone-600 font-medium">Firme</span>
+                        <span class="text-xs text-stone-600 font-medium">Firme</span>
                     </div>
                     <div class="col-span-1 py-4 flex flex-col md:flex-row gap-2 items-start md:items-center pl-4 bg-red-50/30 rounded-lg">
                         <div class="flex gap-1">
                             <div class="w-2 h-2 rounded-full bg-red-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-red-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-red-500 shadow-sm"></div>
                         </div>
-                        <span class="text-[13px] text-stone-600 font-medium">Fuerte</span>
+                        <span class="text-xs text-stone-600 font-medium">Fuerte</span>
                     </div>
 
                     <!-- Fila 2 -->
-                    <div class="col-span-1 py-4 border-t border-stone-100 text-sm font-bold text-stone-500 flex items-center pr-4">Foco Principal</div>
-                    <div class="col-span-1 py-4 border-t border-stone-100 text-[14px] text-stone-600 pl-4">Ansiedad, estrés, insomnio y calma corporal general.</div>
-                    <div class="col-span-1 py-4 border-t border-stone-100 text-[14px] text-stone-600 pl-4">Espalda, cuello, hombros y nudos musculares.</div>
-                    <div class="col-span-1 py-4 border-t border-stone-100 text-[14px] text-stone-600 pl-4">Capas internas musculares y fascias adheridas.</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-xs font-bold text-stone-500 flex items-center pr-4">Foco Principal</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-xs text-stone-600 pl-4">Ansiedad, estrés, insomnio y calma corporal general.</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-xs text-stone-600 pl-4">Espalda, cuello, hombros y nudos musculares.</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-xs text-stone-600 pl-4">Capas internas musculares y fascias adheridas.</div>
 
                     <!-- Fila 3 -->
-                    <div class="col-span-1 py-4 border-t border-stone-100 text-sm font-bold text-stone-500 flex items-center pr-4">Ideal para...</div>
-                    <div class="col-span-1 py-4 border-t border-stone-100 text-[14px] text-stone-600 pl-4">> Personas probando masajes por primera vez.<br>> Día de spa relajante.</div>
-                    <div class="col-span-1 py-4 border-t border-stone-100 text-[14px] text-stone-600 pl-4">> Oficinistas.<br>> Tensión por mala postura en el computador.</div>
-                    <div class="col-span-1 py-4 border-t border-stone-100 text-[14px] text-stone-600 pl-4">> Dolores crónicos.<br>> Deportistas (Post-esfuerzo intenso).</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-xs font-bold text-stone-500 flex items-center pr-4">Ideal para...</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-xs text-stone-600 pl-4">> Personas probando masajes por primera vez.<br>> Día de spa relajante.</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-xs text-stone-600 pl-4">> Oficinistas.<br>> Tensión por mala postura en el computador.</div>
+                    <div class="col-span-1 py-4 border-t border-stone-100 text-xs text-stone-600 pl-4">> Dolores crónicos.<br>> Deportistas (Post-esfuerzo intenso).</div>
+                </div>
+            </div>
+
+            <!-- Versión Móvil (Tarjetas Apiladas) -->
+            <div class="md:hidden flex flex-col gap-6">
+                <!-- Tarjeta Relajante -->
+                <div class="bg-white rounded-2xl border border-stone-100 shadow-sm p-5 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
+                    <div class="font-serif font-bold text-lg text-teal-950">Relajante</div>
+                    <div class="text-xs text-stone-500 mt-1 uppercase tracking-widest mb-4">Calma Mental</div>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-teal-50/50 p-3 rounded-lg flex items-center justify-between">
+                            <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">Presión</span>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[13px] font-medium text-stone-700">Suave</span>
+                                <div class="flex gap-1">
+                                    <div class="w-2 h-2 rounded-full bg-teal-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-stone-200"></div><div class="w-2 h-2 rounded-full bg-stone-200"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-[13px] text-stone-600 bg-stone-50 p-3 rounded-lg">
+                            <span class="font-bold text-stone-500 block mb-1 text-xs uppercase tracking-wider">Foco Principal:</span>
+                            Ansiedad, estrés, insomnio y calma corporal general.
+                        </div>
+                        <div class="text-[13px] text-stone-600 bg-stone-50 p-3 rounded-lg">
+                            <span class="font-bold text-stone-500 block mb-1 text-xs uppercase tracking-wider">Ideal para:</span>
+                            > Personas probando masajes por primera vez.<br>> Día de spa relajante.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Descontracturante -->
+                <div class="bg-white rounded-2xl border border-stone-100 shadow-sm p-5 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+                    <div class="font-serif font-bold text-lg text-teal-950">Descontracturante</div>
+                    <div class="text-xs text-stone-500 mt-1 uppercase tracking-widest mb-4">Nudos Localizados</div>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-orange-50/50 p-3 rounded-lg flex items-center justify-between">
+                            <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">Presión</span>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[13px] font-medium text-stone-700">Firme</span>
+                                <div class="flex gap-1">
+                                    <div class="w-2 h-2 rounded-full bg-orange-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-orange-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-stone-200"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-[13px] text-stone-600 bg-stone-50 p-3 rounded-lg">
+                            <span class="font-bold text-stone-500 block mb-1 text-xs uppercase tracking-wider">Foco Principal:</span>
+                            Espalda, cuello, hombros y nudos musculares.
+                        </div>
+                        <div class="text-[13px] text-stone-600 bg-stone-50 p-3 rounded-lg">
+                            <span class="font-bold text-stone-500 block mb-1 text-xs uppercase tracking-wider">Ideal para:</span>
+                            > Oficinistas.<br>> Tensión por mala postura en el computador.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Tejido Profundo -->
+                <div class="bg-white rounded-2xl border border-stone-100 shadow-sm p-5 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-red-500"></div>
+                    <div class="font-serif font-bold text-lg text-teal-950">Tejido Profundo</div>
+                    <div class="text-xs text-stone-500 mt-1 uppercase tracking-widest mb-4">Tensión Severa</div>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-red-50/50 p-3 rounded-lg flex items-center justify-between">
+                            <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">Presión</span>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[13px] font-medium text-stone-700">Fuerte</span>
+                                <div class="flex gap-1">
+                                    <div class="w-2 h-2 rounded-full bg-red-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-red-500 shadow-sm"></div><div class="w-2 h-2 rounded-full bg-red-500 shadow-sm"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-[13px] text-stone-600 bg-stone-50 p-3 rounded-lg">
+                            <span class="font-bold text-stone-500 block mb-1 text-xs uppercase tracking-wider">Foco Principal:</span>
+                            Capas internas musculares y fascias adheridas.
+                        </div>
+                        <div class="text-[13px] text-stone-600 bg-stone-50 p-3 rounded-lg">
+                            <span class="font-bold text-stone-500 block mb-1 text-xs uppercase tracking-wider">Ideal para:</span>
+                            > Dolores crónicos.<br>> Deportistas (Post-esfuerzo intenso).
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -382,7 +467,7 @@
                     {{GRID_SERVICIOS}}
                 </div>
                 <div class="text-center mt-2 md:hidden">
-                    <span class="text-[10px] tracking-[0.2em] font-bold text-teal-600/70 uppercase inline-flex items-center gap-2">
+                    <span class="text-xs tracking-[0.2em] font-bold text-teal-600/70 uppercase inline-flex items-center gap-2">
                         <iconify-icon icon="solar:arrow-left-line-duotone"></iconify-icon> Desliza para ver más <iconify-icon icon="solar:arrow-right-line-duotone"></iconify-icon>
                     </span>
                 </div>
@@ -394,7 +479,7 @@
     <section id="cobertura" class="pt-16 pb-20 bg-white {{ORDER_CLASS_ZONAS}}">
         <div class="max-w-[1400px] mx-auto px-2 md:px-6">
             <div class="mb-12 flex flex-col items-center text-center px-4">
-                <span class="text-[11px] tracking-[0.3em] uppercase font-bold text-teal-600 mb-4">Nuestra Cobertura Local</span>
+                <span class="text-xs tracking-[0.3em] uppercase font-bold text-teal-600 mb-4">Nuestra Cobertura Local</span>
                 <h2 class="text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-teal-950 max-w-2xl">Llegamos a donde tú necesitas descansar</h2>
             </div>
             
@@ -563,42 +648,42 @@
                 <!-- Columna 2: Servicios -->
                 <div class="lg:col-span-3">
                     <h4 class="text-[13px] font-bold uppercase tracking-[0.2em] text-teal-400 mb-8">Servicios Especializados</h4>
-                    <ul class="space-y-5 text-[16px] font-light text-teal-100/70">
-                        <li><a href="/masajes-relajantes-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Relajantes</a></li>
-                        <li><a href="/masajes-terapeuticos-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Terapéuticos</a></li>
-                        <li><a href="/masajes-deportivos-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Deportivos</a></li>
-                        <li><a href="/drenaje-linfatico-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Drenaje Linfático</a></li>
-                        <li><a href="/masaje-prenatal-a-domicilio/" class="hover:text-white transition-colors relative group"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masaje Prenatal</a></li>
+                    <ul class="space-y-2 text-[16px] font-light text-teal-100/70">
+                        <li><a href="/masajes-relajantes-a-domicilio/" class="hover:text-white transition-colors relative group inline-flex items-center min-h-[44px]"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Relajantes</a></li>
+                        <li><a href="/masajes-terapeuticos-a-domicilio/" class="hover:text-white transition-colors relative group inline-flex items-center min-h-[44px]"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Terapéuticos</a></li>
+                        <li><a href="/masajes-deportivos-a-domicilio/" class="hover:text-white transition-colors relative group inline-flex items-center min-h-[44px]"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masajes Deportivos</a></li>
+                        <li><a href="/drenaje-linfatico-a-domicilio/" class="hover:text-white transition-colors relative group inline-flex items-center min-h-[44px]"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Drenaje Linfático</a></li>
+                        <li><a href="/masaje-prenatal-a-domicilio/" class="hover:text-white transition-colors relative group inline-flex items-center min-h-[44px]"><span class="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-teal-500 transition-all text-sm">→</span>Masaje Prenatal</a></li>
                     </ul>
                 </div>
 
                 <!-- Columna 3: Cobertura -->
                 <div class="lg:col-span-3">
                     <h4 class="text-[13px] font-bold uppercase tracking-[0.2em] text-teal-400 mb-8">Nuestras Zonas</h4>
-                    <ul class="space-y-5 text-[16px] font-light text-teal-100/70">
-                        <li><a href="/masajes-a-domicilio-en-medellin/" class="hover:text-white transition-colors">Medellín</a></li>
-                        <li><a href="/masajes-a-domicilio-en-el-poblado/" class="hover:text-white transition-colors">El Poblado</a></li>
-                        <li><a href="/masajes-a-domicilio-en-laureles/" class="hover:text-white transition-colors">Laureles</a></li>
-                        <li><a href="/masajes-a-domicilio-en-envigado/" class="hover:text-white transition-colors">Envigado</a></li>
-                        <li><a href="/masajes-a-domicilio-en-sabaneta/" class="hover:text-white transition-colors">Sabaneta</a></li>
-                        <li><a href="/masajes-a-domicilio-en-bello/" class="hover:text-white transition-colors">Bello</a></li>
-                        <li><a href="/masajes-a-domicilio-en-itagui/" class="hover:text-white transition-colors">Itagüí</a></li>
-                        <li><a href="/masajes-a-domicilio-en-rionegro/" class="hover:text-white transition-colors">Rionegro</a></li>
-                        <li><a href="/masajes-a-domicilio-en-llanogrande/" class="hover:text-white transition-colors">Llanogrande</a></li>
-                        <li><a href="/masajes-a-domicilio-en-la-estrella/" class="hover:text-white transition-colors">La Estrella</a></li>
-                        <li><a href="/masajes-a-domicilio-en-san-antonio-de-pereira/" class="hover:text-white transition-colors">San Antonio de Pereira</a></li>
-                        <li><a href="/masajes-a-domicilio-en-el-retiro/" class="hover:text-white transition-colors">El Retiro</a></li>
+                    <ul class="space-y-2 text-[16px] font-light text-teal-100/70">
+                        <li><a href="/masajes-a-domicilio-en-medellin/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Medellín</a></li>
+                        <li><a href="/masajes-a-domicilio-en-el-poblado/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">El Poblado</a></li>
+                        <li><a href="/masajes-a-domicilio-en-laureles/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Laureles</a></li>
+                        <li><a href="/masajes-a-domicilio-en-envigado/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Envigado</a></li>
+                        <li><a href="/masajes-a-domicilio-en-sabaneta/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Sabaneta</a></li>
+                        <li><a href="/masajes-a-domicilio-en-bello/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Bello</a></li>
+                        <li><a href="/masajes-a-domicilio-en-itagui/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Itagüí</a></li>
+                        <li><a href="/masajes-a-domicilio-en-rionegro/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Rionegro</a></li>
+                        <li><a href="/masajes-a-domicilio-en-llanogrande/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Llanogrande</a></li>
+                        <li><a href="/masajes-a-domicilio-en-la-estrella/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">La Estrella</a></li>
+                        <li><a href="/masajes-a-domicilio-en-san-antonio-de-pereira/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">San Antonio de Pereira</a></li>
+                        <li><a href="/masajes-a-domicilio-en-el-retiro/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">El Retiro</a></li>
                     </ul>
                 </div>
 
                 <!-- Columna 4: Legal / Ext -->
                 <div class="lg:col-span-2">
                     <h4 class="text-[13px] font-bold uppercase tracking-[0.2em] text-teal-400 mb-8">Descubre</h4>
-                    <ul class="space-y-5 text-[16px] font-light text-teal-100/70">
-                        <li><a href="/blog/" class="hover:text-white transition-colors">Blog y Bienestar</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Políticas y Privacidad</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Normatividad</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Nosotros</a></li>
+                    <ul class="space-y-2 text-[16px] font-light text-teal-100/70">
+                        <li><a href="/blog/" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Blog y Bienestar</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Políticas y Privacidad</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Normatividad</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors inline-flex items-center min-h-[44px]">Nosotros</a></li>
                     </ul>
                 </div>
             </div>
@@ -621,7 +706,7 @@
             <!-- Modal Header -->
             <div class="px-8 py-6 flex justify-between items-center border-b border-stone-100">
                 <div>
-                    <span class="text-[10px] tracking-[0.2em] text-teal-600 uppercase font-bold block mb-1">Cuestionario</span>
+                    <span class="text-xs tracking-[0.2em] text-teal-600 uppercase font-bold block mb-1">Cuestionario</span>
                     <h3 class="text-xl font-serif font-bold text-teal-950">Tu Masaje Ideal</h3>
                 </div>
                 <button onclick="closeQuizModal()" class="w-10 h-10 rounded-full bg-stone-50 text-stone-400 hover:text-teal-800 hover:bg-teal-50 transition-all flex items-center justify-center">
@@ -675,7 +760,7 @@
                     <div class="w-20 h-20 bg-teal-50 rounded-full mx-auto flex items-center justify-center mb-6">
                         <iconify-icon icon="solar:leaf-bold-duotone" class="text-4xl text-teal-600"></iconify-icon>
                     </div>
-                    <h4 class="text-[11px] tracking-[0.2em] text-stone-400 uppercase font-bold mb-3">Terapia Perfecta Localizada:</h4>
+                    <h4 class="text-xs tracking-[0.2em] text-stone-400 uppercase font-bold mb-3">Terapia Perfecta Localizada:</h4>
                     <div id="resultText" class="text-3xl font-serif font-bold mb-6 text-teal-950">Masaje Terapéutico</div>
                     <p class="text-[15px] text-stone-500 mb-10 font-light leading-relaxed">Nuestros analistas recomiendan esta terapia premium, completamente adaptada a lo que hoy necesita tu fisiología.</p>
                     

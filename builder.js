@@ -179,14 +179,14 @@ async function build() {
             heroSub = `Bienvenido a Manos Curativas`;
 
             if (nivel.includes('Hub Zona')) {
-                breadcrumbHtml = `<a href="/" class="hover:text-neutral-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <span class="text-neutral-500">${zona}</span>`;
+                breadcrumbHtml = `<a href="/" class="hover:text-neutral-900 transition-colors inline-flex items-center gap-1" aria-label="Inicio"><iconify-icon icon="solar:home-smile-bold-duotone" class="text-lg"></iconify-icon></a> <span class="mx-2">/</span> <span class="text-neutral-500">${zona}</span>`;
                 heroSub = `Ubicación: ` + zona;
             } else if (nivel.includes('Hub Svc')) {
-                breadcrumbHtml = `<a href="/" class="hover:text-teal-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <span class="text-teal-900/60">${servicio}</span>`;
+                breadcrumbHtml = `<a href="/" class="hover:text-teal-900 transition-colors inline-flex items-center gap-1" aria-label="Inicio"><iconify-icon icon="solar:home-smile-bold-duotone" class="text-lg"></iconify-icon></a> <span class="mx-2">/</span> <span class="text-teal-900/60">${servicio}</span>`;
                 heroSub = servicio;
             } else if (nivel.includes('Prog')) {
                 const parentUrl = findHubZonaUrl(zona);
-                breadcrumbHtml = `<a href="/" class="hover:text-teal-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <a href="${parentUrl}" class="hover:text-teal-900 transition-colors">${zona}</a> <span class="mx-2">/</span> <span class="text-teal-900/60">${servicio}</span>`;
+                breadcrumbHtml = `<a href="/" class="hover:text-teal-900 transition-colors inline-flex items-center gap-1" aria-label="Inicio"><iconify-icon icon="solar:home-smile-bold-duotone" class="text-lg"></iconify-icon></a> <span class="mx-2">/</span> <a href="${parentUrl}" class="hover:text-teal-900 transition-colors">${zona}</a> <span class="mx-2">/</span> <span class="text-teal-900/60">${servicio}</span>`;
                 heroSub = servicio;
             }
 
@@ -528,7 +528,7 @@ async function build() {
                     <iconify-icon icon="solar:arrow-right-line-duotone" class="text-xl text-teal-500 group-hover:translate-x-1 transition-transform"></iconify-icon>
                 </a>`;
 
-            let breadcrumbHtml = `<a href="/" class="hover:text-teal-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <a href="/blog/" class="hover:text-teal-900 transition-colors">Blog</a> <span class="mx-2">/</span> <span class="text-teal-900/60">${row['Categoría'] || 'Artículos'}</span>`;
+            let breadcrumbHtml = `<a href="/" class="hover:text-teal-900 transition-colors inline-flex items-center gap-1" aria-label="Inicio"><iconify-icon icon="solar:home-smile-bold-duotone" class="text-lg"></iconify-icon></a> <span class="mx-2">/</span> <a href="/blog/" class="hover:text-teal-900 transition-colors">Blog</a> <span class="mx-2">/</span> <span class="text-teal-900/60">${row['Categoría'] || 'Artículos'}</span>`;
 
             let heroImageBlog = '/assets/home_spa_living_room.png';
             const catBusqueda = (row['Categoría'] || row['Título'] || '').toLowerCase();
@@ -603,7 +603,7 @@ async function build() {
         const blogHubDir = path.join(DIST_DIR, 'blog');
         ensureDir(blogHubDir);
         
-        let breadcrumbBlogHub = `<a href="/" class="hover:text-teal-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <span class="text-teal-900/60">Blog</span>`;
+        let breadcrumbBlogHub = `<a href="/" class="hover:text-teal-900 transition-colors inline-flex items-center gap-1" aria-label="Inicio"><iconify-icon icon="solar:home-smile-bold-duotone" class="text-lg"></iconify-icon></a> <span class="mx-2">/</span> <span class="text-teal-900/60">Blog</span>`;
 
         let genericGridServicios = '';
         rows.filter(r => r.Nivel && r.Nivel.includes('Hub Svc')).slice(0, 4).forEach(srv => genericGridServicios += generarCardBlogServicio(srv.URL, srv.Servicio, false));
@@ -678,7 +678,7 @@ async function build() {
         let srvHead = templateTop
             .replace(/<title>.*<\/title>/g, `<title>Listado de Servicios de Masoterapia a Domicilio - Manos Curativas</title>`)
             .replace(/<meta name="description" content=".*">/g, `<meta name="description" content="Directorio completo de terapias manuales y masajes a domicilio. Relajantes, descontracturantes, ventosas y más.">`)
-            .replace(/{{BREADCRUMB_HTML}}/g, '<a href="/" class="hover:text-teal-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <span class="text-teal-900/60">Servicios</span>');
+            .replace(/{{BREADCRUMB_HTML}}/g, '<a href="/" class="hover:text-teal-900 transition-colors inline-flex items-center gap-1" aria-label="Inicio"><iconify-icon icon="solar:home-smile-bold-duotone" class="text-lg"></iconify-icon></a> <span class="mx-2">/</span> <span class="text-teal-900/60">Servicios</span>');
 
         let srvBody = `
         <main class="bg-stone-50 min-h-screen pt-12 pb-24">
@@ -709,7 +709,7 @@ async function build() {
         let covHead = templateTop
             .replace(/<title>.*<\/title>/g, `<title>Zonas de Cobertura para Masajes a Domicilio - Manos Curativas</title>`)
             .replace(/<meta name="description" content=".*">/g, `<meta name="description" content="Revisa todas nuestras zonas y barrios de atención a domicilio. Profesionales que llegan hasta tu puerta.">`)
-            .replace(/{{BREADCRUMB_HTML}}/g, '<a href="/" class="hover:text-teal-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <span class="text-teal-900/60">Cobertura</span>');
+            .replace(/{{BREADCRUMB_HTML}}/g, '<a href="/" class="hover:text-teal-900 transition-colors inline-flex items-center gap-1" aria-label="Inicio"><iconify-icon icon="solar:home-smile-bold-duotone" class="text-lg"></iconify-icon></a> <span class="mx-2">/</span> <span class="text-teal-900/60">Cobertura</span>');
 
         let covBody = `
         <main class="bg-stone-50 min-h-screen pt-12 pb-24">
