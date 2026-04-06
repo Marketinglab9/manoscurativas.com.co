@@ -694,6 +694,17 @@ async function build() {
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     ${srvCards}
                 </div>
+                
+                <!-- Reseñas de Google - Elfsight -->
+                <div class="mt-20">
+                    <div class="mb-10 text-center">
+                        <span class="text-[13px] tracking-[0.3em] font-bold mb-4 block text-teal-600 uppercase">Lo que dicen de nosotros</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-teal-950">Experiencias Reales</h2>
+                    </div>
+                    <!-- Elfsight Google Reviews | Untitled Google Reviews -->
+                    <script src="https://elfsightcdn.com/platform.js" async></script>
+                    <div class="elfsight-app-3b0c9165-58ee-429b-97f4-474b77757d42" data-elfsight-app-lazy></div>
+                </div>
             </div>
         </main>`;
 
