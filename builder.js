@@ -636,8 +636,7 @@ async function build() {
     <style>
         .style-scroll::-webkit-scrollbar { display: none; }
         .style-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
-    <!-- SECCIÓN DE SERVICIOS -->`;
+    </style>`;
 
         let blogHubHtml = plantillaMaestra
             .replace(/\/assets\/hero_massage\.png/g, '/assets/home_ambient_therapy.png')
@@ -645,7 +644,7 @@ async function build() {
             .replace(/{{META_DESC}}/g, 'Descubre artículos sobre bienestar, técnicas de relajación, beneficios fisiológicos de nuestras terapias y cuidado integral en nuestro blog oficial.')
             .replace(/{{H1}}/g, 'Blog y Bienestar')
             .replace(/{{HERO_SUB_TEXT}}/g, 'Artículos Recientes')
-            .replace(/<!-- SECCIÓN DE SERVICIOS -->/g, blogCustomSectionHtml)
+            .replace(/<!-- Reseñas de Google - Elfsight -->/g, blogCustomSectionHtml + '\n<!-- Reseñas de Google - Elfsight -->')
             .replace(/{{GRID_SERVICIOS}}/g, genericGridServicios)
             .replace(/{{GRID_ZONAS}}/g, genericGridZonas)
             .replace(/¿Sientes tensión en tu cuerpo\?/g, 'Encuentra tu masaje ideal')
