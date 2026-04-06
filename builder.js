@@ -80,6 +80,11 @@ async function build() {
         const rows = await readCSV(EXCEL_CSV);
         console.log(`Leídas ${rows.length} URLs a procesar.\n`);
         
+        const sitemapUrls = []; // Arreglo para almacenar todas las URLs del sitio
+        sitemapUrls.push('https://manoscurativas.com.co/');
+        sitemapUrls.push('https://manoscurativas.com.co/servicios/');
+        sitemapUrls.push('https://manoscurativas.com.co/cobertura/');
+
         // --- BLOG LOAD FRONTLOADED ---
         const BLOG_CSV = 'manoscurativas_blog_100.xlsx - 100 Artículos Blog.csv';
         let rowsBlog = [];
@@ -467,6 +472,10 @@ async function build() {
             const fileName = urlPath === '' ? 'index.html' : 'index.html';
             const filaGuardar = urlPath === '' ? path.join(DIST_DIR, fileName) : path.join(fullDir, fileName);
             
+            if (urlPath !== '') {
+                sitemapUrls.push(canonicalUrl);
+            }
+            
             fs.writeFileSync(filaGuardar, pageHtml);
         }
 
@@ -575,6 +584,8 @@ async function build() {
                 .replace(/{{ARTICLE_CONTENT}}/g, articleHtml.replace(/{{H1}}/g, row['Título']))
                 .replace(/{{CANONICAL_URL}}/g, canonicalUrlBlog)
                 .replace(/{{OG_IMAGE}}/g, ogImageBlog);
+
+            sitemapUrls.push(canonicalUrlBlog);
 
             fs.writeFileSync(path.join(fullDir, 'index.html'), pageHtml);
 
@@ -719,6 +730,34 @@ async function build() {
 
         fs.writeFileSync(path.join(coberturasDir, 'index.html'), covHead + covBody + templateBottom);
 
+        // --- 6. SITEMAP.XML Y ROBOTS.TXT ---
+        console.log("\n🗺️  Generando Sitemap y Robots.txt...");
+        
+        const dateNow = new Date().toISOString().split('T')[0];
+        let sitemapBody = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+        
+        const uniqueUrls = [...new Set(sitemapUrls)];
+        uniqueUrls.forEach(url => {
+            const isHome = url === 'https://manoscurativas.com.co/';
+            const priority = isHome ? '1.0' : (url.includes('/blog/') ? '0.7' : '0.8');
+            sitemapBody += `
+  <url>
+    <loc>${url}</loc>
+    <lastmod>${dateNow}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+        });
+        
+        sitemapBody += `\n</urlset>`;
+        
+        fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), sitemapBody);
+        
+        const robotsTxt = `User-agent: *
+Allow: /
+
+Sitemap: https://manoscurativas.com.co/sitemap.xml`;
+        fs.writeFileSync(path.join(DIST_DIR, 'robots.txt'), robotsTxt);
 
         console.log("🎉 ¡Blog y su Index compilados con éxito!");
 
