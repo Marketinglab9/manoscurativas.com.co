@@ -39,6 +39,30 @@
         "addressRegion": "Antioquia",
         "addressCountry": "CO"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 6.2088,
+        "longitude": -75.5678
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "21:00"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "{{CIUDAD}}"
+      },
+      "serviceType": "Servicio de Masajes a Domicilio",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
@@ -424,6 +448,99 @@
     <!-- PHILOSOPHY_END -->
 
     <!-- Footer SEO Premium -->
+    <!-- SECCIÓN DE BENEFICIOS CLÍNICOS SEO (Contenido Estructural de Valor) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24 border-t border-stone-200">
+        <div class="text-center mb-16">
+            <span class="text-[13px] tracking-[0.3em] font-bold text-teal-600 uppercase block mb-4">¿Por qué elegirnos?</span>
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-teal-950 mb-6">Beneficios Terapéuticos de los Masajes a Domicilio</h2>
+            <p class="text-lg text-stone-500 font-light max-w-3xl mx-auto leading-relaxed">
+                Descubre cómo nuestras terapias impactan profundamente tu salud física y mental sin necesidad de desplazarte, reduciendo el estrés y recuperando tu movilidad.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-teal-50 text-teal-700 rounded-full flex items-center justify-center font-bold text-2xl mb-6">
+                    <iconify-icon icon="solar:heart-pulse-bold-duotone"></iconify-icon>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-teal-900 mb-4">Alivio del Dolor Crónico y Tensión Muscular</h3>
+                <p class="text-stone-500 font-light leading-relaxed">
+                    Nuestros expertos abordan puntos de gatillo exactos. Al relajar los tejidos profundos y eliminar las contracturas, fomentamos una reparación muscular acelerada y disminuimos inflamaciones severas causadas por posturas críticas o estrés crónico.
+                </p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-teal-50 text-teal-700 rounded-full flex items-center justify-center font-bold text-2xl mb-6">
+                    <iconify-icon icon="solar:sleeping-bold-duotone"></iconify-icon>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-teal-900 mb-4">Reducción Clínica de Ansiedad y Depresión</h3>
+                <p class="text-stone-500 font-light leading-relaxed">
+                    A través del contacto terapéutico guiado, disminuimos drásticamente los niveles de cortisol (hormona del estrés) incrementando paralelamente los niveles de dopamina y serotonina. Esto te otorga un estado de equilibrio emocional sostenido.
+                </p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-teal-50 text-teal-700 rounded-full flex items-center justify-center font-bold text-2xl mb-6">
+                    <iconify-icon icon="solar:home-smile-angle-bold-duotone"></iconify-icon>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-teal-900 mb-4">Conveniencia y Confort en tu Propio Hogar</h3>
+                <p class="text-stone-500 font-light leading-relaxed">
+                    Evitar el estrés del tráfico citadino prolonga sustancialmente el estado de relajación post-masaje. Llevamos todo el equipo profesional (camilla, aceites orgánicos premium, aromaterapia) directo a tu sala de estar o habitación matrimonial.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE PREGUNTAS FRECUENTES (FAQ) PARA SEO -->
+    <section class="bg-stone-50 py-16 md:py-24 border-t border-stone-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-teal-950 mb-6">Preguntas Frecuentes</h2>
+                <p class="text-lg text-stone-500 font-light leading-relaxed">
+                    Resolvemos las dudas más habituales sobre nuestro servicio de masajes a domicilio en {{CIUDAD}}. Nuestro compromiso es tu tranquilidad y absoluta comodidad.
+                </p>
+            </div>
+            
+            <div class="space-y-6" itemscope itemtype="https://schema.org/FAQPage">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-teal-900 mb-3" itemprop="name">¿Con cuánto tiempo de antelación debo agendar mi masaje a domicilio?</h3>
+                        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p class="text-stone-500 font-light leading-relaxed" itemprop="text">
+                                Recomendamos solicitar tu reserva con al menos 2 a 4 horas de anticipación. Esto nos permite gestionar el traslado de nuestro terapeuta y coordinar eficientemente el transporte del equipo logístico (camillas, sábanas esterilizadas) hasta tu domicilio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-teal-900 mb-3" itemprop="name">¿Llevan camilla o debo aportar algún equipamiento?</h3>
+                        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p class="text-stone-500 font-light leading-relaxed" itemprop="text">
+                                No te preocupes por nada. Nuestros profesionales acuden al punto acordado con todo el aparataje necesario. Llevamos una camilla ergonómica y profesional de viaje, además de toallas, cobertores, altavoces para la musicoterapia, e insumos aromáticos de alto espectro. Solamente requerimos un espacio de aproximadamente 2x2 metros en tu hogar.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-teal-900 mb-3" itemprop="name">¿Qué métodos de pago aceptan?</h3>
+                        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p class="text-stone-500 font-light leading-relaxed" itemprop="text">
+                                Queremos facilitar tu experiencia total, por ende, admitimos gran variedad de transacciones. Efectivo y medios de pago electrónico inmediato. Por medidas estrictas de bioseguridad corporativa sugerimos transacciones sin contacto (transferencias), pero puedes pagar directamente en efectivo al terapeuta al terminar la sesión sin problemas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="bg-teal-950 text-stone-100 py-24 relative overflow-hidden">
         <!-- Abstract Decoration Line -->
         <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-teal-700/50 to-transparent"></div>
@@ -700,6 +817,36 @@
                 stickyBtn.style.opacity = '0';
                 stickyBtn.style.transform = 'translateY(20px)';
             }
+        });
+    </script>
+    
+    <!-- EFSIGHT VACCINE: Destruir el Product Schema inyectado de forma maliciosa -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.tagName === 'SCRIPT' && node.type === 'application/ld+json') {
+                            if (node.textContent && node.textContent.includes('"@type":"Product"') && node.textContent.includes('1099711')) {
+                                node.remove(); // Vaccine destroys rogue product schema
+                                console.log('[SEO] Schema basura de Elfsight interceptado y destruido automáticamente.');
+                            }
+                        }
+                    });
+                });
+            });
+
+            // Vigilar el dom
+            observer.observe(document.head, { childList: true, subtree: true });
+            observer.observe(document.body, { childList: true, subtree: true });
+            
+            // También revisar si ya lo metieron antes de que el observer cargara
+            document.querySelectorAll('script[type="application/ld+json"]').forEach(node => {
+                if(node.textContent.includes('"@type":"Product"') && node.textContent.includes('1099711')) {
+                    node.remove();
+                    console.log('[SEO] Schema basura de Elfsight detectado y purgado.');
+                }
+            });
         });
     </script>
 </body>

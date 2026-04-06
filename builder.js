@@ -67,7 +67,7 @@ function generarCardZona(enlaceUrl, nombre) {
             <div class="w-10 h-10 bg-teal-50 text-teal-700 rounded-full flex items-center justify-center font-bold text-lg group-hover:bg-teal-600 group-hover:text-white transition-colors">
                 <iconify-icon icon="solar:map-point-bold-duotone"></iconify-icon>
             </div>
-            <h3 class="text-base font-serif font-bold group-hover:text-teal-700 text-teal-950 transition-colors m-0">${nombre}</h3>
+            <span class="text-base font-serif font-bold group-hover:text-teal-700 text-teal-950 transition-colors m-0">${nombre}</span>
         </div>
     </a>`;
 }
