@@ -50,22 +50,12 @@
     </script>
 </head>
 <body class="bg-stone-50 text-teal-950 font-sans antialiased selection:bg-teal-800 selection:text-white relative overflow-x-hidden">
-    <!-- SVG Filter para colorear el logo de negro a teal-950 (#042f2e) -->
-    <svg aria-hidden="true" focusable="false" style="width:0;height:0;position:absolute;">
-        <filter id="teal-950-filter">
-            <feColorMatrix type="matrix" values="
-                0 0 0 0 0.0588
-                0 0 0 0 0.3686
-                0 0 0 0 0.3490
-                0 0 0 1 0" />
-        </filter>
-    </svg>
 
     <header class="border-b border-stone-200/50 bg-white/80 backdrop-blur-md sticky top-0 z-50 transition-all shadow-[0_4px_30px_rgb(0,0,0,0.03)] selection:bg-teal-900 selection:text-white">
         <div class="max-w-7xl mx-auto px-6 py-[2px] md:py-[4px] flex justify-between items-center">
             <!-- Logo -->
             <a href="/" class="flex-shrink-0 flex items-center gap-3 group -my-4 lg:-my-8">
-                <img src="/assets/logo.png" alt="Manos Curativas" class="h-24 md:h-32 lg:h-40 w-auto max-w-none group-hover:scale-105 transition-transform duration-500 ease-out origin-left object-cover" style="filter: url(#teal-950-filter);">
+                <img src="/assets/logo.png" alt="Manos Curativas" class="h-24 md:h-32 lg:h-40 w-auto max-w-none group-hover:scale-105 transition-transform duration-500 ease-out origin-left object-cover">
             </a>
 
             <!-- Desktop Nav -->
