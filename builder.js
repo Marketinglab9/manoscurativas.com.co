@@ -498,7 +498,7 @@ async function build() {
             'piedras': { url: '/masaje-piedras-volcanicas-a-domicilio/', title: 'Masaje con Piedras Volcánicas' }
         };
 
-        let blogCardsHtml = '';
+        let blogCategories = {};
 
         for (const row of rowsBlog) {
             if (!row['Slug URL'] || !row['Título']) continue;
@@ -590,13 +590,17 @@ async function build() {
             fs.writeFileSync(path.join(fullDir, 'index.html'), pageHtml);
 
             // Add to Hub Index
-            blogCardsHtml += `
+            const cat = row['Categoría'] || 'Artículos';
+            if (!blogCategories[cat]) {
+                blogCategories[cat] = [];
+            }
+            blogCategories[cat].push(`
             <a href="${urlReal}" class="group block shrink-0 snap-center w-[85vw] md:w-auto border border-stone-100 bg-white rounded-3xl hover:border-teal-600 transition-all shadow-[0_4px_20px_rgb(0,0,0,0.02)] hover:shadow-[0_10px_30px_rgb(13,148,136,0.1)] hover:-translate-y-1 p-8 relative overflow-hidden">
-                <div class="text-[10px] tracking-[0.2em] uppercase font-bold text-teal-600 mb-4">${row['Categoría']}</div>
+                <div class="text-[10px] tracking-[0.2em] uppercase font-bold text-teal-600 mb-4">${cat}</div>
                 <h3 class="text-xl font-serif font-bold leading-tight mb-4 group-hover:text-teal-700 text-teal-950 transition-colors">${row['Título']}</h3>
                 <p class="text-[14px] font-light text-stone-500 font-sans leading-relaxed line-clamp-3">${row['Meta Description']}</p>
                 <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-teal-400 to-teal-800 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
-            </a>`;
+            </a>`);
         }
 
         // Crear Hub de Blog (index)
@@ -611,26 +615,35 @@ async function build() {
         rows.filter(r => r.Nivel && r.Nivel.includes('Hub Zona')).forEach(z => singleLoopZonas += generarCardZona(z.URL, z.Zona));
         let genericGridZonas = singleLoopZonas + singleLoopZonas;
 
+        let categorySectionsHtml = '';
+        for (const [catName, cards] of Object.entries(blogCategories)) {
+            // Eliminar Categoría en blanco o título de la columna si se coló
+            if (catName === 'Categoría') continue;
+            
+            categorySectionsHtml += `
+            <div class="mb-16 last:mb-0">
+                <div class="flex items-center gap-4 mb-8 before:h-px before:flex-1 before:bg-stone-200 after:h-px after:flex-1 after:bg-stone-200">
+                    <h3 class="text-xl md:text-2xl font-serif font-bold text-teal-900 px-4 whitespace-nowrap">${catName}</h3>
+                </div>
+                <div class="relative">
+                    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-full bg-gradient-to-l from-white to-transparent md:hidden pointer-events-none z-10"></div>
+                    <div class="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 pb-8 snap-x snap-mandatory pt-2 style-scroll pl-4 md:pl-0 pr-8 md:pr-0">
+                        ${cards.join('\n')}
+                    </div>
+                </div>
+            </div>`;
+        }
+
         const blogCustomSectionHtml = `
-    <!-- SECCIÓN DE BLOG POSTS -->
+    <!-- SECCIÓN DE BLOG POSTS POR CATEGORÍAS -->
     <section class="pt-10 pb-16 bg-white border-b border-stone-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-16 flex flex-col items-center text-center">
                 <span class="text-[11px] tracking-[0.3em] uppercase font-bold text-teal-600 mb-4">Explora Nuestros Artículos</span>
-                <h2 class="text-3xl md:text-5xl font-serif font-bold text-teal-950 max-w-2xl">Guías y consejos prácticos de nuestros terapeutas expertos</h2>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-teal-950 max-w-2xl">Guías, Técnicas y Consejos de Expertos</h2>
             </div>
             
-            <div class="relative">
-                <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-full bg-gradient-to-l from-white to-transparent md:hidden pointer-events-none z-10"></div>
-                <div class="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 pb-8 snap-x snap-mandatory pt-2 style-scroll pl-4 md:pl-0 pr-8 md:pr-0">
-                    ${blogCardsHtml}
-                </div>
-                <div class="text-center mt-2 md:hidden">
-                    <span class="text-[10px] tracking-[0.2em] font-bold text-teal-600/70 uppercase inline-flex items-center gap-2">
-                        <iconify-icon icon="solar:arrow-left-line-duotone"></iconify-icon> Desliza para ver más <iconify-icon icon="solar:arrow-right-line-duotone"></iconify-icon>
-                    </span>
-                </div>
-            </div>
+            ${categorySectionsHtml}
         </div>
     </section>
     <style>
