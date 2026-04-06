@@ -225,14 +225,24 @@
         </section>
     </div>
 
+
+<!-- Reseñas de Google - Elfsight -->
+    <section class="bg-stone-50 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-10 text-center">
+                <span class="text-[13px] tracking-[0.3em] font-bold mb-4 block text-teal-600 uppercase">Lo que dicen de nosotros</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-teal-950">Experiencias Reales</h2>
+            </div>
+            <!-- Elfsight Google Reviews | Untitled Google Reviews -->
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div class="elfsight-app-3b0c9165-58ee-429b-97f4-474b77757d42" data-elfsight-app-lazy></div>
+        </div>
+    </section>
+
     <div class="flex flex-col w-full">
-    {{SERVICE_INFO}}
-    
-    <!-- WIDGETS_CONVERSION_START -->
-    <!-- WIDGETS DE CONVERSIÓN: CALCULADORA Y MATRIZ -->
+    <!-- WIDGETS DE CONVERSIÓN: CALCULADORA -->
     <section class="py-16 bg-white overflow-hidden relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            
             <!-- CALCULADORA INTERACTIVA -->
             <div class="bg-gradient-to-br from-teal-50 to-stone-50 rounded-3xl p-6 sm:p-10 shadow-lg border border-teal-100/50 mb-16 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-64 h-64 bg-teal-200/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
@@ -280,7 +290,41 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+    <!-- Script UX / Conversion Widgets -->
+    <script>
+        function calculateMassage(symptom, therapy, time, desc, btnEl) {
+            // Animación de botones (Selección)
+            document.querySelectorAll('.quiz-btn').forEach(b => {
+                b.classList.remove('border-teal-500', 'bg-teal-50/50', 'ring-4', 'ring-teal-100');
+                b.classList.add('border-transparent');
+            });
+            btnEl.classList.remove('border-transparent');
+            btnEl.classList.add('border-teal-500', 'bg-teal-50/50', 'ring-4', 'ring-teal-100');
 
+            // Actualizar Widget
+            const res = document.getElementById('quiz-result');
+            document.getElementById('res-title').innerText = therapy;
+            document.getElementById('res-desc').innerText = desc;
+            document.getElementById('res-time').innerText = time;
+            
+            // Integrar WhatsApp UTM text
+            const btn = document.getElementById('res-btn');
+            const msg = `Hola, estaba probando el asesor interactivo de tu web, y como tengo *${symptom}*, me recomendó el *${therapy}*. ¿Me podrías dar información sobre agenda?`;
+            btn.href = `https://wa.me/573042182623?text=${encodeURIComponent(msg)}`;
+            
+            // Animaciones UI
+            res.classList.remove('hidden', 'opacity-0', 'translate-y-4');
+            res.classList.add('flex', 'opacity-100', 'translate-y-0');
+        }
+    </script>
+
+    {{SERVICE_INFO}}
+
+    <!-- MATRIZ COMPARATIVA -->
+    <section class="py-16 bg-white overflow-hidden relative border-t border-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <!-- MATRIZ COMPARATIVA -->
             <div class="mb-10 text-center max-w-2xl mx-auto mt-20">
                 <span class="text-xs tracking-[0.3em] font-bold text-teal-600 uppercase mb-3 block">Comparativa Rápida</span>
@@ -423,121 +467,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- Script UX / Conversion Widgets -->
-    <script>
-        function calculateMassage(symptom, therapy, time, desc, btnEl) {
-            // Animación de botones (Selección)
-            document.querySelectorAll('.quiz-btn').forEach(b => {
-                b.classList.remove('border-teal-500', 'bg-teal-50/50', 'ring-4', 'ring-teal-100');
-                b.classList.add('border-transparent');
-            });
-            btnEl.classList.remove('border-transparent');
-            btnEl.classList.add('border-teal-500', 'bg-teal-50/50', 'ring-4', 'ring-teal-100');
-
-            // Actualizar Widget
-            const res = document.getElementById('quiz-result');
-            document.getElementById('res-title').innerText = therapy;
-            document.getElementById('res-desc').innerText = desc;
-            document.getElementById('res-time').innerText = time;
-            
-            // Integrar WhatsApp UTM text
-            const btn = document.getElementById('res-btn');
-            const msg = `Hola, estaba probando el asesor interactivo de tu web, y como tengo *${symptom}*, me recomendó el *${therapy}*. ¿Me podrías dar información sobre agenda?`;
-            btn.href = `https://wa.me/573042182623?text=${encodeURIComponent(msg)}`;
-            
-            // Animaciones UI
-            res.classList.remove('hidden', 'opacity-0', 'translate-y-4');
-            res.classList.add('flex', 'opacity-100', 'translate-y-0');
-        }
-    </script>
-    <!-- WIDGETS_CONVERSION_END -->
-
-    <!-- SECCIÓN DE SERVICIOS -->
-    <section id="servicios" class="pt-10 pb-16 bg-stone-50 {{ORDER_CLASS_SERVICIOS}}">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="mb-8 sm:mb-12 flex flex-col items-start border-b border-stone-200 pb-4">
-                <h2 class="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-teal-950">También te puede interesar</h2>
-                <p class="text-[14px] sm:text-base text-stone-500 font-sans mt-2">Más servicios y guías de relajación cerca a ti</p>
-            </div>
-            
-            <div class="relative">
-                <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-full bg-gradient-to-l from-stone-50 to-transparent md:hidden pointer-events-none z-10"></div>
-                <div class="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-8 snap-x snap-mandatory style-scroll pr-8 md:pr-0 pl-4 md:pl-0">
-                    <!-- Se inyecta programáticamente mezcla de Servicios y Blog -->
-                    {{GRID_SERVICIOS}}
-                </div>
-                <div class="text-center mt-2 md:hidden">
-                    <span class="text-xs tracking-[0.2em] font-bold text-teal-600/70 uppercase inline-flex items-center gap-2">
-                        <iconify-icon icon="solar:arrow-left-line-duotone"></iconify-icon> Desliza para ver más <iconify-icon icon="solar:arrow-right-line-duotone"></iconify-icon>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN DE COBERTURA -->
-    <section id="cobertura" class="pt-16 pb-20 bg-white {{ORDER_CLASS_ZONAS}}">
-        <div class="max-w-[1400px] mx-auto px-2 md:px-6">
-            <div class="mb-12 flex flex-col items-center text-center px-4">
-                <span class="text-xs tracking-[0.3em] uppercase font-bold text-teal-600 mb-4">Nuestra Cobertura Local</span>
-                <h2 class="text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-teal-950 max-w-2xl">Llegamos a donde tú necesitas descansar</h2>
-            </div>
-            
-            <!-- MARQUEE INFINITO Y MÁSCARA -->
-            <div class="relative overflow-hidden w-full pt-4 pb-8" style="-webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);">
-                <div class="flex gap-4 md:gap-6 marquee-left w-max hover:animation-paused">
-                    <!-- Se inyecta programáticamente duplicado para efecto loop -->
-                    {{GRID_ZONAS}}
-                </div>
-            </div>
-            <style>
-                @keyframes marquee-left {
-                    0% { transform: translateX(0); }
-                    100% { transform: translateX(-50%); }
-                }
-                .marquee-left { animation: marquee-left 40s linear infinite; }
-                .marquee-left:hover { animation-play-state: paused; }
-                .animation-paused { animation-play-state: paused; }
-            </style>
-        </div>
-    </section>
-    </div>
-
-    <!-- Reseñas de Google - Elfsight -->
-    <section class="bg-stone-50 py-16">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-10 text-center">
-                <span class="text-[13px] tracking-[0.3em] font-bold mb-4 block text-teal-600 uppercase">Lo que dicen de nosotros</span>
-                <h2 class="text-3xl md:text-4xl font-serif font-bold text-teal-950">Experiencias Reales</h2>
-            </div>
-            <!-- Elfsight Google Reviews | Untitled Google Reviews -->
-            <script src="https://elfsightcdn.com/platform.js" async></script>
-            <div class="elfsight-app-3b0c9165-58ee-429b-97f4-474b77757d42" data-elfsight-app-lazy></div>
-        </div>
-    </section>
-
-    <!-- PHILOSOPHY_START -->
-    <!-- Wellness Editorial Section (MOVILIZADO ABAJO) -->
-    <section class="bg-white py-32 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <span class="text-[13px] tracking-[0.3em] font-bold mb-6 block text-teal-600 uppercase">La Filosofía Manos Curativas</span>
-            <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-10 text-teal-950 leading-tight">{{PHILOSOPHY_TITLE}}</h2>
-            <p class="text-xl md:text-2xl font-light leading-relaxed text-stone-500 mb-14 font-sans max-w-3xl mx-auto">
-                {{PHILOSOPHY_DESC}}
-            </p>
-            <button onclick="openQuizModal()" class="uppercase tracking-[0.2em] text-[13px] font-bold border-b-2 border-teal-800/30 text-teal-800 pb-2 hover:text-teal-600 hover:border-teal-600 transition-all">
-                {{PHILOSOPHY_CTA}}
-            </button>
-        </div>
-    </section>
-    <!-- PHILOSOPHY_END -->
-
-    <!-- Footer SEO Premium -->
-    <!-- SECCIÓN DE BENEFICIOS CLÍNICOS SEO (Contenido Estructural de Valor) -->
+<!-- SECCIÓN DE BENEFICIOS CLÍNICOS SEO (Contenido Estructural de Valor) -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24 border-t border-stone-200">
         <div class="text-center mb-16">
             <span class="text-[13px] tracking-[0.3em] font-bold text-teal-600 uppercase block mb-4">¿Por qué elegirnos?</span>
@@ -580,7 +513,87 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE PREGUNTAS FRECUENTES (FAQ) PARA SEO -->
+<!-- PHILOSOPHY_START -->
+    <!-- Wellness Editorial Section (MOVILIZADO ABAJO) -->
+    <section class="bg-white py-32 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <span class="text-[13px] tracking-[0.3em] font-bold mb-6 block text-teal-600 uppercase">La Filosofía Manos Curativas</span>
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-10 text-teal-950 leading-tight">{{PHILOSOPHY_TITLE}}</h2>
+            <p class="text-xl md:text-2xl font-light leading-relaxed text-stone-500 mb-14 font-sans max-w-3xl mx-auto">
+                {{PHILOSOPHY_DESC}}
+            </p>
+            <button onclick="openQuizModal()" class="uppercase tracking-[0.2em] text-[13px] font-bold border-b-2 border-teal-800/30 text-teal-800 pb-2 hover:text-teal-600 hover:border-teal-600 transition-all">
+                {{PHILOSOPHY_CTA}}
+            </button>
+        </div>
+    </section>
+    <!-- PHILOSOPHY_END -->
+
+<!-- SECCIÓN DE SERVICIOS -->
+    <section id="servicios" class="pt-10 pb-16 bg-stone-50 {{ORDER_CLASS_SERVICIOS}}">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="mb-8 sm:mb-12 flex flex-col items-start border-b border-stone-200 pb-4">
+                <h2 class="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-teal-950">También te puede interesar</h2>
+                <p class="text-[14px] sm:text-base text-stone-500 font-sans mt-2">Más servicios y guías de relajación cerca a ti</p>
+            </div>
+            
+            <div class="relative">
+                <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-full bg-gradient-to-l from-stone-50 to-transparent md:hidden pointer-events-none z-10"></div>
+                <div class="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-8 snap-x snap-mandatory style-scroll pr-8 md:pr-0 pl-4 md:pl-0">
+                    <!-- Se inyecta programáticamente mezcla de Servicios y Blog -->
+                    {{GRID_SERVICIOS}}
+                </div>
+                <div class="text-center mt-2 md:hidden">
+                    <span class="text-xs tracking-[0.2em] font-bold text-teal-600/70 uppercase inline-flex items-center gap-2">
+                        <iconify-icon icon="solar:arrow-left-line-duotone"></iconify-icon> Desliza para ver más <iconify-icon icon="solar:arrow-right-line-duotone"></iconify-icon>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- SECCIÓN DE COBERTURA -->
+    <section id="cobertura" class="pt-16 pb-20 bg-white {{ORDER_CLASS_ZONAS}}">
+        <div class="max-w-[1400px] mx-auto px-2 md:px-6">
+            <div class="mb-12 flex flex-col items-center text-center px-4">
+                <span class="text-xs tracking-[0.3em] uppercase font-bold text-teal-600 mb-4">Nuestra Cobertura Local</span>
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-teal-950 max-w-2xl">Llegamos a donde tú necesitas descansar</h2>
+            </div>
+            
+            <!-- MARQUEE INFINITO Y MÁSCARA -->
+            <div class="relative overflow-hidden w-full pt-4 pb-8" style="-webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);">
+                <div class="flex gap-4 md:gap-6 marquee-left w-max hover:animation-paused">
+                    <!-- Se inyecta programáticamente duplicado para efecto loop -->
+                    {{GRID_ZONAS}}
+                </div>
+            </div>
+            <style>
+                @keyframes marquee-left {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .marquee-left { animation: marquee-left 40s linear infinite; }
+                .marquee-left:hover { animation-play-state: paused; }
+                .animation-paused { animation-play-state: paused; }
+            </style>
+        </div>
+    </section>
+    </div>
+
+<!-- Reseñas de Google - Elfsight -->
+    <section class="bg-stone-50 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-10 text-center">
+                <span class="text-[13px] tracking-[0.3em] font-bold mb-4 block text-teal-600 uppercase">Lo que dicen de nosotros</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-teal-950">Experiencias Reales</h2>
+            </div>
+            <!-- Elfsight Google Reviews | Untitled Google Reviews -->
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div class="elfsight-app-3b0c9165-58ee-429b-97f4-474b77757d42" data-elfsight-app-lazy></div>
+        </div>
+    </section>
+
+<!-- SECCIÓN DE PREGUNTAS FRECUENTES (FAQ) PARA SEO -->
     <section class="bg-stone-50 py-16 md:py-24 border-t border-stone-200">
         <div class="max-w-4xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
