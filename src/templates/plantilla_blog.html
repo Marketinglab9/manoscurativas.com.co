@@ -145,8 +145,8 @@
     </div>
 
     <!-- Contenido Principal: Artículo -->
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-20">
-        <article class="bg-white rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-8 md:p-14 shadow-[0_10px_40px_rgb(0,0,0,0.03)] border border-stone-100">
+    <main class="w-full min-w-0 max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-20 overflow-hidden">
+        <article class="w-full min-w-0 bg-white rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-8 md:p-14 shadow-[0_10px_40px_rgb(0,0,0,0.03)] border border-stone-100 overflow-hidden relative">
             
             <header class="mb-10 sm:mb-14 text-center">
                 <span class="text-xs sm:text-[13px] tracking-[0.2em] sm:tracking-[0.3em] font-bold mb-4 sm:mb-6 text-teal-600 uppercase block">Conocimiento Wellness</span>
@@ -177,7 +177,7 @@
                 <div class="absolute inset-0 bg-teal-950/5 mix-blend-multiply pointer-events-none"></div>
             </div>
 
-            <div class="prose prose-lg sm:prose-xl prose-stone max-w-none text-stone-600 font-light font-sans leading-relaxed
+            <div class="prose prose-lg sm:prose-xl prose-stone max-w-full min-w-0 overflow-hidden text-stone-600 font-light font-sans leading-relaxed
                 prose-headings:font-serif prose-headings:font-bold prose-headings:text-teal-950 
                 prose-h2:text-3xl sm:prose-h2:text-4xl prose-h2:mt-10 sm:prose-h2:mt-14 prose-h2:mb-6 sm:prose-h2:mb-8 
                 prose-h3:text-2xl sm:prose-h3:text-3xl prose-h3:mt-8 sm:prose-h3:mt-10 prose-h3:mb-4 sm:prose-h3:mb-6
@@ -205,7 +205,7 @@
                 <!-- Grilla de scrolling infinito -->
                 <div class="relative">
                     <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-full bg-gradient-to-l from-white to-transparent md:hidden pointer-events-none z-10"></div>
-                    <div class="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-2 lg:gap-8 gap-4 pb-8 snap-x snap-mandatory style-scroll pl-4 md:pl-0 pr-8 md:pr-0">
+                    <div class="flex overflow-x-auto w-full max-w-full md:grid md:grid-cols-2 lg:grid-cols-2 lg:gap-8 gap-4 pb-8 snap-x snap-mandatory style-scroll pl-4 md:pl-0 pr-8 md:pr-0">
                         {{BLOG_CARDS_HTML}}
                     </div>
                     <div class="text-center mt-2 md:hidden">
