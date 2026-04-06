@@ -185,8 +185,8 @@ async function build() {
                 heroSub = servicio;
             }
 
-            let heroImage = '/assets/hero_massage.png';
-            const fallbackImages = ['/assets/hero_massage.png', '/assets/home_spa_living_room.png', '/assets/home_ambient_therapy.png'];
+            let heroImage = '/assets/home_spa_living_room.png';
+            const fallbackImages = ['/assets/home_spa_living_room.png', '/assets/home_ambient_therapy.png'];
             const srvBusqueda = (row['Servicio'] || row['H1'] || '').toLowerCase();
             
             if (srvBusqueda.includes('relajante')) heroImage = '/assets/servicios/masaje_relajante_1775258118832.png';
@@ -198,10 +198,13 @@ async function build() {
             else if (srvBusqueda.includes('tejido profundo')) heroImage = '/assets/servicios/tejido_profundo_1775258200977.png';
             else if (srvBusqueda.includes('piedras')) heroImage = '/assets/servicios/piedras_volcanicas_1775258259475.png';
             else if (srvBusqueda.includes('ventosas')) heroImage = '/assets/servicios/masaje_ventosas_1775258244036.png';
-            else {
-                // Elección pseudoaleatoria y determinista entre fotos 'Home' para variedad temática
+            else if (urlPath !== '') {
+                // Elección pseudoaleatoria y determinista entre las fotos 'Home' nuevas (excluyendo el default) para los Hubs
                 const val = Array.from(urlPath).reduce((acc, char) => acc + char.charCodeAt(0), 0);
                 heroImage = fallbackImages[val % fallbackImages.length];
+            } else {
+                // Caso estricto para el index '/'
+                heroImage = '/assets/hero_massage.png';
             }
 
             // Textos Dinámicos de Filosofía y Cierre para Nutrir UX y SEO
@@ -510,7 +513,7 @@ async function build() {
 
             let breadcrumbHtml = `<a href="/" class="hover:text-teal-900 transition-colors">Inicio</a> <span class="mx-2">/</span> <a href="/blog/" class="hover:text-teal-900 transition-colors">Blog</a> <span class="mx-2">/</span> <span class="text-teal-900/60">${row['Categoría'] || 'Artículos'}</span>`;
 
-            let heroImageBlog = '/assets/blog_massage.png';
+            let heroImageBlog = '/assets/home_spa_living_room.png';
             const catBusqueda = (row['Categoría'] || row['Título'] || '').toLowerCase();
             if (catBusqueda.includes('relajante')) heroImageBlog = '/assets/servicios/masaje_relajante_1775258118832.png';
             else if (catBusqueda.includes('deportivo')) heroImageBlog = '/assets/servicios/masaje_deportivo_1775258135018.png';
@@ -521,6 +524,11 @@ async function build() {
             else if (catBusqueda.includes('tejido profundo')) heroImageBlog = '/assets/servicios/tejido_profundo_1775258200977.png';
             else if (catBusqueda.includes('piedras')) heroImageBlog = '/assets/servicios/piedras_volcanicas_1775258259475.png';
             else if (catBusqueda.includes('ventosas') || catBusqueda.includes('cupping')) heroImageBlog = '/assets/servicios/masaje_ventosas_1775258244036.png';
+            else {
+                const fallbackImagesBlog = ['/assets/home_spa_living_room.png', '/assets/home_ambient_therapy.png'];
+                const valBlog = Array.from(urlReal).reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                heroImageBlog = fallbackImagesBlog[valBlog % fallbackImagesBlog.length];
+            }
 
             // Crear recomendación de artículos relacionados (4 aleatorios para scroll infinito)
             let relatedCardsHtml = '';
@@ -606,6 +614,7 @@ async function build() {
     <!-- SECCIÓN DE SERVICIOS -->`;
 
         let blogHubHtml = plantillaMaestra
+            .replace(/\/assets\/hero_massage\.png/g, '/assets/home_ambient_therapy.png')
             .replace(/{{TITLE}}/g, 'Blog de Bienestar y Masajes')
             .replace(/{{META_DESC}}/g, 'Descubre artículos sobre bienestar, técnicas de relajación, beneficios fisiológicos de nuestras terapias y cuidado integral en nuestro blog oficial.')
             .replace(/{{H1}}/g, 'Blog y Bienestar')
