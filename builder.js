@@ -186,7 +186,9 @@ async function build() {
             }
 
             let heroImage = '/assets/hero_massage.png';
+            const fallbackImages = ['/assets/hero_massage.png', '/assets/home_spa_living_room.png', '/assets/home_ambient_therapy.png'];
             const srvBusqueda = (row['Servicio'] || row['H1'] || '').toLowerCase();
+            
             if (srvBusqueda.includes('relajante')) heroImage = '/assets/servicios/masaje_relajante_1775258118832.png';
             else if (srvBusqueda.includes('deportivo')) heroImage = '/assets/servicios/masaje_deportivo_1775258135018.png';
             else if (srvBusqueda.includes('terapéutico') || srvBusqueda.includes('terapeutico')) heroImage = '/assets/servicios/masaje_terapeutico_1775258148420.png';
@@ -196,6 +198,11 @@ async function build() {
             else if (srvBusqueda.includes('tejido profundo')) heroImage = '/assets/servicios/tejido_profundo_1775258200977.png';
             else if (srvBusqueda.includes('piedras')) heroImage = '/assets/servicios/piedras_volcanicas_1775258259475.png';
             else if (srvBusqueda.includes('ventosas')) heroImage = '/assets/servicios/masaje_ventosas_1775258244036.png';
+            else {
+                // Elección pseudoaleatoria y determinista entre fotos 'Home' para variedad temática
+                const val = Array.from(urlPath).reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                heroImage = fallbackImages[val % fallbackImages.length];
+            }
 
             // Textos Dinámicos de Filosofía y Cierre para Nutrir UX y SEO
             let philosophyTitle = "Revitaliza tu cuerpo, <br/><span class=\"italic font-light text-stone-400\">equilibra tu mente.</span>";
