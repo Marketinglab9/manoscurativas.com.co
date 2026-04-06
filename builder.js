@@ -542,7 +542,7 @@ async function build() {
             else if (catBusqueda.includes('piedras')) heroImageBlog = '/assets/servicios/piedras_volcanicas_1775258259475.png';
             else if (catBusqueda.includes('ventosas') || catBusqueda.includes('cupping')) heroImageBlog = '/assets/servicios/masaje_ventosas_1775258244036.png';
             else {
-                const fallbackImagesBlog = ['/assets/home_spa_living_room.png', '/assets/home_ambient_therapy.png'];
+                const fallbackImagesBlog = ['/assets/home_spa_living_room.png', '/assets/home_ambient_therapy.png', '/assets/blog_massage.png', '/assets/hero_massage.png', '/assets/servicios/drenaje_linfatico_1775258172320.png', '/assets/servicios/masaje_deportivo_1775258135018.png', '/assets/servicios/masaje_descontracturante_1775258187420.png', '/assets/servicios/masaje_prenatal_1775258232218.png', '/assets/servicios/masaje_relajante_1775258118832.png', '/assets/servicios/masaje_terapeutico_1775258148420.png', '/assets/servicios/masaje_ventosas_1775258244036.png', '/assets/servicios/piedras_volcanicas_1775258259475.png', '/assets/servicios/tejido_profundo_1775258200977.png', '/assets/servicios/premium_massage_blog_1775256124234.png'];
                 const valBlog = Array.from(urlReal).reduce((acc, char) => acc + char.charCodeAt(0), 0);
                 heroImageBlog = fallbackImagesBlog[valBlog % fallbackImagesBlog.length];
             }
