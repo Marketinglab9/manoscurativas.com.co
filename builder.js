@@ -537,7 +537,8 @@ async function build() {
             const valBlog = Array.from(urlReal).reduce((acc, char) => acc + char.charCodeAt(0), 0);
             let heroImageBlog = fallbackImagesBlog[valBlog % fallbackImagesBlog.length];
             if (urlReal.includes('prenatal') || urlReal.includes('embarazada') || (row['Categoría']||'').toLowerCase().includes('prenatal') || (row['Título']||'').toLowerCase().includes('prenatal')) {
-                heroImageBlog = '/assets/servicios/masaje_prenatal_1775258232218.png';
+                const prenatalImages = ['/assets/servicios/masaje_prenatal_1775258232218.png', '/assets/servicios/masaje_prenatal_1.png', '/assets/servicios/masaje_prenatal_2.png', '/assets/servicios/masaje_prenatal_3.png'];
+                heroImageBlog = prenatalImages[valBlog % prenatalImages.length];
             }
 
             // Crear recomendación de artículos relacionados (4 aleatorios para scroll infinito)
@@ -550,7 +551,8 @@ async function build() {
                 const valRel = Array.from(relUrl).reduce((acc, char) => acc + char.charCodeAt(0), 0);
                 let relImg = fallbackImagesBlog[valRel % fallbackImagesBlog.length];
                 if (relUrl.includes('prenatal') || relUrl.includes('embarazada') || (rel['Categoría']||'').toLowerCase().includes('prenatal') || (rel['Título']||'').toLowerCase().includes('prenatal')) {
-                    relImg = '/assets/servicios/masaje_prenatal_1775258232218.png';
+                    const prenatalImages = ['/assets/servicios/masaje_prenatal_1775258232218.png', '/assets/servicios/masaje_prenatal_1.png', '/assets/servicios/masaje_prenatal_2.png', '/assets/servicios/masaje_prenatal_3.png'];
+                    relImg = prenatalImages[valRel % prenatalImages.length];
                 }
 
                 relatedCardsHtml += `
