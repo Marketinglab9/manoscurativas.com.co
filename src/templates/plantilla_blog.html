@@ -85,6 +85,15 @@
                             900: '#134e4a',
                             950: '#042f2e',
                         }
+                    },
+                    animation: {
+                        'marquee': 'marquee 30s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
                     }
                 }
             }
@@ -203,15 +212,12 @@
                     <h2 class="text-2xl md:text-3xl font-serif font-bold text-teal-950">Artículos que te pueden interesar</h2>
                 </div>
                 <!-- Grilla de scrolling infinito -->
-                <div class="relative">
-                    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-full bg-gradient-to-l from-white to-transparent md:hidden pointer-events-none z-10"></div>
-                    <div class="flex overflow-x-auto w-full max-w-full md:grid md:grid-cols-2 lg:grid-cols-2 lg:gap-8 gap-4 pb-8 snap-x snap-mandatory style-scroll pl-4 md:pl-0 pr-8 md:pr-0">
-                        {{BLOG_CARDS_HTML}}
-                    </div>
-                    <div class="text-center mt-2 md:hidden">
-                        <span class="text-[10px] tracking-[0.2em] font-bold text-teal-600/70 uppercase inline-flex items-center gap-2">
-                            <iconify-icon icon="solar:arrow-left-line-duotone"></iconify-icon> Desliza para ver más <iconify-icon icon="solar:arrow-right-line-duotone"></iconify-icon>
-                        </span>
+                <div class="relative w-full max-w-full overflow-hidden" style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
+                    <div class="flex items-center w-full max-w-full overflow-hidden group py-4">
+                        <div class="flex flex-nowrap w-max animate-marquee group-hover:[animation-play-state:paused]">
+                            {{BLOG_CARDS_HTML}}
+                            {{BLOG_CARDS_HTML}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -378,8 +384,27 @@
         </div>
     </div>
 
+    <!-- GLOBAL FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/573042182623?text=Hola,%20buscó%20información%20sobre%20los%20servicios." target="_blank" class="fixed bottom-24 md:bottom-8 right-6 z-[200] bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(37,211,102,0.4)] hover:scale-110 hover:shadow-[0_15px_40px_rgba(37,211,102,0.6)] transition-all duration-300">
+        <iconify-icon icon="mdi:whatsapp" class="text-3xl"></iconify-icon>
+    </a>
+
     <script>
         document.getElementById('year-footer').textContent = new Date().getFullYear();
+
+        // Muestra el botón sticky solo después de que el usuario haga un scroll ligero (150px)
+        window.addEventListener('scroll', () => {
+            const stickyBtn = document.getElementById('mobile-sticky-cta');
+            if (stickyBtn) {
+                if(window.scrollY > 150) {
+                    stickyBtn.style.opacity = '1';
+                    stickyBtn.style.transform = 'translateY(0)';
+                } else {
+                    stickyBtn.style.opacity = '0';
+                    stickyBtn.style.transform = 'translateY(20px)';
+                }
+            }
+        });
 
         // Mobile Menu toggle
         const mobileBtn = document.getElementById('mobileMenuBtn');

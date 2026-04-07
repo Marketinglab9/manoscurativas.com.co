@@ -555,12 +555,37 @@ async function build() {
             
             randomRelated.forEach(rel => {
                 const relUrl = `/${rel['Slug URL'].replace(/^\/|\/$/g, '')}/`;
+                let relImg = '/assets/home_spa_living_room.png';
+                const calBus = (rel['Categoría'] || rel['Título'] || '').toLowerCase();
+                if (calBus.includes('relajante')) relImg = '/assets/servicios/masaje_relajante_1775258118832.png';
+                else if (calBus.includes('deportivo')) relImg = '/assets/servicios/masaje_deportivo_1775258135018.png';
+                else if (calBus.includes('terapéutico') || calBus.includes('terapeutico')) relImg = '/assets/servicios/masaje_terapeutico_1775258148420.png';
+                else if (calBus.includes('prenatal') || calBus.includes('embarazada')) relImg = '/assets/servicios/masaje_prenatal_1775258232218.png';
+                else if (calBus.includes('drenaje')) relImg = '/assets/servicios/drenaje_linfatico_1775258172320.png';
+                else if (calBus.includes('descontracturante') || calBus.includes('nudos')) relImg = '/assets/servicios/masaje_descontracturante_1775258187420.png';
+                else if (calBus.includes('tejido profundo')) relImg = '/assets/servicios/tejido_profundo_1775258200977.png';
+                else if (calBus.includes('piedras')) relImg = '/assets/servicios/piedras_volcanicas_1775258259475.png';
+                else if (calBus.includes('ventosas') || calBus.includes('cupping')) relImg = '/assets/servicios/masaje_ventosas_1775258244036.png';
+                else {
+                    const generatedImages = ['/assets/servicios/spa_aromatherapy_oils_1775517629371.png', '/assets/servicios/spa_bamboo_massage_1775517616923.png', '/assets/servicios/spa_facial_massage_1775517669296.png', '/assets/servicios/spa_herbal_compress_1775517697102.png', '/assets/servicios/spa_himalayan_salt_1775517710052.png', '/assets/servicios/spa_hot_towels_1775517657217.png', '/assets/servicios/spa_lotion_bottles_1775517736945.png', '/assets/servicios/spa_massage_oils_hands_1775517723953.png', '/assets/servicios/spa_reflexology_feet_1775517643226.png', '/assets/servicios/spa_zen_stones_1775517681245.png'];
+                    const fallbackImagesBlog = ['/assets/home_spa_living_room.png', '/assets/home_ambient_therapy.png', '/assets/blog_massage.png', '/assets/hero_massage.png', ...generatedImages];
+                    const valRel = Array.from(relUrl).reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                    relImg = fallbackImagesBlog[valRel % fallbackImagesBlog.length];
+                }
+
                 relatedCardsHtml += `
-            <a href="${relUrl}" class="group block shrink-0 snap-center w-[85vw] md:w-auto border border-stone-100 bg-white rounded-3xl hover:border-teal-600 transition-all shadow-[0_4px_20px_rgb(0,0,0,0.02)] hover:shadow-[0_10px_30px_rgb(13,148,136,0.1)] hover:-translate-y-1 p-8 relative overflow-hidden">
-                <div class="text-[10px] tracking-[0.2em] uppercase font-bold text-teal-600 mb-4">${rel['Categoría']}</div>
-                <h3 class="text-xl font-serif font-bold leading-tight mb-4 group-hover:text-teal-700 text-teal-950 transition-colors">${rel['Título']}</h3>
-                <p class="text-[14px] font-light text-stone-500 font-sans leading-relaxed line-clamp-3">${rel['Meta Description']}</p>
-                <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-teal-400 to-teal-800 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+            <a href="${relUrl}" class="group block shrink-0 snap-center w-[280px] md:w-[320px] bg-white rounded-3xl hover:-translate-y-1 overflow-hidden flex flex-col border border-stone-100 shadow-[0_4px_20px_rgb(0,0,0,0.02)] hover:shadow-lg transition-all relative whitespace-normal text-left mx-2 mb-4">
+                <div class="h-40 w-full bg-stone-100 overflow-hidden relative">
+                    <img src="${relImg}" alt="${rel['Título']}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+                    <div class="absolute inset-0 bg-teal-950/20 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <div class="p-6 md:p-8 flex-1 flex flex-col">
+                    <div class="text-[10px] tracking-[0.2em] uppercase font-bold text-teal-600 mb-4">${rel['Categoría']}</div>
+                    <h3 class="text-lg font-serif font-bold leading-tight mb-4 group-hover:text-teal-700 text-teal-950 transition-colors">${rel['Título']}</h3>
+                    <div class="mt-auto pt-4 border-t border-stone-100 inline-flex items-center gap-2 text-stone-400 group-hover:text-teal-600 text-[11px] uppercase tracking-[0.2em] font-bold transition-colors">
+                        Leer artículo <iconify-icon icon="solar:arrow-right-line-duotone" class="text-lg"></iconify-icon>
+                    </div>
+                </div>
             </a>`;
             });
 
