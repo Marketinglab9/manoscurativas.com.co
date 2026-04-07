@@ -657,11 +657,23 @@ async function build() {
             if (catName === 'Categoría') continue;
             const catId = catName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '-');
 
-            // Duplicate cards to ensure at least some length for the marquee
-            let repeatedCards = cards.join('\n');
-            if (cards.length < 4) {
-               repeatedCards += '\n' + cards.join('\n'); // Ensure minimum length
-               if (cards.length < 2) repeatedCards += '\n' + cards.join('\n') + '\n' + cards.join('\n');
+            let halfA_cards = [...cards];
+            while(halfA_cards.length < 4) {
+                halfA_cards.push(...cards);
+            }
+            
+            let halfA_html = '';
+            for(let i=0; i<halfA_cards.length; i++) {
+                if (i < cards.length) {
+                    halfA_html += halfA_cards[i] + '\n';
+                } else {
+                    halfA_html += halfA_cards[i].replace('class="group ', 'aria-hidden="true" class="md:hidden group ') + '\n';
+                }
+            }
+            
+            let halfB_html = '';
+            for(let i=0; i<halfA_cards.length; i++) {
+                halfB_html += halfA_cards[i].replace('class="group ', 'aria-hidden="true" class="md:hidden group ') + '\n';
             }
 
             categorySectionsHtml += `
@@ -670,11 +682,9 @@ async function build() {
                     <h3 class="text-2xl md:text-3xl font-serif font-bold text-teal-950">${catName}</h3>
                 </div>
                 <div class="relative max-w-full overflow-visible [mask-image:_linear-gradient(to_right,transparent_0,_black_40px,_black_calc(100%-40px),transparent_100%)] md:[mask-image:none]">
-                    <div class="flex w-max gap-4 pb-4 px-4 pt-2 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:w-auto md:px-0 md:pb-8 md:pt-0 animate-[var(--marquee-anim,marquee_20s_linear_infinite)] hover:[animation-play-state:paused] md:animate-none group-hover:[animation-play-state:paused]">
-                        ${cards.join('\n')}
-                        <div class="contents md:hidden">
-                            ${repeatedCards}
-                        </div>
+                    <div class="flex flex-nowrap w-max gap-4 pb-4 px-4 pt-2 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:w-auto md:px-0 md:pb-8 md:pt-0 animate-marquee hover:[animation-play-state:paused] md:animate-none group-hover:[animation-play-state:paused]">
+                        ${halfA_html}
+                        ${halfB_html}
                     </div>
                 </div>
             </div>`;
