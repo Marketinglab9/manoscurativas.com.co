@@ -656,16 +656,25 @@ async function build() {
         for (const [catName, cards] of Object.entries(blogCategories)) {
             if (catName === 'Categoría') continue;
             const catId = catName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '-');
-            
+
+            // Duplicate cards to ensure at least some length for the marquee
+            let repeatedCards = cards.join('\n');
+            if (cards.length < 4) {
+               repeatedCards += '\n' + cards.join('\n'); // Ensure minimum length
+               if (cards.length < 2) repeatedCards += '\n' + cards.join('\n') + '\n' + cards.join('\n');
+            }
+
             categorySectionsHtml += `
-            <div id="${catId}" class="mb-20 last:mb-0 pt-28 -mt-28">
+            <div id="${catId}" class="mb-20 last:mb-0 pt-28 -mt-28 overflow-hidden">
                 <div class="mb-10 text-left border-b border-stone-200 pb-4">
                     <h3 class="text-2xl md:text-3xl font-serif font-bold text-teal-950">${catName}</h3>
                 </div>
-                <div class="relative">
-                    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-full bg-gradient-to-l from-white to-transparent md:hidden pointer-events-none z-10"></div>
-                    <div class="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 pb-8 snap-x snap-mandatory pt-2 style-scroll pl-4 md:pl-0 pr-8 md:pr-0">
+                <div class="relative max-w-full overflow-visible [mask-image:_linear-gradient(to_right,transparent_0,_black_40px,_black_calc(100%-40px),transparent_100%)] md:[mask-image:none]">
+                    <div class="flex w-max gap-4 pb-4 px-4 pt-2 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:w-auto md:px-0 md:pb-8 md:pt-0 animate-[var(--marquee-anim,marquee_20s_linear_infinite)] hover:[animation-play-state:paused] md:animate-none group-hover:[animation-play-state:paused]">
                         ${cards.join('\n')}
+                        <div class="contents md:hidden">
+                            ${repeatedCards}
+                        </div>
                     </div>
                 </div>
             </div>`;
