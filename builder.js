@@ -29,16 +29,16 @@ function ensureDir(dirPath) {
 
 function getThumbnailForService(nombre) {
     const slug = nombre.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    if (slug.includes('relajante')) return '/assets/servicios/masaje_relajante_1775258118832.png';
-    if (slug.includes('deportivo')) return '/assets/servicios/masaje_deportivo_1775258135018.png';
-    if (slug.includes('terapeutico')) return '/assets/servicios/masaje_terapeutico_1775258148420.png';
-    if (slug.includes('drenaje') || slug.includes('linfatico')) return '/assets/servicios/drenaje_linfatico_1775258172320.png';
-    if (slug.includes('descontracturante')) return '/assets/servicios/masaje_descontracturante_1775258187420.png';
-    if (slug.includes('tejido profundo')) return '/assets/servicios/tejido_profundo_1775258200977.png';
-    if (slug.includes('prenatal')) return '/assets/servicios/masaje_prenatal_1775258232218.png';
-    if (slug.includes('ventosas')) return '/assets/servicios/masaje_ventosas_1775258244036.png';
-    if (slug.includes('piedras')) return '/assets/servicios/piedras_volcanicas_1775258259475.png';
-    return '/assets/hero_massage.png'; // Fallback
+    if (slug.includes('relajante')) return '/assets/servicios/masaje_relajante.webp';
+    if (slug.includes('deportivo')) return '/assets/servicios/masaje_deportivo.webp';
+    if (slug.includes('terapeutico')) return '/assets/servicios/masaje_terapeutico.webp';
+    if (slug.includes('drenaje') || slug.includes('linfatico')) return '/assets/servicios/drenaje_linfatico.webp';
+    if (slug.includes('descontracturante')) return '/assets/servicios/masaje_descontracturante.webp';
+    if (slug.includes('tejido profundo')) return '/assets/servicios/tejido_profundo.webp';
+    if (slug.includes('prenatal')) return '/assets/servicios/masaje_prenatal.webp';
+    if (slug.includes('ventosas')) return '/assets/servicios/masaje_ventosas.webp';
+    if (slug.includes('piedras')) return '/assets/servicios/piedras_volcanicas.webp';
+    return '/assets/hero_7720.webp'; // Fallback
 }
 
 function generarCardBlogServicio(enlaceUrl, nombre, isBlog = false, blogDesc = "") {
@@ -190,26 +190,26 @@ async function build() {
                 heroSub = servicio;
             }
 
-            let heroImage = '/assets/home_spa_living_room.png';
-            const fallbackImages = ['/assets/home_spa_living_room.png', '/assets/home_ambient_therapy.png'];
+            let heroImage = '/assets/hero_7720.webp';
+            const fallbackImages = ['/assets/hero_7720.webp', '/assets/home_ambient_therapy.png'];
             const srvBusqueda = (row['Servicio'] || row['H1'] || '').toLowerCase();
             
-            if (srvBusqueda.includes('relajante')) heroImage = '/assets/servicios/masaje_relajante_1775258118832.png';
-            else if (srvBusqueda.includes('deportivo')) heroImage = '/assets/servicios/masaje_deportivo_1775258135018.png';
-            else if (srvBusqueda.includes('terapéutico') || srvBusqueda.includes('terapeutico')) heroImage = '/assets/servicios/masaje_terapeutico_1775258148420.png';
-            else if (srvBusqueda.includes('prenatal')) heroImage = '/assets/servicios/masaje_prenatal_1775258232218.png';
-            else if (srvBusqueda.includes('drenaje')) heroImage = '/assets/servicios/drenaje_linfatico_1775258172320.png';
-            else if (srvBusqueda.includes('descontracturante')) heroImage = '/assets/servicios/masaje_descontracturante_1775258187420.png';
-            else if (srvBusqueda.includes('tejido profundo')) heroImage = '/assets/servicios/tejido_profundo_1775258200977.png';
-            else if (srvBusqueda.includes('piedras')) heroImage = '/assets/servicios/piedras_volcanicas_1775258259475.png';
-            else if (srvBusqueda.includes('ventosas')) heroImage = '/assets/servicios/masaje_ventosas_1775258244036.png';
+            if (srvBusqueda.includes('relajante')) heroImage = '/assets/servicios/masaje_relajante.webp';
+            else if (srvBusqueda.includes('deportivo')) heroImage = '/assets/servicios/masaje_deportivo.webp';
+            else if (srvBusqueda.includes('terapéutico') || srvBusqueda.includes('terapeutico')) heroImage = '/assets/servicios/masaje_terapeutico.webp';
+            else if (srvBusqueda.includes('prenatal')) heroImage = '/assets/servicios/masaje_prenatal.webp';
+            else if (srvBusqueda.includes('drenaje')) heroImage = '/assets/servicios/drenaje_linfatico.webp';
+            else if (srvBusqueda.includes('descontracturante')) heroImage = '/assets/servicios/masaje_descontracturante.webp';
+            else if (srvBusqueda.includes('tejido profundo')) heroImage = '/assets/servicios/tejido_profundo.webp';
+            else if (srvBusqueda.includes('piedras')) heroImage = '/assets/servicios/piedras_volcanicas.webp';
+            else if (srvBusqueda.includes('ventosas')) heroImage = '/assets/servicios/masaje_ventosas.webp';
             else if (urlPath !== '') {
                 // Elección pseudoaleatoria y determinista entre las fotos 'Home' nuevas (excluyendo el default) para los Hubs
                 const val = Array.from(urlPath).reduce((acc, char) => acc + char.charCodeAt(0), 0);
                 heroImage = fallbackImages[val % fallbackImages.length];
             } else {
                 // Caso estricto para el index '/'
-                heroImage = '/assets/hero_massage.png';
+                heroImage = '/assets/hero_7720.webp';
             }
 
             // Textos Dinámicos de Filosofía y Cierre para Nutrir UX y SEO
@@ -450,6 +450,7 @@ async function build() {
             // Reemplazo en Plantilla Maestra
             let pageHtml = plantillaMaestra
                 .replace(/\/assets\/hero_massage\.png/g, heroImage)
+                .replace(/\/assets\/hero_7720\.webp/g, heroImage)
                 .replace(/{{TITLE}}/g, row['Title Tag'] || row['H1'])
                 .replace(/{{META_DESC}}/g, row['Meta Description'] || '')
                 .replace(/{{H1}}/g, row['H1'])
@@ -532,12 +533,12 @@ async function build() {
 
             // Distribute images consistently but pseudo-randomly per article to avoid identical repeats in a category
             const generatedImages = ['/assets/servicios/spa_aromatherapy_oils_1775517629371.png', '/assets/servicios/spa_bamboo_massage_1775517616923.png', '/assets/servicios/spa_facial_massage_1775517669296.png', '/assets/servicios/spa_herbal_compress_1775517697102.png', '/assets/servicios/spa_himalayan_salt_1775517710052.png', '/assets/servicios/spa_hot_towels_1775517657217.png', '/assets/servicios/spa_lotion_bottles_1775517736945.png', '/assets/servicios/spa_massage_oils_hands_1775517723953.png', '/assets/servicios/spa_reflexology_feet_1775517643226.png', '/assets/servicios/spa_zen_stones_1775517681245.png'];
-            const fallbackImagesBlog = ['/assets/home_spa_living_room.png', '/assets/home_ambient_therapy.png', '/assets/blog_massage.png', '/assets/hero_massage.png', '/assets/servicios/drenaje_linfatico_1775258172320.png', '/assets/servicios/masaje_deportivo_1775258135018.png', '/assets/servicios/masaje_descontracturante_1775258187420.png', '/assets/servicios/masaje_relajante_1775258118832.png', '/assets/servicios/masaje_terapeutico_1775258148420.png', '/assets/servicios/masaje_ventosas_1775258244036.png', '/assets/servicios/piedras_volcanicas_1775258259475.png', '/assets/servicios/tejido_profundo_1775258200977.png', '/assets/servicios/premium_massage_blog_1775256124234.png', ...generatedImages];
+            const fallbackImagesBlog = ['/assets/hero_7720.webp', '/assets/home_ambient_therapy.png', '/assets/blog_massage.png', '/assets/servicios/drenaje_linfatico.webp', '/assets/servicios/masaje_deportivo.webp', '/assets/servicios/masaje_descontracturante.webp', '/assets/servicios/masaje_relajante.webp', '/assets/servicios/masaje_terapeutico.webp', '/assets/servicios/masaje_ventosas.webp', '/assets/servicios/piedras_volcanicas.webp', '/assets/servicios/tejido_profundo.webp', '/assets/servicios/premium_massage_blog_1775256124234.png', ...generatedImages];
             
             const valBlog = Array.from(urlReal).reduce((acc, char) => acc + char.charCodeAt(0), 0);
             let heroImageBlog = fallbackImagesBlog[valBlog % fallbackImagesBlog.length];
             if (urlReal.includes('prenatal') || urlReal.includes('embarazada') || (row['Categoría']||'').toLowerCase().includes('prenatal') || (row['Título']||'').toLowerCase().includes('prenatal')) {
-                const prenatalImages = ['/assets/servicios/masaje_prenatal_1775258232218.png', '/assets/servicios/masaje_prenatal_1.png', '/assets/servicios/masaje_prenatal_2.png', '/assets/servicios/masaje_prenatal_3.png'];
+                const prenatalImages = ['/assets/servicios/masaje_prenatal.webp'];
                 heroImageBlog = prenatalImages[valBlog % prenatalImages.length];
             }
 
@@ -551,7 +552,7 @@ async function build() {
                 const valRel = Array.from(relUrl).reduce((acc, char) => acc + char.charCodeAt(0), 0);
                 let relImg = fallbackImagesBlog[valRel % fallbackImagesBlog.length];
                 if (relUrl.includes('prenatal') || relUrl.includes('embarazada') || (rel['Categoría']||'').toLowerCase().includes('prenatal') || (rel['Título']||'').toLowerCase().includes('prenatal')) {
-                    const prenatalImages = ['/assets/servicios/masaje_prenatal_1775258232218.png', '/assets/servicios/masaje_prenatal_1.png', '/assets/servicios/masaje_prenatal_2.png', '/assets/servicios/masaje_prenatal_3.png'];
+                    const prenatalImages = ['/assets/servicios/masaje_prenatal.webp'];
                     relImg = prenatalImages[valRel % prenatalImages.length];
                 }
 
