@@ -532,13 +532,13 @@ async function build() {
             let breadcrumbHtml = `<a href="/" class="hover:text-teal-900 transition-colors inline-flex items-center gap-1" aria-label="Inicio"><iconify-icon icon="solar:home-smile-bold-duotone" class="text-lg"></iconify-icon></a> <span class="mx-2">/</span> <a href="/blog/" class="hover:text-teal-900 transition-colors">Blog</a> <span class="mx-2">/</span> <span class="text-teal-900/60">${row['Categoría'] || 'Artículos'}</span>`;
 
             // Distribute images consistently but pseudo-randomly per article to avoid identical repeats in a category
-            const generatedImages = ['/assets/servicios/spa_aromatherapy_oils_1775517629371.png', '/assets/servicios/spa_bamboo_massage_1775517616923.png', '/assets/servicios/spa_facial_massage_1775517669296.png', '/assets/servicios/spa_herbal_compress_1775517697102.png', '/assets/servicios/spa_himalayan_salt_1775517710052.png', '/assets/servicios/spa_hot_towels_1775517657217.png', '/assets/servicios/spa_lotion_bottles_1775517736945.png', '/assets/servicios/spa_massage_oils_hands_1775517723953.png', '/assets/servicios/spa_reflexology_feet_1775517643226.png', '/assets/servicios/spa_zen_stones_1775517681245.png'];
-            const fallbackImagesBlog = ['/assets/home_spa_living_room.png', '/assets/home_ambient_therapy.png', '/assets/blog_massage.png', '/assets/hero_massage.png', '/assets/servicios/drenaje_linfatico_1775258172320.png', '/assets/servicios/masaje_deportivo_1775258135018.png', '/assets/servicios/masaje_descontracturante_1775258187420.png', '/assets/servicios/masaje_relajante_1775258118832.png', '/assets/servicios/masaje_terapeutico_1775258148420.png', '/assets/servicios/masaje_ventosas_1775258244036.png', '/assets/servicios/piedras_volcanicas_1775258259475.png', '/assets/servicios/tejido_profundo_1775258200977.png', '/assets/servicios/premium_massage_blog_1775256124234.png', ...generatedImages];
+            const generatedImages = ['/assets/servicios/spa_aromatherapy_oils_1775517629371.webp', '/assets/servicios/spa_bamboo_massage_1775517616923.webp', '/assets/servicios/spa_facial_massage_1775517669296.webp', '/assets/servicios/spa_herbal_compress_1775517697102.webp', '/assets/servicios/spa_himalayan_salt_1775517710052.webp', '/assets/servicios/spa_hot_towels_1775517657217.webp', '/assets/servicios/spa_lotion_bottles_1775517736945.webp', '/assets/servicios/spa_massage_oils_hands_1775517723953.webp', '/assets/servicios/spa_reflexology_feet_1775517643226.webp', '/assets/servicios/spa_zen_stones_1775517681245.webp'];
+            const fallbackImagesBlog = ['/assets/home_spa_living_room.webp', '/assets/home_ambient_therapy.webp', '/assets/blog_massage.webp', '/assets/hero_massage.webp', '/assets/servicios/drenaje_linfatico_1775258172320.webp', '/assets/servicios/masaje_deportivo_1775258135018.webp', '/assets/servicios/masaje_descontracturante_1775258187420.webp', '/assets/servicios/masaje_relajante_1775258118832.webp', '/assets/servicios/masaje_terapeutico_1775258148420.webp', '/assets/servicios/masaje_ventosas_1775258244036.webp', '/assets/servicios/piedras_volcanicas_1775258259475.webp', '/assets/servicios/tejido_profundo_1775258200977.webp', '/assets/servicios/premium_massage_blog_1775256124234.webp', ...generatedImages];
             
             const valBlog = Array.from(urlReal).reduce((acc, char) => acc + char.charCodeAt(0), 0);
             let heroImageBlog = fallbackImagesBlog[valBlog % fallbackImagesBlog.length];
             if (urlReal.includes('prenatal') || urlReal.includes('embarazada') || (row['Categoría']||'').toLowerCase().includes('prenatal') || (row['Título']||'').toLowerCase().includes('prenatal')) {
-                const prenatalImages = ['/assets/servicios/masaje_prenatal_1775258232218.png', '/assets/servicios/masaje_prenatal_1.png', '/assets/servicios/masaje_prenatal_2.png', '/assets/servicios/masaje_prenatal_3.png'];
+                const prenatalImages = ['/assets/servicios/masaje_prenatal_1775258232218.webp'];
                 heroImageBlog = prenatalImages[valBlog % prenatalImages.length];
             }
 
@@ -552,7 +552,7 @@ async function build() {
                 const valRel = Array.from(relUrl).reduce((acc, char) => acc + char.charCodeAt(0), 0);
                 let relImg = fallbackImagesBlog[valRel % fallbackImagesBlog.length];
                 if (relUrl.includes('prenatal') || relUrl.includes('embarazada') || (rel['Categoría']||'').toLowerCase().includes('prenatal') || (rel['Título']||'').toLowerCase().includes('prenatal')) {
-                    const prenatalImages = ['/assets/servicios/masaje_prenatal_1775258232218.png', '/assets/servicios/masaje_prenatal_1.png', '/assets/servicios/masaje_prenatal_2.png', '/assets/servicios/masaje_prenatal_3.png'];
+                    const prenatalImages = ['/assets/servicios/masaje_prenatal_1775258232218.webp'];
                     relImg = prenatalImages[valRel % prenatalImages.length];
                 }
 
