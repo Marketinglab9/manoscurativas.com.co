@@ -449,8 +449,6 @@ async function build() {
 
             // Reemplazo en Plantilla Maestra
             let pageHtml = plantillaMaestra
-                .replace(/\/assets\/hero_massage\.png/g, heroImage)
-                .replace(/\/assets\/hero_7720\.webp/g, heroImage)
                 .replace(/{{TITLE}}/g, row['Title Tag'] || row['H1'])
                 .replace(/{{META_DESC}}/g, row['Meta Description'] || '')
                 .replace(/{{H1}}/g, row['H1'])
