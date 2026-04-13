@@ -606,7 +606,7 @@ async function build() {
             blogCategories[cat].push(`
             <a href="${urlReal}" class="group block shrink-0 snap-center w-[85vw] md:w-auto bg-white rounded-[2rem] hover:-translate-y-1 transition-transform overflow-hidden flex flex-col h-full border border-stone-100 shadow-[0_4px_20px_rgb(0,0,0,0.02)] hover:shadow-lg">
                 <div class="h-48 w-full bg-stone-100 overflow-hidden relative">
-                    <img src="${heroImageBlog}" alt="${row['Título']}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img src="${heroImageBlog}" alt="${row['Título']}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
                 <div class="p-6 md:p-8 flex-1 flex flex-col bg-white">
                     <h3 class="text-xl font-serif font-bold leading-tight mb-3 text-teal-950 group-hover:text-teal-700 transition-colors">${row['Título']}</h3>
