@@ -238,22 +238,31 @@
                 <span class="text-[13px] tracking-[0.3em] font-bold mb-4 block text-teal-600 uppercase">Lo que dicen de nosotros</span>
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-teal-950">Experiencias Reales</h2>
             </div>
-            <!-- Dynamic Google Reviews -->
-            <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Se llenará dinámicamente -->
+            <!-- Dynamic Google Reviews Marquee -->
+            <div class="relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-hidden py-8 my-6">
+                <!-- Blur effect masks -->
+                <div class="absolute left-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-r from-stone-50 to-transparent z-10 pointer-events-none"></div>
+                <div class="absolute right-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-l from-stone-50 to-transparent z-10 pointer-events-none"></div>
+                
+                <div class="flex overflow-hidden">
+                    <div id="reviews-marquee-wrapper" class="flex gap-6 w-max animate-marquee hover:[animation-play-state:paused] px-6">
+                        <!-- Se llenará dinámicamente -->
+                    </div>
+                </div>
             </div>
+            
             <script>
                 document.addEventListener('DOMContentLoaded', () => {
                     fetch('/assets/reviews.json')
                         .then(r => r.json())
                         .then(reviews => {
-                            const container = document.getElementById('reviews-container');
+                            const container = document.getElementById('reviews-marquee-wrapper');
                             if(!reviews || reviews.length === 0) {
-                                container.innerHTML = '<p class="text-stone-500 text-center col-span-full">Aún no hay reseñas disponibles.</p>';
+                                container.innerHTML = '<p class="text-stone-500 text-center w-full">Aún no hay reseñas disponibles.</p>';
                                 return;
                             }
                             
-                            container.innerHTML = reviews.map(r => {
+                            const cardsHtml = reviews.map(r => {
                                 const stars = '⭐'.repeat(r.rating || 5);
                                 const photo = r.authorAttribution?.photoUri || '/assets/avatar_woman.webp';
                                 const name = r.authorAttribution?.displayName || 'Cliente Verificado';
@@ -261,23 +270,26 @@
                                 const text = r.text?.text || '';
                                 
                                 return `
-                                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 flex flex-col h-full hover:shadow-md transition-shadow">
-                                    <div class="flex items-center gap-4 mb-4">
-                                        <img src="${photo}" alt="${name}" class="w-12 h-12 rounded-full object-cover bg-stone-100">
+                                <div class="bg-white p-6 md:p-8 rounded-[2rem] shadow-sm border border-stone-100 flex flex-col w-[300px] md:w-[400px] shrink-0 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+                                    <div class="flex items-center gap-4 mb-5">
+                                        <img src="${photo}" alt="${name}" loading="lazy" class="w-12 h-12 rounded-full object-cover shadow-sm bg-stone-100">
                                         <div>
                                             <h4 class="font-bold text-teal-900 leading-tight">${name}</h4>
-                                            <p class="text-xs text-stone-500">${date}</p>
+                                            <p class="text-[11px] font-semibold tracking-wider uppercase text-stone-400 mt-1">${date}</p>
                                         </div>
                                     </div>
-                                    <div class="text-sm border-l-2 border-teal-200 pl-3 italic text-stone-600 flex-grow">
+                                    <div class="text-[14px] md:text-[15px] border-l-2 border-teal-200 pl-4 italic text-stone-600 flex-grow leading-relaxed">
                                         "${text}"
                                     </div>
-                                    <div class="mt-4 text-xs tracking-[0.2em] text-teal-500">
-                                        ${stars}
+                                    <div class="mt-6 text-[11px] tracking-[0.2em] text-teal-600 font-bold uppercase flex items-center gap-2">
+                                        Reseña Verificada ${stars}
                                     </div>
                                 </div>
                                 `;
                             }).join('');
+                            
+                            // Duplicamos el HTML para crear el bucle infinito sin cortes
+                            container.innerHTML = cardsHtml + cardsHtml;
                         })
                         .catch(e => console.error('Error loading reviews:', e));
                 });

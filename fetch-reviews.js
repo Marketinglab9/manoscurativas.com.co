@@ -6,31 +6,48 @@ const PLACE_ID = 'ChIJ74ileWGbRo4RQqJJ1fQzrCc'; // ID oficial de Manos Curativas
 const API_KEY = 'AIzaSyCUNucEijsFv3w14WaWIH1ZbwaU5e3ZY_Q'; 
 
 async function fetchReviews() {
-  const url = `https://places.googleapis.com/v1/places/${PLACE_ID}?fields=displayName,rating,reviews&key=${API_KEY}`;
+  const urlEs = `https://places.googleapis.com/v1/places/${PLACE_ID}?fields=displayName,rating,reviews&languageCode=es&key=${API_KEY}`;
+  const urlEn = `https://places.googleapis.com/v1/places/${PLACE_ID}?fields=displayName,rating,reviews&languageCode=en&key=${API_KEY}`;
   
   try {
-    // Es CRÍTICO enviar el referer exacto, de lo contrario Google bloqueará el API Key por seguridad
-    const res = await fetch(url, {
-      headers: {
-        'Referer': 'https://manoscurativas.com.co/'
-      }
-    });
-    const data = await res.json();
+    const fetchProps = { headers: { 'Referer': 'https://manoscurativas.com.co/' } };
     
-    if (data.error) {
-      console.error('❌ Error de la API de Google:', data.error.message);
-      
-      // Creamos datos simulados en caso de error para que la UI no se rompa mientras el usuario activa la facturación
+    // Consultar paralelamente las versiones en español e inglés
+    const [resEs, resEn] = await Promise.all([
+      fetch(urlEs, fetchProps),
+      fetch(urlEn, fetchProps)
+    ]);
+    
+    const dataEs = await resEs.json();
+    const dataEn = await resEn.json();
+    
+    if (dataEs.error) {
+      console.error('❌ Error de la API de Google:', dataEs.error.message);
       crearDatosSimulados();
       return;
     }
 
-    if (data.reviews && data.reviews.length > 0) {
-      // Filtrar, limpiar y formatear reseñas si es necesario
-      fs.writeFileSync('./src/assets/reviews.json', JSON.stringify(data.reviews, null, 2));
-      console.log('✅ Reseñas oficiales de Google actualizadas y guardadas localmente.');
+    const reviewsEs = dataEs.reviews || [];
+    const reviewsEn = dataEn.reviews || [];
+    
+    // Fusionar y eliminar duplicados (por nombre de autor)
+    const allReviews = [...reviewsEs, ...reviewsEn];
+    const uniqueReviewsMap = new Map();
+    
+    for (const r of allReviews) {
+      const name = r.authorAttribution?.displayName;
+      if (name && !uniqueReviewsMap.has(name)) {
+        uniqueReviewsMap.set(name, r);
+      }
+    }
+    
+    const finalReviews = Array.from(uniqueReviewsMap.values());
+
+    if (finalReviews.length > 0) {
+      fs.writeFileSync('./src/assets/reviews.json', JSON.stringify(finalReviews, null, 2));
+      console.log(`✅ ${finalReviews.length} reseñas oficiales combinadas (ES/EN) y guardadas localmente.`);
     } else {
-      console.log('⚠️ La API no devolvió reseñas o el array está vacío.');
+      console.log('⚠️ La API no devolvió reseñas.');
       crearDatosSimulados();
     }
     
