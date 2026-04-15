@@ -2,19 +2,19 @@ const fs = require('fs');
 
 // Configuración recomendada
 // PLACE_ID: Lo obtienes buscando tu negocio aquí: https://developers.google.com/maps/documentation/places/web-service/place-id
-const PLACE_ID = 'ChIJr2R1_l45RI4Rg_wGjR31j6o'; // Placeholder, reemplaza con el tuyo real
+const PLACE_ID = 'ChIJ74ileWGbRo4RQqJJ1fQzrCc'; // ID oficial de Manos Curativas
 const API_KEY = 'AIzaSyCUNucEijsFv3w14WaWIH1ZbwaU5e3ZY_Q'; 
 
 async function fetchReviews() {
-  if (PLACE_ID === 'TU_PLACE_ID' || PLACE_ID === 'ChIJr2R1_l45RI4Rg_wGjR31j6o') {
-    console.log('⚠️  Recuerda reemplazar el PLACE_ID con el ID real de Google Maps de Manos Curativas.');
-  }
-
   const url = `https://places.googleapis.com/v1/places/${PLACE_ID}?fields=displayName,rating,reviews&key=${API_KEY}`;
   
   try {
-    // Usamos el fetch nativo de Node 18+ (no se necesita 'node-fetch')
-    const res = await fetch(url);
+    // Es CRÍTICO enviar el referer exacto, de lo contrario Google bloqueará el API Key por seguridad
+    const res = await fetch(url, {
+      headers: {
+        'Referer': 'https://manoscurativas.com.co/'
+      }
+    });
     const data = await res.json();
     
     if (data.error) {
