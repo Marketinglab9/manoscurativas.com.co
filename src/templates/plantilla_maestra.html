@@ -238,9 +238,50 @@
                 <span class="text-[13px] tracking-[0.3em] font-bold mb-4 block text-teal-600 uppercase">Lo que dicen de nosotros</span>
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-teal-950">Experiencias Reales</h2>
             </div>
-            <!-- Elfsight Google Reviews | Untitled Google Reviews -->
-            <script src="https://elfsightcdn.com/platform.js" async></script>
-            <div class="elfsight-app-3b0c9165-58ee-429b-97f4-474b77757d42" data-elfsight-app-lazy></div>
+            <!-- Dynamic Google Reviews -->
+            <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Se llenará dinámicamente -->
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    fetch('/assets/reviews.json')
+                        .then(r => r.json())
+                        .then(reviews => {
+                            const container = document.getElementById('reviews-container');
+                            if(!reviews || reviews.length === 0) {
+                                container.innerHTML = '<p class="text-stone-500 text-center col-span-full">Aún no hay reseñas disponibles.</p>';
+                                return;
+                            }
+                            
+                            container.innerHTML = reviews.map(r => {
+                                const stars = '⭐'.repeat(r.rating || 5);
+                                const photo = r.authorAttribution?.photoUri || '/assets/avatar_woman.webp';
+                                const name = r.authorAttribution?.displayName || 'Cliente Verificado';
+                                const date = r.relativePublishTimeDescription || '';
+                                const text = r.text?.text || '';
+                                
+                                return `
+                                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 flex flex-col h-full hover:shadow-md transition-shadow">
+                                    <div class="flex items-center gap-4 mb-4">
+                                        <img src="${photo}" alt="${name}" class="w-12 h-12 rounded-full object-cover bg-stone-100">
+                                        <div>
+                                            <h4 class="font-bold text-teal-900 leading-tight">${name}</h4>
+                                            <p class="text-xs text-stone-500">${date}</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm border-l-2 border-teal-200 pl-3 italic text-stone-600 flex-grow">
+                                        "${text}"
+                                    </div>
+                                    <div class="mt-4 text-xs tracking-[0.2em] text-teal-500">
+                                        ${stars}
+                                    </div>
+                                </div>
+                                `;
+                            }).join('');
+                        })
+                        .catch(e => console.error('Error loading reviews:', e));
+                });
+            </script>
         </div>
     </section>
 

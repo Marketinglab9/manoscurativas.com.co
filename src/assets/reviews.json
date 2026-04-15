@@ -1,0 +1,35 @@
+[
+  {
+    "authorAttribution": {
+      "displayName": "Carolina Montoya",
+      "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocLQ2A0x1=s120-c-rp-mo-ba3-br100"
+    },
+    "rating": 5,
+    "relativePublishTimeDescription": "Hace 2 semanas",
+    "text": {
+      "text": "Excelente servicio. Pedí un masaje descontracturante a domicilio y el profesional fue muy puntual y respetuoso. El alivio en la espalda baja fue inmediato."
+    }
+  },
+  {
+    "authorAttribution": {
+      "displayName": "Juan Pablo Restrepo",
+      "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocK=s120-c-rp-mo-ba3-br100"
+    },
+    "rating": 5,
+    "relativePublishTimeDescription": "Hace 1 mes",
+    "text": {
+      "text": "Muy recomendados. Compré un paquete para mi esposa después del embarazo y le encantó. Llegaron con camilla, aceites y música, un spa completo en casa."
+    }
+  },
+  {
+    "authorAttribution": {
+      "displayName": "Andrea Vélez",
+      "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocP=s120-c-rp-mo-ba3-br100"
+    },
+    "rating": 5,
+    "relativePublishTimeDescription": "Hace 3 días",
+    "text": {
+      "text": "Tengo dolores crónicos de cuello por trabajo de oficina. La sesión de tejido profundo ayudó bastante a liberar tensión. 10/10 la atención."
+    }
+  }
+]
