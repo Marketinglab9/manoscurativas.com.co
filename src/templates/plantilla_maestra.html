@@ -245,7 +245,7 @@
                 <div class="absolute right-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-l from-stone-50 to-transparent z-10 pointer-events-none"></div>
                 
                 <div class="flex overflow-hidden">
-                    <div id="reviews-marquee-wrapper" class="flex gap-6 w-max animate-marquee hover:[animation-play-state:paused] px-6">
+                    <div id="reviews-marquee-wrapper" class="flex items-start gap-6 w-max animate-marquee hover:[animation-play-state:paused] px-6">
                         <!-- Se llenará dinámicamente -->
                     </div>
                 </div>
@@ -270,15 +270,15 @@
                                 const text = r.text?.text || '';
                                 
                                 return `
-                                <div class="bg-white p-6 md:p-8 rounded-[2rem] shadow-sm border border-stone-100 flex flex-col w-[300px] md:w-[400px] shrink-0 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+                                <div class="bg-white p-6 rounded-3xl shadow-sm border border-stone-100 flex flex-col w-[280px] md:w-[320px] shrink-0 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 h-fit">
                                     <div class="flex items-center gap-4 mb-5">
                                         <img src="${photo}" alt="${name}" loading="lazy" class="w-12 h-12 rounded-full object-cover shadow-sm bg-stone-100">
                                         <div>
                                             <h4 class="font-bold text-teal-900 leading-tight">${name}</h4>
-                                            <p class="text-[11px] font-semibold tracking-wider uppercase text-stone-400 mt-1">${date}</p>
+                                            <p class="text-[10px] md:text-[11px] font-semibold tracking-wider uppercase text-stone-400 mt-1">${date}</p>
                                         </div>
                                     </div>
-                                    <div class="text-[14px] md:text-[15px] border-l-2 border-teal-200 pl-4 italic text-stone-600 flex-grow leading-relaxed">
+                                    <div class="text-[14px] border-l-2 border-teal-200 pl-4 italic text-stone-600 flex-grow leading-relaxed line-clamp-6" title="${text.replace(/"/g, '&quot;')}">
                                         "${text}"
                                     </div>
                                     <div class="mt-6 text-[11px] tracking-[0.2em] text-teal-600 font-bold uppercase flex items-center gap-2">
