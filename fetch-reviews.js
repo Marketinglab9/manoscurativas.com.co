@@ -41,13 +41,14 @@ async function fetchReviews() {
       }
     }
     
-    const finalReviews = Array.from(uniqueReviewsMap.values());
+    // Filtrar reseñas para remover estrellas bajas (dejamos solo las de 4 y 5 estrellas)
+    const finalReviews = Array.from(uniqueReviewsMap.values()).filter(r => r.rating >= 4);
 
     if (finalReviews.length > 0) {
       fs.writeFileSync('./src/assets/reviews.json', JSON.stringify(finalReviews, null, 2));
-      console.log(`✅ ${finalReviews.length} reseñas oficiales combinadas (ES/EN) y guardadas localmente.`);
+      console.log(`✅ ${finalReviews.length} reseñas combinadas y filtradas (4-5 ⭐) guardadas localmente.`);
     } else {
-      console.log('⚠️ La API no devolvió reseñas.');
+      console.log('⚠️ La API no devolvió reseñas o todas fueron filtradas.');
       crearDatosSimulados();
     }
     
