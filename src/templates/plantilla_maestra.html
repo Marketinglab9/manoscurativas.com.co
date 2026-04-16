@@ -120,8 +120,8 @@
                             '100%': { transform: 'translate(0px, 0px) scale(1)' },
                         },
                         marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(calc(-50% - 1rem))' }
+                            '0%': { transform: 'translate3d(0, 0, 0)' },
+                            '100%': { transform: 'translate3d(calc(-50% - 1rem), 0, 0)' }
                         }
                     }
                 }
@@ -245,7 +245,7 @@
                 <div class="absolute right-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-l from-stone-50 to-transparent z-10 pointer-events-none"></div>
                 
                 <div class="flex overflow-hidden">
-                    <div id="reviews-marquee-wrapper" class="flex items-start gap-6 w-max animate-marquee hover:[animation-play-state:paused] px-6">
+                    <div id="reviews-marquee-wrapper" class="flex items-start gap-6 w-max animate-marquee hover:[animation-play-state:paused] px-6 will-change-transform transform-gpu [backface-visibility:hidden] [-webkit-backface-visibility:hidden]">
                         <!-- Se llenará dinámicamente -->
                     </div>
                 </div>
