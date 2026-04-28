@@ -763,8 +763,54 @@ async function build() {
                                 <!-- Se llenará dinámicamente -->
                             </div>
                         </div>
+                        </div>
                     </div>
                 </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        fetch('/assets/reviews.json')
+                            .then(r => r.json())
+                            .then(reviews => {
+                                const container = document.getElementById('reviews-marquee-wrapper');
+                                if(!reviews || reviews.length === 0) {
+                                    container.innerHTML = '<p class="text-stone-500 text-center w-full">Aún no hay reseñas disponibles.</p>';
+                                    return;
+                                }
+                                
+                                const cardsHtml = reviews.map(r => {
+                                    const stars = '⭐'.repeat(r.rating || 5);
+                                    const initial = r.author_name ? r.author_name.charAt(0).toUpperCase() : 'U';
+                                    const isGoogle = r.author_url && r.author_url.includes('google');
+                                    
+                                    return `
+                                    <div class="bg-white p-6 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] min-w-[320px] max-w-[320px] md:min-w-[400px] md:max-w-[400px] border border-stone-100 flex-shrink-0 relative overflow-hidden group">
+                                        <div class="absolute top-0 right-0 w-24 h-24 bg-teal-50 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+                                        <div class="flex items-center gap-4 mb-4">
+                                            <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center text-teal-800 font-bold text-xl font-serif">
+                                                ${initial}
+                                            </div>
+                                            <div>
+                                                <h3 class="font-bold text-teal-950 font-serif leading-tight">${r.author_name}</h3>
+                                                <p class="text-xs text-stone-400 mt-1 flex items-center gap-1">
+                                                    <iconify-icon icon="${isGoogle ? 'logos:google-icon' : 'solar:verified-check-bold'}" class="${isGoogle ? '' : 'text-teal-600'}"></iconify-icon>
+                                                    Reseña verificada
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-1 mb-3 text-[14px]">
+                                            ${stars}
+                                        </div>
+                                        <p class="text-stone-600 text-sm leading-relaxed line-clamp-4 relative z-10 font-sans">
+                                            "${r.text}"
+                                        </p>
+                                    </div>`;
+                                });
+
+                                container.innerHTML = cardsHtml.join('') + cardsHtml.join('');
+                            })
+                            .catch(e => console.error("Error fetching reviews", e));
+                    });
+                </script>
             </div>
         </main>`;
 
