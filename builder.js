@@ -747,15 +747,23 @@ async function build() {
                     ${srvCards}
                 </div>
                 
-                <!-- Reseñas de Google - Elfsight -->
+                <!-- Dynamic Google Reviews Marquee -->
                 <div class="mt-20">
                     <div class="mb-10 text-center">
                         <span class="text-[13px] tracking-[0.3em] font-bold mb-4 block text-teal-600 uppercase">Lo que dicen de nosotros</span>
                         <h2 class="text-3xl md:text-4xl font-serif font-bold text-teal-950">Experiencias Reales</h2>
                     </div>
-                    <!-- Elfsight Google Reviews | Untitled Google Reviews -->
-                    <script src="https://elfsightcdn.com/platform.js" async></script>
-                    <div class="elfsight-app-3b0c9165-58ee-429b-97f4-474b77757d42" data-elfsight-app-lazy></div>
+                    <div class="relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-hidden py-8 my-6">
+                        <!-- Blur effect masks -->
+                        <div class="absolute left-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-r from-stone-50 to-transparent z-10 pointer-events-none"></div>
+                        <div class="absolute right-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-l from-stone-50 to-transparent z-10 pointer-events-none"></div>
+                        
+                        <div class="flex overflow-hidden">
+                            <div id="reviews-marquee-wrapper" class="flex items-start gap-6 w-max animate-marquee hover:[animation-play-state:paused] px-6 will-change-transform transform-gpu [backface-visibility:hidden] [-webkit-backface-visibility:hidden]">
+                                <!-- Se llenará dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>`;
